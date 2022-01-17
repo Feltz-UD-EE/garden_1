@@ -1,0 +1,2 @@
+class Tank < ApplicationRecord
+end

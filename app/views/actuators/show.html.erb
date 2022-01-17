@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @actuator %>
+
+<div>
+  <%= link_to "Edit this actuator", edit_actuator_path(@actuator) %> |
+  <%= link_to "Back to actuators", actuators_path %>
+
+  <%= button_to "Destroy this actuator", @actuator, method: :delete %>
+</div>

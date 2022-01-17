@@ -1,0 +1,17 @@
+<%= form_with(model: sensor) do |form| %>
+  <% if sensor.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(sensor.errors.count, "error") %> prohibited this sensor from being saved:</h2>
+
+      <ul>
+        <% sensor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

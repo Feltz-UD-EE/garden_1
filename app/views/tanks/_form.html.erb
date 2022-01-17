@@ -1,0 +1,17 @@
+<%= form_with(model: tank) do |form| %>
+  <% if tank.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tank.errors.count, "error") %> prohibited this tank from being saved:</h2>
+
+      <ul>
+        <% tank.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
