@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  resources :pins
   resources :zones
   resources :tanks
-  resources :actuators
-  resources :sensors
+  resources :moisture_sensors
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  get 'public_home', to: 'static#public_home'
+  get 'about', to: 'static#about'
+  get 'credits', to: 'static#credits'
+  get 'legal', to: 'static#legal'
+
   # Defines the root path route ("/")
-  # root "articles#index"
+  root to: 'static#public_home'
+
 end

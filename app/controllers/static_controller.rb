@@ -5,6 +5,10 @@
 #
 class StaticController < ApplicationController
 
+    def home
+        render "/public_home"
+    end
+
     def about
         render "/about"
     end
