@@ -8,7 +8,6 @@ class Pump < Actuator
     # statics & enums
 
     # relations
-    belongs_to: actuator          # inheritance
     belongs_to: tank
 
     # validations

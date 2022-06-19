@@ -5,14 +5,13 @@
 #   and whether to generate low-water alerts
 #
 
-class LevelSensor < Sensor
+class LevelSensor < ApplicationRecord
     # statics & enums
     def self.LEVEL_SENSOR_LOCATIONS
         {1: "low", 2: "mid", 3: "high"}
     end
 
     # relations
-    belongs_to: sensor          # inheritance
     belongs_to: tank
 
     # validations
