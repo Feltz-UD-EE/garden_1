@@ -1,3 +1,8 @@
+#
+# Copyright 2022 John C. Feltz, github: Feltz-UD-EE/garden_1
+#
+# Zones: planted areas
+#
 class ZonesController < ApplicationController
   before_action :set_zone, only: %i[ show edit update destroy ]
 

@@ -1,3 +1,8 @@
+#
+# Copyright 2022 John C. Feltz, github: Feltz-UD-EE/garden_1
+#
+# Tanks: sources of water
+#
 class TanksController < ApplicationController
   before_action :set_tank, only: %i[ show edit update destroy ]
 
