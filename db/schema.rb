@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_12_29_004430) do
 
   create_table "moisture_readings", force: :cascade do |t|
     t.integer "zone_id"
-    t.integer "readings"
+    t.integer "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["zone_id"], name: "index_moisture_readings_on_zone_id"

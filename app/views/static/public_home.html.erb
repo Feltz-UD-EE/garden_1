@@ -2,12 +2,44 @@
 
 <div>
   <h1>About Feltz Garden 1</h1>
-  <p>Current time: <%= Time.now.strftime("%A, %-d %b %Y %l:%M %p")%></p>
-  <p>Zone Table</p>
-  <% @zones.each do |zone| %>
-    <p><%= zone.number %>: <%= zone.crop %>, <%= zone.moisture_target %></p>
-  <% end %>
-  <p>Tanks</p>
+  <h2>Current time: <%= Time.now.strftime("%A, %-d %b %Y %l:%M %p")%></h2>
+  <h2>Zone Status</h2>
+  <table>
+    <tr>
+      <th>Number</th>
+      <th>Crop</th>
+      <th>Moisture Target</th>
+      <th>Latest Moisture Reading</th>
+      <th>Valve Status</th>
+    </tr>
+    <% @zones.each do |zone| %>
+      <tr>
+        <td><%= zone.number %></td>
+        <td><%= zone.crop %></td>
+        <td><%= zone.moisture_target %></td>
+        <td><%= zone.latest_reading %></td>
+        <td><%= zone.needs_water ? "Open" : "Closed" %></td>
+        </tr>
+    <% end %>
+  </table>
+  <h2>Tank Status</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Pump Status</th>
+    </tr>
+    <% @tanks.each do |tank| %>
+      <tr>
+        <td><%= tank.name %></td>
+        <% if tank.needs_pumping %>
+          <td style = "bgcolor:green, color:white">On</td>
+        <% else %>
+          <td>Off</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <hr/>
 </div>
 
 <div>

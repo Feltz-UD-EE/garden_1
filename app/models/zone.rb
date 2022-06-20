@@ -9,6 +9,8 @@ class Zone < ApplicationRecord
     # statics & enums
     sensor_multiplex_clock_pin = 1
     sensor_multiplex_addressing_pin = 2
+    max_moisture = 0
+    min_moisture = 1023
 
     # relations
     belongs_to :tank
@@ -25,12 +27,15 @@ class Zone < ApplicationRecord
 
     # scopes
     scope :planted, -> { where("crop IS NOT NULL") }
-    scope :needs_water, -> { where(:moisture_target < self.current_moisture_level) }
 
     # class methods
 
     # instance methods
-    def current_moisture_level
-        self.moisture_readings.descending.first
+    def latest_reading
+        self.moisture_readings.descending.first.present? ? self.moisture_readings.descending.first.value : Zone.min_moisture
+    end
+    def needs_water
+        self.latest_reading < self.moisture_target
     end
 end
+

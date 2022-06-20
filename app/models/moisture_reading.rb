@@ -6,7 +6,7 @@
 #   * read-only from perspective of UI
 #
 
-class MoistureRecord < ApplicationRecord
+class MoistureReading < ApplicationRecord
     # statics & enums
 
     # relations
@@ -15,8 +15,7 @@ class MoistureRecord < ApplicationRecord
     # validations
 
     # scopes
-    scope :descending -> { order(created_at: :desc) }
-    scope :last_n_days -> { where(:moisture_target > self.moisture_readings.descending.first) }
+    scope :descending, -> { order(created_at: :desc) }
 
     # class methods
 
