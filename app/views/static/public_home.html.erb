@@ -2,7 +2,7 @@
 
 <div>
   <h1>About Feltz Garden 1</h1>
-  <p>Current time</p>
+  <p>Current time: <%= Time.now.strftime("%A, %-d %b %Y %l:%M %p")%></p>
   <p>Zone Table</p>
   <% @zones.each do |zone| %>
     <p><%= zone.number %>: <%= zone.crop %>, <%= zone.moisture_target %></p>
