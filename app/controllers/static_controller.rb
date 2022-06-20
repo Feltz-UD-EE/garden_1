@@ -5,19 +5,16 @@
 #
 class StaticController < ApplicationController
 
-    def home
-        render "/public_home"
+    def public_home
+        @zones = Zone.all
     end
 
     def about
-        render "/about"
     end
 
     def credits
-        render "/credits"
     end
 
     def legal
-        render "/legal"
     end
 end

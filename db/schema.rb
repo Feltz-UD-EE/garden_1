@@ -10,92 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_29_004423) do
+ActiveRecord::Schema.define(version: 2021_12_29_004430) do
 
-  create_table "actuators", force: :cascade do |t|
-    t.integer "pinout"
+  create_table "moisture_readings", force: :cascade do |t|
+    t.integer "zone_id"
+    t.integer "readings"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "level_sensors", force: :cascade do |t|
-    t.integer "sensors_id"
-    t.integer "tanks_id"
-    t.integer "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sensors_id"], name: "index_level_sensors_on_sensors_id"
-    t.index ["tanks_id"], name: "index_level_sensors_on_tanks_id"
-  end
-
-  create_table "moisture_sensors", force: :cascade do |t|
-    t.integer "sensors_id"
-    t.integer "zones_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sensors_id"], name: "index_moisture_sensors_on_sensors_id"
-    t.index ["zones_id"], name: "index_moisture_sensors_on_zones_id"
-  end
-
-  create_table "pins", force: :cascade do |t|
-    t.integer "number"
-    t.string "description"
-    t.integer "gpio"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "pumps", force: :cascade do |t|
-    t.integer "actuators_id"
-    t.integer "tanks_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["actuators_id"], name: "index_pumps_on_actuators_id"
-    t.index ["tanks_id"], name: "index_pumps_on_tanks_id"
-  end
-
-  create_table "sensors", force: :cascade do |t|
-    t.integer "pins_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pins_id"], name: "index_sensors_on_pins_id"
+    t.index ["zone_id"], name: "index_moisture_readings_on_zone_id"
   end
 
   create_table "tanks", force: :cascade do |t|
     t.string "name"
-    t.integer "capacity"
-    t.integer "backed_up_by"
+    t.integer "volume"
+    t.integer "pump_pin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "temp_sensors", force: :cascade do |t|
-    t.integer "sensors_id"
-    t.integer "zones_id"
-    t.integer "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sensors_id"], name: "index_temp_sensors_on_sensors_id"
-    t.index ["zones_id"], name: "index_temp_sensors_on_zones_id"
-  end
-
-  create_table "valves", force: :cascade do |t|
-    t.integer "actuators_id"
-    t.integer "zones_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["actuators_id"], name: "index_valves_on_actuators_id"
-    t.index ["zones_id"], name: "index_valves_on_zones_id"
   end
 
   create_table "zones", force: :cascade do |t|
     t.string "name"
+    t.string "number"
+    t.integer "tank_id"
+    t.string "crop"
     t.string "description"
-    t.float "target_moisture"
-    t.integer "tanks_id"
+    t.integer "valve_pin"
+    t.integer "sensor_pin"
+    t.integer "sensor_index"
+    t.integer "moisture_target"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["tanks_id"], name: "index_zones_on_tanks_id"
+    t.index ["tank_id"], name: "index_zones_on_tank_id"
   end
 
 end

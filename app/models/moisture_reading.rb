@@ -10,7 +10,7 @@ class MoistureRecord < ApplicationRecord
     # statics & enums
 
     # relations
-    belongs_to: zone
+    belongs_to :zone
 
     # validations
 

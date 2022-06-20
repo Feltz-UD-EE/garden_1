@@ -8,7 +8,7 @@ class Tank < ApplicationRecord
     # statics & enums
 
     # relations
-    has_many: zones
+    has_many :zones
 
     # validations
     validates :name, presence: true

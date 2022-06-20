@@ -2,6 +2,15 @@
 
 <div>
   <h1>About Feltz Garden 1</h1>
-  <p>Lorem ipsum</p>
-  <p>Res ipsa loquitor</p>
+  <p>Current time</p>
+  <p>Zone Table</p>
+  <% @zones.each do |zone| %>
+    <p><%= zone.number %>: <%= zone.crop %>, <%= zone.moisture_target %></p>
+  <% end %>
+  <p>Tanks</p>
 </div>
+
+<div>
+<%= link_to "About", about_path %>
+<%= link_to "Credits", credits_path %>
+<%= link_to "Legal", legal_path %>

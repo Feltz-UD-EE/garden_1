@@ -11,19 +11,21 @@ class Zone < ApplicationRecord
     sensor_multiplex_addressing_pin = 2
 
     # relations
-    belongs_to: tank
-    has_many: moisture_readings
+    belongs_to :tank
+    has_many :moisture_readings
 
     # validations
     validates :name, presence: true
+    validates :number, presence: true
     validates :valve_pin, presence: true
     validates :sensor_pin, presence: true
     validates :sensor_index, presence: true
     validates :sensor_index, uniqueness: {scope: :sensor_pin}
+    validates :moisture_target, presence: true
 
     # scopes
-    scope: planted, -> { where("crop IS NOT NULL") }
-    scope: needs_water, -> { where(:moisture_target < self.current_moisture_level) }
+    scope :planted, -> { where("crop IS NOT NULL") }
+    scope :needs_water, -> { where(:moisture_target < self.current_moisture_level) }
 
     # class methods
 
