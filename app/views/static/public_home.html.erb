@@ -11,6 +11,7 @@
       <th>Moisture Target</th>
       <th>Latest Moisture Reading</th>
       <th>Valve Status</th>
+      <th></th>
     </tr>
     <% @zones.each do |zone| %>
       <tr>
@@ -19,6 +20,7 @@
         <td><%= zone.moisture_target %></td>
         <td><%= zone.latest_reading %></td>
         <td><%= zone.needs_water ? "Open" : "Closed" %></td>
+        <td><%= link_to "View", zone_path(zone.id) %>
         </tr>
     <% end %>
   </table>

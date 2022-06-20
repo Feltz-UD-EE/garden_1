@@ -3,6 +3,7 @@
 #
 # Tanks: sources of water
 #
+# require 'rpi_gpio'
 
 class Tank < ApplicationRecord
     # statics & enums
@@ -21,6 +22,16 @@ class Tank < ApplicationRecord
     # instance methods
     def needs_pumping
         self.zones.map { |z| z.needs_water }.include?(true)
+    end
+
+    def pump_on
+        RPi::GPIO.setup self.pump_pin, :as => :output
+        RPi::GPIO.set_high self.pump_pin
+    end
+
+    def pump_off
+        RPi::GPIO.setup self.pump_pin, :as => :output
+        RPi::GPIO.set_low self.pump_pin
     end
 
 end
