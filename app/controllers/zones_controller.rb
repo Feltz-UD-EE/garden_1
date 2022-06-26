@@ -17,7 +17,8 @@ class ZonesController < ApplicationController
 
   # GET /zones/new
   def new
-    @zone = Zone.new
+    @tanks = Tank.all
+    @zone = Zone.new(tank_id: params["tank_id"])
   end
 
   # GET /zones/1/edit
@@ -70,6 +71,6 @@ class ZonesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def zone_params
-      params.fetch(:zone, {})
+      params.require(:zone).permit(:name, :number, :tank_id, :crop, :description, :valve_pin, :sensor_pin, :sensor_index, :moisture_target)
     end
 end

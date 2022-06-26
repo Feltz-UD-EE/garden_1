@@ -16,7 +16,7 @@ class MoistureReading < ApplicationRecord
 
     # scopes
     scope :descending, -> { order(created_at: :desc) }
-
+    scope :last_day, -> { where("created_at >= ?", Date.yesterday) }
     # class methods
 
     # instance methods

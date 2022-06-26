@@ -11,6 +11,33 @@
     </div>
   <% end %>
 
+  <table>
+    <tr>
+      <td>Number</td>
+      <td><%= form.text_field :number %></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><%= form.text_field :name %></td>
+    </tr>
+    <tr>
+      <td>Tank</td>
+      <td><%= form.select :tank_id, @tanks.collect {|t| [ t.name, t.id ] } %></td>
+    </tr>
+    <tr>
+      <td>Crop</td>
+      <td><%= form.text_field :crop %></td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td><%= form.text_field :description %></td>
+    </tr>
+    <tr>
+      <td>Valve Pin</td>
+      <td><%= form.text_field :valve_pin %></td>
+    </tr>
+  </table>
+
   <div>
     <%= form.submit %>
   </div>

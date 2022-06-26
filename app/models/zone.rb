@@ -4,6 +4,20 @@
 # Zones: planted areas, usually 1 crop (or closely related plants)
 #   * a zone is typically 1 or 2 rows, or half of a 4'x8' raised bed (~16 square feet, ~1.5 square meters)
 #
+
+#
+#       t.string  :name
+#       t.string  :number
+#       t.references :tank
+#       t.string  :crop
+#       t.string  :description
+#       t.integer :valve_pin
+#       t.integer :sensor_pin             # pin & index composite unique
+#       t.integer :sensor_index
+#       t.integer :moisture_target        # 0-1023
+#       t.timestamps
+#
+
 # require 'rpi_gpio'
 
 class Zone < ApplicationRecord
@@ -11,8 +25,8 @@ class Zone < ApplicationRecord
     sensor_multiplex_clock_pin = 1              # all 3 of these still TBD
     sensor_multiplex_addressing_pin = 2
     sensor_power_pin = 3
-    max_moisture = 0                            # sensor gives inverted reading, as it's taken
-    min_moisture = 1023                         # straight from resistance reading
+    max_moisture = 0                            # sensor gives inverted reading, as it is read
+    min_moisture = 1023                         # directly from resistance reading
 
     # relations
     belongs_to :tank

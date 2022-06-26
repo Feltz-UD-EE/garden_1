@@ -1,2 +1,26 @@
 <div id="<%= dom_id zone %>">
+<h2>Zone: <%= @zone.name %></h2>
+<p>Number: <%= @zone.number %></p>
+<p>Tank: <%= link_to @zone.tank.name, tank_path(@zone.tank) %></p>
+<p>Crop: <%= @zone.crop %></p>
+<p>Description: <%= @zone.description %></p>
+<p>Valve Pin: <%= @zone.valve_pin %></p>
+<p>Sensor: <%= @zone.sensor_pin %>-<%= @zone.sensor_index %></p>
+<p>Moisture Target: <%= @zone.moisture_target %></p>
+<hr/>
+<h3>Recent Moisture Readings</h3>
+<table style="border-spacing:10px;">
+    <tr style="text-align:center;">
+        <th>Date/Time</th>
+        <th>Level</th>
+    <tr>
+    <% @zone.moisture_readings.descending.last_day.each do |mr| %>
+        <tr>
+            <td><%= mr.created_at.strftime("%A %l:%M %p") %></td>
+            <td><%= mr.value %></td>
+        </tr>
+    <% end %>
+</table>
+<hr/>
+<br/>
 </div>

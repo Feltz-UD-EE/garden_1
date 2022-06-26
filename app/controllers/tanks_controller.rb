@@ -70,6 +70,6 @@ class TanksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tank_params
-      params.fetch(:tank, {})
+      params.require(:tank).permit(:name, :volume, :pump_pin)
     end
 end

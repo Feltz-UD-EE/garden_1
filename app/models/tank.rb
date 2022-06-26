@@ -3,6 +3,11 @@
 #
 # Tanks: sources of water
 #
+#       t.string  :name
+#       t.integer :volume               # liters
+#       t.integer :pump_pin
+#       t.timestamps
+
 # require 'rpi_gpio'
 
 class Tank < ApplicationRecord
