@@ -22,11 +22,11 @@
 
 class Zone < ApplicationRecord
     # statics & enums
-    sensor_multiplex_clock_pin = 1              # all 3 of these still TBD
-    sensor_multiplex_addressing_pin = 2
-    sensor_power_pin = 3
-    max_moisture = 0                            # sensor gives inverted reading, as it is read
-    min_moisture = 1023                         # directly from resistance reading
+    SensorMultiplexClockPin = 1              # all 3 of these still TBD
+    SensorMultiplexAddressingPin = 2
+    SensorPowerPin = 3
+    MaxMoisture = 0                            # moisture scale inverted, as it is the raw resistance level from sensor
+    MinMoisture = 1023
 
     # relations
     belongs_to :tank
@@ -40,12 +40,19 @@ class Zone < ApplicationRecord
     validates :sensor_index, presence: true
     validates :sensor_index, uniqueness: {scope: :sensor_pin}
     validates :moisture_target, presence: true
+    validate  :moisture_target_in_limits
+
+    def moisture_target_in_limits           # NB moisture scale inverted
+        if moisture_target > MinMoisture || moisture_target > MaxMoisture
+            errors.add(:moisture_target, "must be in range #{MaxMoisture}-#{MinMoisture}")
+        end
+    end
 
     # scopes
     scope :planted, -> { where("crop IS NOT NULL") }
 
     # class methods
-    def moisture_sensors_activate
+    def self.moisture_sensors_activate
         RPi::GPIO.setup Zone.sensor_multiplex_clock_pin, :as => :output
         RPi::GPIO.setup Zone.sensor_multiplex_addressing_pin, :as => :output
         RPi::GPIO.setup Zone.sensor_power_pin, :as => :output
@@ -53,7 +60,7 @@ class Zone < ApplicationRecord
         # ?? translate from example python code
     end
 
-    def moisture_sensors_deactivate
+    def self.moisture_sensors_deactivate
         RPi::GPIO.setup Zone.sensor_multiplex_clock_pin, :as => :output
         RPi::GPIO.setup Zone.sensor_multiplex_addressing_pin, :as => :output
         RPi::GPIO.setup Zone.sensor_power_pin, :as => :output
@@ -71,7 +78,7 @@ class Zone < ApplicationRecord
     end
 
     def latest_reading
-        self.moisture_readings.descending.first.present? ? self.moisture_readings.descending.first.value : Zone.min_moisture
+        self.moisture_readings.descending.first.present? ? self.moisture_readings.descending.first.value : MinMoisture
     end
 
     def needs_water

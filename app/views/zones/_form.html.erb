@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <td>Tank</td>
-      <td><%= form.select :tank_id, @tanks.collect {|t| [ t.name, t.id ] } %></td>
+      <td><%= form.select :tank_id, Tank.all.collect {|t| [ t.name, t.id ] } %></td>
     </tr>
     <tr>
       <td>Crop</td>
@@ -35,6 +35,18 @@
     <tr>
       <td>Valve Pin</td>
       <td><%= form.text_field :valve_pin %></td>
+    </tr>
+    <tr>
+      <td>Sensor Pin</td>
+      <td><%= form.text_field :sensor_pin %></td>
+    </tr>
+    <tr>
+      <td>Sensor Index (1-8)</td>
+      <td><%= form.text_field :sensor_index %></td>
+    </tr>
+    <tr>
+      <td>Moisture Target (0-1023)</td>
+      <td><%= form.text_field :moisture_target %></td>
     </tr>
   </table>
 
