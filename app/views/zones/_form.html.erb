@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <td>Tank</td>
-      <td><%= form.select :tank_id, Tank.all.collect {|t| [ t.name, t.id ] } %></td>
+      <td><%= form.select :tank_id, (["-- Please select a tank --"] + Tank.all.collect {|t| [ t.name, t.id ] }) %></td>
     </tr>
     <tr>
       <td>Crop</td>

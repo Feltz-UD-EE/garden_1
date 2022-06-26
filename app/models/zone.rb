@@ -43,7 +43,7 @@ class Zone < ApplicationRecord
     validate  :moisture_target_in_limits
 
     def moisture_target_in_limits           # NB moisture scale inverted
-        if moisture_target > MinMoisture || moisture_target > MaxMoisture
+        if moisture_target > MinMoisture || moisture_target < MaxMoisture
             errors.add(:moisture_target, "must be in range #{MaxMoisture}-#{MinMoisture}")
         end
     end

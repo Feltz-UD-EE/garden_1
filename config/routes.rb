@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :zones
   resources :tanks
-  resources :moisture_sensors
+  resources :moisture_readings
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   get 'public_home', to: 'static#public_home'

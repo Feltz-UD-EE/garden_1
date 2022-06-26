@@ -5,11 +5,12 @@
 #   job and cannot be edited or deleted by the user
 #
 class MoistureReadingsController < ApplicationController
-  before_action :set_tank, only: %i[ show edit update destroy ]
+#   before_action :set_tank, only: %i[ show edit update destroy ]
 
   # GET /moisture_readings or /moisture_readings.json
   def index
-    @moisture_readings = MoistureReadings.all
+    @moisture_readings = MoistureReading.where("zone_id = #{params['zone_id']}")
+    @moisture_readings_one_week = MoistureReading.last_week.where("zone_id = #{params['zone_id']}")
   end
 
   # GET /moisture_readings/1 or /moisture_readings/1.json

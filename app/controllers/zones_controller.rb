@@ -17,7 +17,6 @@ class ZonesController < ApplicationController
 
   # GET /zones/new
   def new
-    @tanks = Tank.all
     @zone = Zone.new(tank_id: params["tank_id"])
   end
 

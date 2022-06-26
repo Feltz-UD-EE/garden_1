@@ -1,12 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Moisture Readings</h1>
+<h1>Moisture Readings (last week)</h1>
 
 <div id="moisture_readings">
-  <% @moisture_readings.each do |moisture_reading| %>
-    <%= render moisture_reading %>
-    <p>
-      <%= link_to "Show this moisture_reading", moisture_reading %>
-    </p>
+<table>
+  <% @moisture_readings_one_week.each do |moisture_reading| %>
+    <tr>
+        <td><%= moisture_reading.created_at.strftime("%A, %-d %b %Y %l:%M %p") %></td>
+        <td><%= moisture_reading.value %></td>
   <% end %>
 </div>
