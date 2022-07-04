@@ -42,6 +42,9 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Simple authentication/sessions gem
+gem "rodauth-rails"
+
 # Access Raspberry Pi pinouts
 # gem 'rpi_gpio'
 

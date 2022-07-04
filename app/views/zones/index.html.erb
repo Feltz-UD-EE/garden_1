@@ -3,12 +3,14 @@
 <h1>Zones</h1>
 
 <div id="zones">
+<table>
   <% @zones.each do |zone| %>
-    <%= render zone %>
-    <p>
-      <%= link_to "Show this zone", zone %>
-    </p>
+    <tr>
+        <td><%= zone.created_at.strftime("%A, %-d %b %Y %l:%M %p") %></td>
+        <td><%= zone.name %></td>
+    </tr>
   <% end %>
+</table>
 </div>
 
 <%= link_to "New zone", new_zone_path %>

@@ -17,15 +17,18 @@ class TanksController < ApplicationController
 
   # GET /tanks/new
   def new
+    rodauth.require_authentication
     @tank = Tank.new
   end
 
   # GET /tanks/1/edit
   def edit
+    rodauth.require_authentication
   end
 
   # POST /tanks or /tanks.json
   def create
+    rodauth.require_authentication
     @tank = Tank.new(tank_params)
 
     respond_to do |format|
@@ -41,6 +44,7 @@ class TanksController < ApplicationController
 
   # PATCH/PUT /tanks/1 or /tanks/1.json
   def update
+    rodauth.require_authentication
     respond_to do |format|
       if @tank.update(tank_params)
         format.html { redirect_to tank_url(@tank), notice: "Tank was successfully updated." }
@@ -54,6 +58,7 @@ class TanksController < ApplicationController
 
   # DELETE /tanks/1 or /tanks/1.json
   def destroy
+    rodauth.require_authentication
     @tank.destroy
 
     respond_to do |format|

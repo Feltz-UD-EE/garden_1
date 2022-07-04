@@ -17,15 +17,18 @@ class ZonesController < ApplicationController
 
   # GET /zones/new
   def new
+    rodauth.require_authentication
     @zone = Zone.new(tank_id: params["tank_id"])
   end
 
   # GET /zones/1/edit
   def edit
+    rodauth.require_authentication
   end
 
   # POST /zones or /zones.json
   def create
+    rodauth.require_authentication
     @zone = Zone.new(zone_params)
 
     respond_to do |format|
@@ -41,6 +44,7 @@ class ZonesController < ApplicationController
 
   # PATCH/PUT /zones/1 or /zones/1.json
   def update
+    rodauth.require_authentication
     respond_to do |format|
       if @zone.update(zone_params)
         format.html { redirect_to zone_url(@zone), notice: "Zone was successfully updated." }
@@ -54,6 +58,7 @@ class ZonesController < ApplicationController
 
   # DELETE /zones/1 or /zones/1.json
   def destroy
+    rodauth.require_authentication
     @zone.destroy
 
     respond_to do |format|

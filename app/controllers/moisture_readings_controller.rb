@@ -9,38 +9,41 @@ class MoistureReadingsController < ApplicationController
 
   # GET /moisture_readings or /moisture_readings.json
   def index
+    rodauth.require_authentication
     @moisture_readings = MoistureReading.where("zone_id = #{params['zone_id']}")
     @moisture_readings_one_week = MoistureReading.last_week.where("zone_id = #{params['zone_id']}")
   end
 
   # GET /moisture_readings/1 or /moisture_readings/1.json
   def show
+    rodauth.require_authentication
   end
 
   # GET /moisture_readings/new
-  # disable - moisture readings created only w/ cron job
-  def new
-  end
+  # disable - moisture readings created only w/ cron job; maybe do this with curl/JSON API call in the future
+  # ditto other actions below
+#   def new
+#   end
 
   # GET /moisture_readings/1/edit
   # disable - moisture readings not editable
-  def edit
-  end
+#   def edit
+#   end
 
   # POST /moisture_readings or /moisture_readings.json
   # disable - moisture readings created only w/ cron job
-  def create
-  end
+#   def create
+#   end
 
   # PATCH/PUT /moisture_readings/1 or /moisture_readings/1.json
   # disable - moisture readings not editable
-  def update
-  end
+#   def update
+#   end
 
   # DELETE /moisture_readings/1 or /moisture_readings/1.json
   # disable - moisture readings not deletable
-  def destroy
-  end
+#   def destroy
+#   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
