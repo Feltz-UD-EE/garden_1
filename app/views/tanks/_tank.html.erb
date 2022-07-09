@@ -15,7 +15,7 @@
     <tr>
         <th>
     </tr>
-    <% @tank.zones.each do |zone| %>
+    <% @tank.zones.ascending.each do |zone| %>
         <tr>
             <td><%= zone.name %></td>
             <td><%= zone.crop %></td>
