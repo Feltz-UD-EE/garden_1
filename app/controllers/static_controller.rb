@@ -6,7 +6,7 @@
 class StaticController < ApplicationController
 
     def public_home
-        @zones = Zone.all
+        @zones = Zone.all.ascending
         @tanks = Tank.all
     end
 

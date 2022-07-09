@@ -50,6 +50,7 @@ class Zone < ApplicationRecord
 
     # scopes
     scope :planted, -> { where("crop IS NOT NULL") }
+    scope :ascending, -> { order(number: :asc) }
 
     # class methods
     def self.moisture_sensors_activate

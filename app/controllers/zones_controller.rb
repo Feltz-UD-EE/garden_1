@@ -8,7 +8,7 @@ class ZonesController < ApplicationController
 
   # GET /zones or /zones.json
   def index
-    @zones = Zone.all
+    @zones = Zone.all.ascending
   end
 
   # GET /zones/1 or /zones/1.json
