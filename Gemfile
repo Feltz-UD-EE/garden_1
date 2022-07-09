@@ -46,7 +46,10 @@ gem "bootsnap", require: false
 gem "rodauth-rails"
 
 # Access Raspberry Pi pinouts
-# gem 'rpi_gpio'
+gem 'rpi_gpio'
+
+# Use MCP3008 multiplexing A/D converter
+gem 'mcp3008pi', '~> 0.1.1'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
