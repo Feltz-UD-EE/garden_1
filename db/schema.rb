@@ -10,92 +10,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_29_004423) do
+ActiveRecord::Schema.define(version: 2022_07_04_182819) do
 
-  create_table "actuators", force: :cascade do |t|
-    t.integer "pinout"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table "account_login_change_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "login", null: false
+    t.datetime "deadline", precision: 6, null: false
   end
 
-  create_table "level_sensors", force: :cascade do |t|
-    t.integer "sensors_id"
-    t.integer "tanks_id"
-    t.integer "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sensors_id"], name: "index_level_sensors_on_sensors_id"
-    t.index ["tanks_id"], name: "index_level_sensors_on_tanks_id"
+  create_table "account_password_reset_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "deadline", precision: 6, null: false
+    t.datetime "email_last_sent", precision: 6, null: false
   end
 
-  create_table "moisture_sensors", force: :cascade do |t|
-    t.integer "sensors_id"
-    t.integer "zones_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sensors_id"], name: "index_moisture_sensors_on_sensors_id"
-    t.index ["zones_id"], name: "index_moisture_sensors_on_zones_id"
+  create_table "account_remember_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "deadline", precision: 6, null: false
   end
 
-  create_table "pins", force: :cascade do |t|
-    t.integer "number"
-    t.string "description"
-    t.integer "gpio"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table "account_verification_keys", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "requested_at", precision: 6, null: false
+    t.datetime "email_last_sent", precision: 6, null: false
   end
 
-  create_table "pumps", force: :cascade do |t|
-    t.integer "actuators_id"
-    t.integer "tanks_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["actuators_id"], name: "index_pumps_on_actuators_id"
-    t.index ["tanks_id"], name: "index_pumps_on_tanks_id"
+  create_table "accounts", force: :cascade do |t|
+    t.integer "status", default: 1, null: false
+    t.string "email", null: false
+    t.string "password_hash"
+    t.index ["email"], name: "index_accounts_on_email", unique: true, where: "status IN (1, 2)"
   end
 
-  create_table "sensors", force: :cascade do |t|
-    t.integer "pins_id"
+  create_table "moisture_readings", force: :cascade do |t|
+    t.integer "zone_id"
+    t.integer "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pins_id"], name: "index_sensors_on_pins_id"
+    t.index ["zone_id"], name: "index_moisture_readings_on_zone_id"
   end
 
   create_table "tanks", force: :cascade do |t|
     t.string "name"
-    t.integer "capacity"
-    t.integer "backed_up_by"
+    t.integer "volume"
+    t.integer "pump_pin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "temp_sensors", force: :cascade do |t|
-    t.integer "sensors_id"
-    t.integer "zones_id"
-    t.integer "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sensors_id"], name: "index_temp_sensors_on_sensors_id"
-    t.index ["zones_id"], name: "index_temp_sensors_on_zones_id"
-  end
-
-  create_table "valves", force: :cascade do |t|
-    t.integer "actuators_id"
-    t.integer "zones_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["actuators_id"], name: "index_valves_on_actuators_id"
-    t.index ["zones_id"], name: "index_valves_on_zones_id"
   end
 
   create_table "zones", force: :cascade do |t|
     t.string "name"
+    t.integer "number"
+    t.integer "tank_id"
+    t.string "crop"
     t.string "description"
-    t.float "target_moisture"
-    t.integer "tanks_id"
+    t.integer "valve_pin"
+    t.integer "sensor_pin"
+    t.integer "sensor_index"
+    t.integer "moisture_target"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["tanks_id"], name: "index_zones_on_tanks_id"
+    t.index ["tank_id"], name: "index_zones_on_tank_id"
   end
 
+  add_foreign_key "account_login_change_keys", "accounts", column: "id"
+  add_foreign_key "account_password_reset_keys", "accounts", column: "id"
+  add_foreign_key "account_remember_keys", "accounts", column: "id"
+  add_foreign_key "account_verification_keys", "accounts", column: "id"
 end

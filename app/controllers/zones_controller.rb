@@ -1,9 +1,14 @@
+#
+# Copyright 2022 John C. Feltz, github: Feltz-UD-EE/garden_1
+#
+# Zones: planted areas
+#
 class ZonesController < ApplicationController
   before_action :set_zone, only: %i[ show edit update destroy ]
 
   # GET /zones or /zones.json
   def index
-    @zones = Zone.all
+    @zones = Zone.all.ascending
   end
 
   # GET /zones/1 or /zones/1.json
@@ -12,15 +17,18 @@ class ZonesController < ApplicationController
 
   # GET /zones/new
   def new
-    @zone = Zone.new
+    rodauth.require_authentication
+    @zone = Zone.new(tank_id: params["tank_id"])
   end
 
   # GET /zones/1/edit
   def edit
+    rodauth.require_authentication
   end
 
   # POST /zones or /zones.json
   def create
+    rodauth.require_authentication
     @zone = Zone.new(zone_params)
 
     respond_to do |format|
@@ -36,6 +44,7 @@ class ZonesController < ApplicationController
 
   # PATCH/PUT /zones/1 or /zones/1.json
   def update
+    rodauth.require_authentication
     respond_to do |format|
       if @zone.update(zone_params)
         format.html { redirect_to zone_url(@zone), notice: "Zone was successfully updated." }
@@ -49,6 +58,7 @@ class ZonesController < ApplicationController
 
   # DELETE /zones/1 or /zones/1.json
   def destroy
+    rodauth.require_authentication
     @zone.destroy
 
     respond_to do |format|
@@ -65,6 +75,6 @@ class ZonesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def zone_params
-      params.fetch(:zone, {})
+      params.require(:zone).permit(:name, :number, :tank_id, :crop, :description, :valve_pin, :sensor_pin, :sensor_index, :moisture_target)
     end
 end

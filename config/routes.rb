@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  resources :pins
+
+# Rodauth built-in paths are not defined here, and are not shown when doing
+#   >rails routes
+#
+# public static & home routes
+  root to: 'static#public_home'
+  get 'public_home', to: 'static#public_home'
+  get 'about', to: 'static#about'
+  get 'credits', to: 'static#credits'
+  get 'legal', to: 'static#legal'
+
   resources :zones
   resources :tanks
-  resources :actuators
-  resources :sensors
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :moisture_readings
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

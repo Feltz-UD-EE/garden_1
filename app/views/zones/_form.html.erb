@@ -11,6 +11,45 @@
     </div>
   <% end %>
 
+  <table>
+    <tr>
+      <td>Number</td>
+      <td><%= form.text_field :number %></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><%= form.text_field :name %></td>
+    </tr>
+    <tr>
+      <td>Tank</td>
+      <td><%= form.select :tank_id, (["-- Please select a tank --"] + Tank.all.collect {|t| [ t.name, t.id ] }) %></td>
+    </tr>
+    <tr>
+      <td>Crop</td>
+      <td><%= form.text_field :crop %></td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td><%= form.text_field :description %></td>
+    </tr>
+    <tr>
+      <td>Valve Pin</td>
+      <td><%= form.text_field :valve_pin %></td>
+    </tr>
+    <tr>
+      <td>Sensor Pin</td>
+      <td><%= form.text_field :sensor_pin %></td>
+    </tr>
+    <tr>
+      <td>Sensor Index (1-8)</td>
+      <td><%= form.text_field :sensor_index %></td>
+    </tr>
+    <tr>
+      <td>Moisture Target (0-1023)</td>
+      <td><%= form.text_field :moisture_target %></td>
+    </tr>
+  </table>
+
   <div>
     <%= form.submit %>
   </div>

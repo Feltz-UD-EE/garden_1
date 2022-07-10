@@ -5,9 +5,14 @@ class CreateZones < ActiveRecord::Migration[7.0]
   def change
     create_table :zones do |t|
       t.string  :name
+      t.integer :number
+      t.references :tank
+      t.string  :crop
       t.string  :description
-      t.float   :target_moisture        # units TBD
-      t.references :tanks
+      t.integer :valve_pin
+      t.integer :sensor_pin             # pin & index composite unique
+      t.integer :sensor_index
+      t.integer :moisture_target        # 0-1023
 
       t.timestamps
     end

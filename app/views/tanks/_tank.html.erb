@@ -1,2 +1,29 @@
 <div id="<%= dom_id tank %>">
+<h2>Tank: <%= @tank.name %></h2>
+<p>Volume: <%= @tank.volume %> liters</p>
+<p>Pump Pin: <%= @tank.pump_pin %></p>
+<p>Pump Status:
+    <% if @tank.needs_pumping %>
+        <span style = "bgcolor:green, color:white">On</span>
+    <% else %>
+        Off
+    <% end %>
+</p>
+</br>
+<h3>Zones</h3>
+<table>
+    <tr>
+        <th>
+    </tr>
+    <% @tank.zones.ascending.each do |zone| %>
+        <tr>
+            <td><%= zone.name %></td>
+            <td><%= zone.crop %></td>
+            <td><%= zone.moisture_target %></td>
+        </tr>
+    <% end %>
+</table>
+<%= link_to "Add a zone", new_zone_path(tank_id: tank.id) %>
+<br/>
+<hr/>
 </div>
