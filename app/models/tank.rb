@@ -26,17 +26,19 @@ class Tank < ApplicationRecord
 
     # instance methods
     def needs_pumping
-        self.zones.map { |z| z.needs_water }.include?(true)
+        self.zones.planted.map { |z| z.needs_water }.include?(true)
     end
 
     def pump_on
-        RPi::GPIO.setup self.pump_pin, :as => :output
-        RPi::GPIO.set_high self.pump_pin
+#         RPi::GPIO.setup self.pump_pin, :as => :output
+#         RPi::GPIO.set_high self.pump_pin
+      p "Turning on pump for #{self.name}"
     end
 
     def pump_off
-        RPi::GPIO.setup self.pump_pin, :as => :output
-        RPi::GPIO.set_low self.pump_pin
+#         RPi::GPIO.setup self.pump_pin, :as => :output
+#         RPi::GPIO.set_low self.pump_pin
+      p "Turning off pump for #{self.name}"
     end
 
 end

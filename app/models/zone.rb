@@ -53,29 +53,35 @@ class Zone < ApplicationRecord
     scope :ascending, -> { order(number: :asc) }
 
     # class methods
+    def planted?
+      crop.present?
+    end
+
     def self.moisture_sensors_activate
-        RPi::GPIO.setup Zone.sensor_multiplex_clock_pin, :as => :output
-        RPi::GPIO.setup Zone.sensor_multiplex_addressing_pin, :as => :output
-        RPi::GPIO.setup Zone.sensor_power_pin, :as => :output
-        RPi::GPIO.set_high Zone.sensor_power_pin
-        # ?? translate from example python code
+#         RPi::GPIO.setup Zone.sensor_multiplex_clock_pin, :as => :output
+#         RPi::GPIO.setup Zone.sensor_multiplex_addressing_pin, :as => :output
+#         RPi::GPIO.setup Zone.sensor_power_pin, :as => :output
+#         RPi::GPIO.set_high Zone.sensor_power_pin
+      p "Activating moisture sensors"
     end
 
     def self.moisture_sensors_deactivate
-        RPi::GPIO.setup Zone.sensor_multiplex_clock_pin, :as => :output
-        RPi::GPIO.setup Zone.sensor_multiplex_addressing_pin, :as => :output
-        RPi::GPIO.setup Zone.sensor_power_pin, :as => :output
-        RPi::GPIO.set_low Zone.sensor_multiplex_clock_pin
-        RPi::GPIO.set_low Zone.sensor_multiplex_addressing_pin
-        RPi::GPIO.set_low Zone.sensor_power_pin
+#         RPi::GPIO.setup Zone.sensor_multiplex_clock_pin, :as => :output
+#         RPi::GPIO.setup Zone.sensor_multiplex_addressing_pin, :as => :output
+#         RPi::GPIO.setup Zone.sensor_power_pin, :as => :output
+#         RPi::GPIO.set_low Zone.sensor_multiplex_clock_pin
+#         RPi::GPIO.set_low Zone.sensor_multiplex_addressing_pin
+#         RPi::GPIO.set_low Zone.sensor_power_pin
+      p "Deactivating moisture sensors"
     end
 
     # instance methods
     def take_reading
         # Use Rpi on pin = self.sensor_pin and self.sensor_index
-        RPi::GPIO.setup self.sensor_pin, :as => :input
-        value = nil  # ?? translate from example python code
-        self.moisture_readings.create(value: value)
+#         RPi::GPIO.setup self.sensor_pin, :as => :input
+#         value = nil  # ?? translate from example python code
+#         self.moisture_readings.create(value: value)
+      self.moisture_readings.create(value: rand(0..1023))
     end
 
     def latest_reading
@@ -83,17 +89,19 @@ class Zone < ApplicationRecord
     end
 
     def needs_water
-        self.latest_reading < self.moisture_target
+        (self.latest_reading < self.moisture_target) && self.planted?
     end
 
     def valve_open
-        RPi::GPIO.setup self.valve_pin, :as => :output
-        RPi::GPIO.set_high self.valve_pin
+#         RPi::GPIO.setup self.valve_pin, :as => :output
+#         RPi::GPIO.set_high self.valve_pin
+      p "Opening valve for zone #{self.number}"
     end
 
     def valve_close
-        RPi::GPIO.setup self.valve_pin, :as => :output
-        RPi::GPIO.set_low self.valve_pin
+#         RPi::GPIO.setup self.valve_pin, :as => :output
+#         RPi::GPIO.set_low self.valve_pin
+      p "Closing valve for zone #{self.number}"
     end
 
 end
