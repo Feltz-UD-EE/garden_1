@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2022_07_04_182819) do
 
   create_table "zones", force: :cascade do |t|
     t.string "name"
-    t.string "number"
+    t.integer "number"
     t.integer "tank_id"
     t.string "crop"
     t.string "description"

@@ -3,12 +3,15 @@
 <h1>Tanks</h1>
 
 <div id="tanks">
+<table>
   <% @tanks.each do |tank| %>
-    <%= render tank %>
-    <p>
-      <%= link_to "Show this tank", tank %>
-    </p>
+    <tr>
+        <td><%= link_to tank.name, tank_path(tank) %></td>
+        <td><%= tank.volume %></td>
+        <td><%= tank.needs_pumping ? "Pump On" : "Pump Off" %></td>
+    </tr>
   <% end %>
+</table>
 </div>
 
 <%= link_to "New tank", new_tank_path %>

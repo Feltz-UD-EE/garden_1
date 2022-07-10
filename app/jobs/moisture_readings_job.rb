@@ -5,11 +5,11 @@
 # Main asynchronous job for reading moisture levels and then activating valves/pumps appropriately
 #
 class MoistureReadingsJob < ActiveJob::Base
-  RUN_EVERY = 15.minutes
+  RUN_EVERY = 5.minutes
 
   before_perform do |job|
     p "in before_perform, about to requeue MoistureReadingsJob"
-    self.class.set(:wait => RUN_EVERY).perform_later(job.arguments.first)
+    self.class.set(:wait => RUN_EVERY).perform_later
   end
 
   def perform

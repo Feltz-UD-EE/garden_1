@@ -7,7 +7,7 @@
 
 #
 #       t.string  :name
-#       t.string  :number
+#       t.integer :number
 #       t.references :tank
 #       t.string  :crop
 #       t.string  :description
@@ -35,6 +35,7 @@ class Zone < ApplicationRecord
     # validations
     validates :name, presence: true
     validates :number, presence: true
+    validates :number, uniqueness: true
     validates :valve_pin, presence: true
     validates :sensor_pin, presence: true
     validates :sensor_index, presence: true
@@ -49,7 +50,7 @@ class Zone < ApplicationRecord
     end
 
     # scopes
-    scope :planted, -> { where("crop IS NOT NULL") }
+    scope :planted, -> { where("crop is not null and crop != ''") }
     scope :ascending, -> { order(number: :asc) }
 
     # class methods
@@ -89,7 +90,7 @@ class Zone < ApplicationRecord
     end
 
     def needs_water
-        (self.latest_reading < self.moisture_target) && self.planted?
+        (self.latest_reading > self.moisture_target) && self.planted?
     end
 
     def valve_open
