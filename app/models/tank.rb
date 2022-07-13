@@ -41,4 +41,9 @@ class Tank < ApplicationRecord
       p "Turning off pump for #{self.name}"
     end
 
+    # Callbacks
+        after_save do
+    #         RPi::GPIO.setup self.pump_pin, :as => :output
+        end
+
 end
