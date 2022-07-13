@@ -21,9 +21,9 @@ module Garden1
 
     config.after_initialize do
       # Initialize RPi pins
-#         RPi::GPIO.setup Zone.sensor_multiplex_clock_pin, :as => :output
-#         RPi::GPIO.setup Zone.sensor_multiplex_addressing_pin, :as => :output
-#         RPi::GPIO.setup Zone.sensor_power_pin, :as => :output
+#         RPi::GPIO.setup Zone::SensorMultiplexClockPin, :as => :output
+#         RPi::GPIO.setup Zone::SensorMultiplexAddressingPin, :as => :output
+#         RPi::GPIO.setup Zone::SensorPowerPin, :as => :output
       Tank.all.each do |tank|
 #         RPi::GPIO.setup tank.pump_pin, :as => :output
       end
