@@ -8,7 +8,7 @@
 #       t.integer :pump_pin
 #       t.timestamps
 
-# require 'rpi_gpio'
+require 'rpi_gpio'
 
 class Tank < ApplicationRecord
     # statics & enums
@@ -30,20 +30,18 @@ class Tank < ApplicationRecord
     end
 
     def pump_on
-#         RPi::GPIO.setup self.pump_pin, :as => :output
-#         RPi::GPIO.set_high self.pump_pin
+      RPi::GPIO.set_high self.pump_pin
       p "Turning on pump for #{self.name}"
     end
 
     def pump_off
-#         RPi::GPIO.setup self.pump_pin, :as => :output
-#         RPi::GPIO.set_low self.pump_pin
+      RPi::GPIO.set_low self.pump_pin
       p "Turning off pump for #{self.name}"
     end
 
     # Callbacks
-        after_save do
-    #         RPi::GPIO.setup self.pump_pin, :as => :output
-        end
+    after_save do
+      RPi::GPIO.setup self.pump_pin, :as => :output
+    end
 
 end

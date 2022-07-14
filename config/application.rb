@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require 'rpi_gpio'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,15 +21,16 @@ module Garden1
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.after_initialize do
+      RPi::GPIO.set_numbering :bcm
       # Initialize RPi pins
 #         RPi::GPIO.setup Zone::SensorMultiplexClockPin, :as => :output
 #         RPi::GPIO.setup Zone::SensorMultiplexAddressingPin, :as => :output
 #         RPi::GPIO.setup Zone::SensorPowerPin, :as => :output
       Tank.all.each do |tank|
-#         RPi::GPIO.setup tank.pump_pin, :as => :output
+        RPi::GPIO.setup tank.pump_pin, :as => :output
       end
       Zone.all.each do |zone|
-#         RPi::GPIO.setup zone.valve_pin, :as => :output
+        RPi::GPIO.setup zone.valve_pin, :as => :output
 #         RPi::GPIO.setup zone.sensor_pin, :as => :input
       end
 
