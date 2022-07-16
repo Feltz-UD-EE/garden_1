@@ -21,4 +21,5 @@ pin = args.pin
 
 print ("set_pin_high.py")
 print (pin)
+GPIO.setmode(GPIO.BCM)
 GPIO.output(pin, 1)
