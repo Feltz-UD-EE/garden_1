@@ -21,15 +21,25 @@ module Garden1
 
     config.after_initialize do
       # Initialize RPi pins
+#         RPi::GPIO.set_numbering :bcm
 #         RPi::GPIO.setup Zone::SensorMultiplexClockPin, :as => :output
 #         RPi::GPIO.setup Zone::SensorMultiplexAddressingPin, :as => :output
 #         RPi::GPIO.setup Zone::SensorPowerPin, :as => :output
+      `python app/misc/python/set_gpio_mode.py BCM`
+      `python app/misc/python/set_pin_outbound.py #{Zone::SensorMultiplexClockPin}`
+      `python app/misc/python/set_pin_outbound.py #{Zone::SensorMultiplexAddressingPin}`
+      `python app/misc/python/set_pin_outbound.py #{Zone::SensorPowerPin}`
+
       Tank.all.each do |tank|
 #         RPi::GPIO.setup tank.pump_pin, :as => :output
+        `python app/misc/python/set_pin_outbound.py #{tank.pump_pin}`
       end
+
       Zone.all.each do |zone|
 #         RPi::GPIO.setup zone.valve_pin, :as => :output
 #         RPi::GPIO.setup zone.sensor_pin, :as => :input
+        `python app/misc/python/set_pin_outbound.py #{zone.valve_pin}`
+        `python app/misc/python/set_pin_inbound.py #{zone.sensor_pin}`
       end
 
       # Queue up initial job
