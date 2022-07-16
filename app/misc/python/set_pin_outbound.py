@@ -21,4 +21,5 @@ pin = args.pin
 
 print ("set_pin_outbound.py")
 print (pin)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin, GPIO.OUT)

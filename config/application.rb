@@ -26,7 +26,7 @@ module Garden1
 #         RPi::GPIO.setup Zone::SensorMultiplexClockPin, :as => :output
 #         RPi::GPIO.setup Zone::SensorMultiplexAddressingPin, :as => :output
 #         RPi::GPIO.setup Zone::SensorPowerPin, :as => :output
-      `python app/misc/python/set_gpio_mode.py BCM`
+#       `python app/misc/python/set_gpio_mode.py BCM`           # mode is not persistent across python scripts... :-(
       `python app/misc/python/set_pin_outbound.py #{Zone::MCP3008ClockPin}`
       `python app/misc/python/set_pin_outbound.py #{Zone::MCP3008ControlPin}`
       `python app/misc/python/set_pin_outbound.py #{Zone::MCP3008DInPin}`
