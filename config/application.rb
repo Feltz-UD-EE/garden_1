@@ -20,14 +20,16 @@ module Garden1
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.after_initialize do
+      p "application.rb config.after_initialize"
       # Initialize RPi pins
 #         RPi::GPIO.set_numbering :bcm
 #         RPi::GPIO.setup Zone::SensorMultiplexClockPin, :as => :output
 #         RPi::GPIO.setup Zone::SensorMultiplexAddressingPin, :as => :output
 #         RPi::GPIO.setup Zone::SensorPowerPin, :as => :output
       `python app/misc/python/set_gpio_mode.py BCM`
-      `python app/misc/python/set_pin_outbound.py #{Zone::SensorMultiplexClockPin}`
-      `python app/misc/python/set_pin_outbound.py #{Zone::SensorMultiplexAddressingPin}`
+      `python app/misc/python/set_pin_outbound.py #{Zone::MCP3008ClockPin}`
+      `python app/misc/python/set_pin_outbound.py #{Zone::MCP3008ControlPin}`
+      `python app/misc/python/set_pin_outbound.py #{Zone::MCP3008DInPin}`
       `python app/misc/python/set_pin_outbound.py #{Zone::SensorPowerPin}`
 
       Tank.all.each do |tank|

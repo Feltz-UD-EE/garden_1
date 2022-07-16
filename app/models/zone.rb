@@ -12,8 +12,8 @@
 #       t.string  :crop
 #       t.string  :description
 #       t.integer :valve_pin
-#       t.integer :sensor_pin             # pin & index composite unique
-#       t.integer :sensor_index
+#       t.integer :sensor_pin             # 'MISO' in Adafruit python package
+#       t.integer :sensor_index           # pin & index composite unique
 #       t.integer :moisture_target        # 0-1023
 #       t.timestamps
 #
@@ -22,10 +22,12 @@
 
 class Zone < ApplicationRecord
     # statics & enums
-    SensorMultiplexClockPin = 1              # all 3 of these still TBD
-    SensorMultiplexAddressingPin = 2
-    SensorPowerPin = 3
-    MaxMoisture = 0                            # moisture scale inverted, as it is the raw resistance level from sensor
+                                    # 3 for MCP3008 can be in common for all MCP3008 A/D mux chips
+    MCP3008ClockPin = 4             # CLK: chip pin # 13
+    MCP3008ControlPin = 17          # CS/SHDN: chip pin # 10
+    MCP3008DInPin = 27              # DIN: chip pin 11 ("MOSI" in python package)
+    SensorPowerPin = 22             # Don't keep sensors powered on all the time
+    MaxMoisture = 0                 # moisture scale inverted, as it is the raw resistance level from sensor
     MinMoisture = 1023
 
     # relations
@@ -73,7 +75,7 @@ class Zone < ApplicationRecord
     # instance methods
     def take_reading
       # Use Rpi on pin = self.sensor_pin and self.sensor_index
-      value = (`python app/misc/python/read_moisture_sensor.py #{ZONE::sensor_multiplex_clock_pin} #{self.sensor_pin} #{self.sensor_index}`).to_i
+      value = (`python app/misc/python/read_moisture_sensor.py #{ZONE::MCP3008ClockPin} #{ZONE::MCP3008ControlPin} #{ZONE::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
       self.moisture_readings.create(value: value)
     end
 
