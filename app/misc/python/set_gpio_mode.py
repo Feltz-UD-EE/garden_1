@@ -22,6 +22,8 @@ mode = args.mode
 print ("set_gpio_mode.py")
 print (mode)
 if (mode == "BCM"):
+  print ("setting mode to BCM")
   GPIO.setmode(GPIO.BCM)
 else:
-  BPIO.setmode(GPIO.BOARD)
+  print ("setting mode to BOARD")
+  GPIO.setmode(GPIO.BOARD)

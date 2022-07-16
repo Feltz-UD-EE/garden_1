@@ -11,7 +11,7 @@
 # usage:
 #   `python app/misc/python/set_pin_outbound.py 5`
 
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import argparse
 
 parser = argparse.ArgumentParser()
