@@ -13,7 +13,6 @@
 # usage:
 #   value = (`python app/misc/python/set_pin_high.py 5 7 3`).to_i
 
-# import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 import argparse
 

@@ -21,5 +21,6 @@ pin = args.pin
 
 print ("set_pin_low.py")
 print (pin)
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)        # no persistence
+GPIO.setup(pin, GPIO.OUT)
 GPIO.output(pin, 0)
