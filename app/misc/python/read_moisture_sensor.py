@@ -38,6 +38,9 @@ print (channel)
 
 mcp = Adafruit_MCP3008.MCP3008(clock_pin, control_pin, data_pin, din_pin)
 
+print ("MCP connection established")
+print (mcp.dict)
+
 value = mcp.read_adc(channel)
 
 print(value)
