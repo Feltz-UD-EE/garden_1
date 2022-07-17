@@ -41,6 +41,7 @@ class Zone < ApplicationRecord
     validates :valve_pin, presence: true
     validates :sensor_pin, presence: true
     validates :sensor_index, presence: true
+    validates :sensor_index, inclusion: 0..7
     validates :sensor_index, uniqueness: {scope: :sensor_pin}
     validates :moisture_target, presence: true
     validate  :moisture_target_in_limits
