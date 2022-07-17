@@ -19,8 +19,8 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("clock_pin", type=int, default=None, help="Clock pin for MCP3008 A/D mux")
 parser.add_argument("control_pin", type=int, default=None, help="Control pin for MCP3008 A/D mux")
-parser.add_argument("din_pin", type=int, default=None, help="DIn pin (data shift) for MCP3008 A/D mux")
-parser.add_argument("data_pin", type=int, default=None, help="Data pin (DOut) for MCP3008 A/D mux")
+parser.add_argument("din_pin", type=int, default=None, help="DIn pin (data shift/MOSI) for MCP3008 A/D mux")
+parser.add_argument("data_pin", type=int, default=None, help="DOut pin (data/MISO) for MCP3008 A/D mux")
 parser.add_argument("channel", type=int, default=None, help="Channel of desired sensor (1-8)")
 args = parser.parse_args()
 clock_pin = args.clock_pin
@@ -38,6 +38,6 @@ print (channel)
 
 mcp = Adafruit_MCP3008.MCP3008(clock_pin, control_pin, data_pin, din_pin)
 
-value = mcp.read_adc[channel]
+value = mcp.read_adc(channel)
 
 print(value)
