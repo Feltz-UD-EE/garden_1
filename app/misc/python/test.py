@@ -10,6 +10,7 @@
 # usage:
 #   `python app/misc/python/set_gpio_mode.py`
 
+import sys
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -21,7 +22,7 @@ clock_pin = args.clock_pin
 mux_pin = args.input_pin
 channel = args.channel
 
-print ("test.py")
-print (clock_pin)
-print (mux_pin)
-print (channel)
+print ("test.py", file=sys.stderr)
+print (clock_pin, file=sys.stderr)
+print (mux_pin, file=sys.stderr)
+print (channel, file=sys.stderr)

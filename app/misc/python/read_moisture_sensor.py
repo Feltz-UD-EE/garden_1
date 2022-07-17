@@ -13,6 +13,7 @@
 # usage:
 #   value = (`python app/misc/python/set_pin_high.py 5 7 3`).to_i
 
+import sys
 import Adafruit_MCP3008
 import argparse
 
@@ -29,17 +30,17 @@ din_pin = args.din_pin
 data_pin = args.data_pin
 channel = args.channel
 
-print ("read_moisture_sensor.py")
-print ("clock_pin = " + str(clock_pin))
-print ("control_pin = " + str(control_pin))
-print ("din_pin = " + str(din_pin))
-print ("data_pin = " + str(data_pin))
-print ("channel = " + str(channel))
-print ("mcp call is ... clock, control, data, din === CLK, CS, MISO, MOSI")
+print ("read_moisture_sensor.py", file=sys.stderr)
+print ("clock_pin = " + str(clock_pin), file=sys.stderr)
+print ("control_pin = " + str(control_pin), file=sys.stderr)
+print ("din_pin = " + str(din_pin), file=sys.stderr)
+print ("data_pin = " + str(data_pin), file=sys.stderr)
+print ("channel = " + str(channel), file=sys.stderr)
+print ("mcp call is ... clock, control, data, din === CLK, CS, MISO, MOSI", file=sys.stderr)
 
 mcp = Adafruit_MCP3008.MCP3008(clock_pin, control_pin, data_pin, din_pin)
 
-print ("MCP connection established")
+print ("MCP connection established", file=sys.stderr)
 
 value = mcp.read_adc(channel)
 
