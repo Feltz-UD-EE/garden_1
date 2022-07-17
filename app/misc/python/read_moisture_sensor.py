@@ -30,16 +30,16 @@ data_pin = args.data_pin
 channel = args.channel
 
 print ("read_moisture_sensor.py")
-print (clock_pin)
-print (control_pin)
-print (din_pin)
-print (data_pin)
-print (channel)
+print ("clock_pin = " + str(clock_pin))
+print ("control_pin = " + str(control_pin))
+print ("din_pin = " + str(din_pin))
+print ("data_pin = " + str(data_pin))
+print ("channel = " + str(channel))
+print ("mcp call is ... clock, control, data, din === CLK, CS, MISO, MOSI")
 
 mcp = Adafruit_MCP3008.MCP3008(clock_pin, control_pin, data_pin, din_pin)
 
 print ("MCP connection established")
-print (mcp.dict)
 
 value = mcp.read_adc(channel)
 
