@@ -75,7 +75,7 @@ class Zone < ApplicationRecord
     # instance methods
     def take_reading
       # Use Rpi on pin = self.sensor_pin and self.sensor_index
-      value = (`python app/misc/python/read_moisture_sensor.py #{ZONE::MCP3008ClockPin} #{ZONE::MCP3008ControlPin} #{ZONE::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
+      value = (`python app/misc/python/read_moisture_sensor.py #{Zone::MCP3008ClockPin} #{Zone::MCP3008ControlPin} #{Zone::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
       self.moisture_readings.create(value: value)
     end
 
