@@ -63,19 +63,20 @@ class Zone < ApplicationRecord
     def self.moisture_sensors_activate
 #         RPi::GPIO.set_high Zone.sensor_power_pin
       `python app/misc/python/set_pin_high.py #{Zone::SensorPowerPin}`
-      p "Activating moisture sensors"
+      p "Activating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
     end
 
     def self.moisture_sensors_deactivate
 #         RPi::GPIO.set_low Zone.sensor_power_pin
       `python app/misc/python/set_pin_low.py #{Zone::SensorPowerPin}`
-      p "Deactivating moisture sensors"
+      p "Deactivating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
     end
 
     # instance methods
     def take_reading
       # Use Rpi on pin = self.sensor_pin and self.sensor_index
       value = (`python app/misc/python/read_moisture_sensor.py #{Zone::MCP3008ClockPin} #{Zone::MCP3008ControlPin} #{Zone::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
+      p "Reading for #{self.number} (pin #{self.sensor_pin}, index #{self.sensor_index}) is #{value}"
       self.moisture_readings.create(value: value)
     end
 
@@ -103,8 +104,6 @@ class Zone < ApplicationRecord
     after_save do
 #         RPi::GPIO.setup self.valve_pin, :as => :output
 #         RPi::GPIO.setup self.sensor_pin, :as => :input
-      `python app/misc/python/set_pin_outbound.py #{self.valve_pin}`
-      `python app/misc/python/set_pin_inbound.py #{self.sensor_pin}`
     end
 end
 

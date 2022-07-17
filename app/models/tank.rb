@@ -44,7 +44,6 @@ class Tank < ApplicationRecord
     # Callbacks
     after_save do
     #         RPi::GPIO.setup self.pump_pin, :as => :output
-      `python app/misc/python/set_pin_outbound.py ${self.pump_pin}`
     end
 
 end
