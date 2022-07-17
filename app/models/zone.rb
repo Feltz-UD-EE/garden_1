@@ -25,7 +25,7 @@ class Zone < ApplicationRecord
                                     # 3 for MCP3008 can be in common for all MCP3008 A/D mux chips
     MCP3008ClockPin = 4             # CLK: chip pin # 13
     MCP3008ControlPin = 17          # CS/SHDN: chip pin # 10
-    MCP3008DInPin = 27              # DIN: chip pin 11 ("MOSI" in python package)
+    MCP3008DInPin = 11              # DIN: chip pin 11 ("MOSI" in python package)
     SensorPowerPin = 22             # Don't keep sensors powered on all the time
     MaxMoisture = 0                 # moisture scale inverted, as it is the raw resistance level from sensor
     MinMoisture = 1023
