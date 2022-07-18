@@ -5,7 +5,7 @@
 # Main asynchronous job for reading moisture levels and then activating valves/pumps appropriately
 #
 class MoistureReadingsJob < ActiveJob::Base
-  RUN_EVERY = 2.minutes
+  RUN_EVERY = 15.minutes
 
   before_perform do |job|
     p "in before_perform, about to requeue MoistureReadingsJob"
