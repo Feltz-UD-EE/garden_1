@@ -30,20 +30,20 @@ class Tank < ApplicationRecord
     end
 
     def pump_on
-#         RPi::GPIO.setup self.pump_pin, :as => :output
 #         RPi::GPIO.set_high self.pump_pin
+      `python app/misc/python/set_pin_high.py #{self.pump_pin}`
       p "Turning on pump for #{self.name}"
     end
 
     def pump_off
-#         RPi::GPIO.setup self.pump_pin, :as => :output
 #         RPi::GPIO.set_low self.pump_pin
+      `python app/misc/python/set_pin_low.py #{self.pump_pin}`
       p "Turning off pump for #{self.name}"
     end
 
     # Callbacks
-        after_save do
+    after_save do
     #         RPi::GPIO.setup self.pump_pin, :as => :output
-        end
+    end
 
 end

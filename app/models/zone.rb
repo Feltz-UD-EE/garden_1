@@ -12,8 +12,8 @@
 #       t.string  :crop
 #       t.string  :description
 #       t.integer :valve_pin
-#       t.integer :sensor_pin             # pin & index composite unique
-#       t.integer :sensor_index
+#       t.integer :sensor_pin             # 'MISO' in Adafruit python package
+#       t.integer :sensor_index           # pin & index composite unique
 #       t.integer :moisture_target        # 0-1023
 #       t.timestamps
 #
@@ -22,10 +22,12 @@
 
 class Zone < ApplicationRecord
     # statics & enums
-    SensorMultiplexClockPin = 1              # all 3 of these still TBD
-    SensorMultiplexAddressingPin = 2
-    SensorPowerPin = 3
-    MaxMoisture = 0                            # moisture scale inverted, as it is the raw resistance level from sensor
+                                    # 3 for MCP3008 can be in common for all MCP3008 A/D mux chips
+    MCP3008ClockPin = 4             # CLK: chip pin # 13
+    MCP3008ControlPin = 17          # CS/SHDN: chip pin # 10
+    MCP3008DInPin = 11              # DIN: chip pin 11 ("MOSI" in python package)
+    SensorPowerPin = 22             # Don't keep sensors powered on all the time
+    MaxMoisture = 0                 # moisture scale inverted, as it is the raw resistance level from sensor
     MinMoisture = 1023
 
     # relations
@@ -39,6 +41,7 @@ class Zone < ApplicationRecord
     validates :valve_pin, presence: true
     validates :sensor_pin, presence: true
     validates :sensor_index, presence: true
+    validates :sensor_index, inclusion: 0..7
     validates :sensor_index, uniqueness: {scope: :sensor_pin}
     validates :moisture_target, presence: true
     validate  :moisture_target_in_limits
@@ -60,22 +63,22 @@ class Zone < ApplicationRecord
 
     def self.moisture_sensors_activate
 #         RPi::GPIO.set_high Zone.sensor_power_pin
-      p "Activating moisture sensors"
+      `python app/misc/python/set_pin_high.py #{Zone::SensorPowerPin}`
+      p "Activating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
     end
 
     def self.moisture_sensors_deactivate
-#         RPi::GPIO.set_low Zone.sensor_multiplex_clock_pin
-#         RPi::GPIO.set_low Zone.sensor_multiplex_addressing_pin
 #         RPi::GPIO.set_low Zone.sensor_power_pin
-      p "Deactivating moisture sensors"
+      `python app/misc/python/set_pin_low.py #{Zone::SensorPowerPin}`
+      p "Deactivating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
     end
 
     # instance methods
     def take_reading
-        # Use Rpi on pin = self.sensor_pin and self.sensor_index
-#         value = nil  # ?? translate from example python code
-#         self.moisture_readings.create(value: value)
-      self.moisture_readings.create(value: rand(0..1023))
+      # Use Rpi on pin = self.sensor_pin and self.sensor_index
+      value = (`python app/misc/python/read_moisture_sensor.py #{Zone::MCP3008ClockPin} #{Zone::MCP3008ControlPin} #{Zone::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
+      p "Reading for #{self.number} (pin #{self.sensor_pin}, index #{self.sensor_index}) is #{value}"
+      self.moisture_readings.create(value: value)
     end
 
     def latest_reading
@@ -88,11 +91,13 @@ class Zone < ApplicationRecord
 
     def valve_open
 #         RPi::GPIO.set_high self.valve_pin
+      `python app/misc/python/set_pin_high.py #{self.valve_pin}`
       p "Opening valve for zone #{self.number}"
     end
 
     def valve_close
 #         RPi::GPIO.set_low self.valve_pin
+      `python app/misc/python/set_pin_low.py #{self.valve_pin}`
       p "Closing valve for zone #{self.number}"
     end
 

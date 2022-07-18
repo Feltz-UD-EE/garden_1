@@ -20,18 +20,6 @@ module Garden1
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.after_initialize do
-      # Initialize RPi pins
-#         RPi::GPIO.setup Zone::SensorMultiplexClockPin, :as => :output
-#         RPi::GPIO.setup Zone::SensorMultiplexAddressingPin, :as => :output
-#         RPi::GPIO.setup Zone::SensorPowerPin, :as => :output
-      Tank.all.each do |tank|
-#         RPi::GPIO.setup tank.pump_pin, :as => :output
-      end
-      Zone.all.each do |zone|
-#         RPi::GPIO.setup zone.valve_pin, :as => :output
-#         RPi::GPIO.setup zone.sensor_pin, :as => :input
-      end
-
       # Queue up initial job
       now = Time.now
       nearest_hour = now.beginning_of_hour
@@ -41,7 +29,6 @@ module Garden1
       start = (now + delta).round(0)
       p "calculated the stuff for the first instance of the MoistureReadingsJob.  Start time = #{start}"
       MoistureReadingsJob.set(wait_until: start).perform_later
-
     end
   end
 end
