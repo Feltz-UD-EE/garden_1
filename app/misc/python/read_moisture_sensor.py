@@ -1,7 +1,6 @@
 #
 # Copyright 2022 John C. Feltz, github: Feltz-UD-EE/garden_1
 #
-# Called from Rails application.rb and model after_save actions.
 # Will be replaced with native Rails code once rpi_gpio gem is updated
 #
 # args:

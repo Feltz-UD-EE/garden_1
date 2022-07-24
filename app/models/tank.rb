@@ -41,6 +41,10 @@ class Tank < ApplicationRecord
       p "Turning off pump for #{self.name}"
     end
 
+    def pump_on?
+      `python app/misc/python/get_pin_state.py #{self.pump_pin}`
+    end
+
     # Callbacks
     after_save do
     #         RPi::GPIO.setup self.pump_pin, :as => :output

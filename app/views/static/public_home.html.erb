@@ -21,7 +21,7 @@
         <td><%= zone.crop %></td>
         <td><%= zone.moisture_target %></td>
         <td><%= zone.latest_reading %></td>
-        <td><%= zone.needs_water ? "Open" : "Closed" %></td>
+        <td><%= zone.valve_open? ? "Open" : "Closed" %></td>
         </tr>
     <% end %>
   </table>
@@ -38,8 +38,8 @@
     <% @tanks.each do |tank| %>
       <tr>
         <td><%= link_to tank.name, tank_path(tank) %></td>
-        <% if tank.needs_pumping %>
-          <td style = "bgcolor:green, color:white">On</td>
+        <% if tank.pump_on? %>
+          <td style="bgcolor:green, color:white">On</td>
         <% else %>
           <td>Off</td>
         <% end %>

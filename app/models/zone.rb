@@ -101,6 +101,10 @@ class Zone < ApplicationRecord
       p "Closing valve for zone #{self.number}"
     end
 
+    def valve_open?
+      `python app/misc/python/get_pin_state.py #{self.valve_pin}`
+    end
+
     # Callbacks
     after_save do
 #         RPi::GPIO.setup self.valve_pin, :as => :output
