@@ -8,7 +8,7 @@
     <tr>
         <td><%= link_to tank.name, tank_path(tank) %></td>
         <td><%= tank.volume %></td>
-        <td><%= tank.needs_pumping ? "Pump On" : "Pump Off" %></td>
+        <td><%= tank.pump_on? ? "Pump On" : "Pump Off" %></td>
     </tr>
   <% end %>
 </table>

@@ -3,7 +3,7 @@
 <p>Volume: <%= @tank.volume %> liters</p>
 <p>Pump Pin: <%= @tank.pump_pin %></p>
 <p>Pump Status:
-    <% if @tank.needs_pumping %>
+    <% if @tank.pump_on? %>
         <span style = "bgcolor:green, color:white">On</span>
     <% else %>
         Off
