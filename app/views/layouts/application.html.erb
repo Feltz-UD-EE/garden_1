@@ -1,3 +1,8 @@
+<%
+   #
+   # Copyright 2022 John C. Feltz, github: Feltz-UD-EE/garden_1
+   #
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,11 +12,29 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag    "ocean.css" %>
     <%= favicon_link_tag (asset_path('favicon.ico')) %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="nav-wrapper">
+      <div id="nav">
+        <%= render :partial => 'layouts/navbar' %>
+      </div>
+    </div>
+
+    <div class="row content-row%>">
+      <div class = "small-12 columns">
+        <%= render(:partial => 'layouts/error_messages') %>
+        <%= yield %>
+      </div>
+    </div>
+
+    <div id="footer" class="group columns-3">
+      <%= render :partial => 'layouts/footer' %>
+    </div>
+    <div class="contain-to-grid" id = "copyright">
+      <%= render :partial => 'layouts/copyright' %>
+    </div>
   </body>
 </html>

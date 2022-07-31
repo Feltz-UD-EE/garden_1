@@ -1,0 +1,80 @@
+div.large-6.columns {
+  width: 50%;
+}
+div.large-4.columns {
+  width: 33.3%;
+}
+div.risk_bubble.top_bubble {
+  height: 360px;
+}
+div.risk_bubble.bottom_bubble {
+  height: 360px;
+}
+div.risk_severity_circle {
+  font-size: 80pt;
+}
+div.risk_severity_header {
+  font-size: 20pt;
+}
+.risk_page_header {
+  font-size: 24pt;
+}
+div.risk-severity-alert-box {
+  font-size: 10pt;
+}
+div.risk-severity-decision {
+  font-size: 14pt;
+}
+.assessment-dropdown {
+  font-size: 1em;
+}
+.risk_detail_you_number{
+  font-size: 30pt;
+}
+div.risk_detail_header{
+  font-size: 20pt;
+  height: 80px;
+}
+div#risk_gauge_box{
+  margin-top: 10px;
+}
+.risk_detail_you_percent{
+  font-size: 25pt;
+}
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+table#risk_q_a{
+  thead > tr > th{
+    padding: 0.5em 0.625em;
+  }
+  tbody > tr > td{
+    padding: 0.5em 0.625em;
+  }
+  tr:nth-child(2n+1) {
+    height: auto;
+  }
+}
+
+
+div#risk_gauge_bg, div.risk-severity-alert-box{
+  -webkit-print-color-adjust:exact;
+}
+
+div.risk_severity_circle {
+  padding-top: 0;
+  height: 250px;
+}
+#risk_severity_circle_img {
+  height: 250px;
+}
+
+div#risk_severity_overlay{
+  -webkit-print-color-adjust:exact;
+  color: white !important;
+  float: none;
+  position: relative;
+  top: -250px;
+  left: 0px;
+}

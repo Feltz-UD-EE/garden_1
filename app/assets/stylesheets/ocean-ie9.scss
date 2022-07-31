@@ -1,0 +1,49 @@
+.printalertlist {
+    display: none;
+}
+
+div.ocean-panel.alerts {
+  .ocean-content {
+    .patient-info {
+      min-height: 8em;
+    }
+  }
+}
+
+#family-and-friends span.contact-method-label {
+    top: 0.7em;
+    margin-top: 0;
+}
+
+#family-and-friends img {
+    margin-top: 0;
+}
+
+.contact-method-container {
+    div input[type='radio'] {
+        opacity: 0.5;
+        position: absolute;
+        left: -999em;
+    }
+    div input[type='radio'] + img {
+        margin: 0;
+
+        /* Left padding makes room for image */
+        padding: 3px 0 3px 36px;
+
+        /* Make look clickable because they are */
+        cursor: pointer;
+
+        background: url(asset-path("ocean/checkbox-unchecked.png")) left center no-repeat;
+        background-size: 28px 28px;
+    }
+
+    div input[type='radio']:checked + img {
+        background-image: url(asset-path("ocean/checkbox-checked.png"));
+    }
+}
+
+input[type=checkbox].ocean-checkbox {
+    position: absolute;
+    left: -999em;
+}

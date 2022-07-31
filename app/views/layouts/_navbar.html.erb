@@ -1,0 +1,14 @@
+<% 
+   #
+   # Copyright 2022 John C. Feltz, github: Feltz-UD-EE/garden_1
+   #
+%> 
+<nav class="top-bar contain-to-grid" id='navbar'>
+    <%= link_to (image_tag 'favicon.ico'), public_home_path %>
+    <% if rodauth.logged_in? %>
+      <%= link_to "Zones", zones_path %>
+      <%= link_to "Tanks", tanks_path %>
+    <% else %>
+      <%= link_to "Sign in", rodauth.login_path %>
+    <% end %>
+</nav>

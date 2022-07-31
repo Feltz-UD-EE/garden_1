@@ -1,0 +1,25 @@
+<% 
+   #
+   # Copyright 2022 John C. Feltz, github: Feltz-UD-EE/garden_1
+   #
+%> 
+<% if not @messages_rendered -%>
+  <% if flash[:error] -%>
+    <div data-alert class="alert-box alert"><%=h flash[:error] %></div>
+  <% end -%>
+  <% if flash[:alert] -%>
+    <div data-alert class="alert-box alert"><%=h flash[:alert] %></div>
+  <% end -%>
+  <% if rodauth.logged_in? -%>
+    <% if flash[:onetime] -%>
+      <div data-alert class="alert-box" style="background-color: pink; color: black"><%=h flash[:onetime] %></div>
+    <% end -%>
+  <% end -%>
+  <% if flash[:success] -%>
+    <div data-alert class='alert-box success' style='a {color:white !important}'><%=h flash[:success] %></div>
+  <% end -%>
+  <% if flash[:notice] -%>
+    <div data-alert class='alert-box'><%=h flash[:notice] %></div>
+  <% end -%>
+<% end -%>
+<% @messages_rendered = true -%>

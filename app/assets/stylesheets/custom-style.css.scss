@@ -1,0 +1,761 @@
+/* Styles For Risk Tool Questions */
+// .risk-question {
+//   list-style-type:none;
+//   margin:5px 0 0 0;
+//   padding:0;
+// }
+
+// .risk-question li {
+//   float:left;
+//   margin:0 5px 0 0;
+//   width:200px;
+//   height:40px;
+//   position:relative;
+// }
+
+// .risk-question label, .risk-question input {
+//   display:block;
+//   position:absolute;
+//   top:0;
+//   left:0;
+//   right:0;
+//   bottom:0;
+// }
+
+// .risk-question input[type="radio"] {
+//   opacity:0.01;
+//   z-index:100;
+// }
+
+// .risk-question input[type="radio"]:checked {
+//   background:#333;
+//   color:#fff;
+// }
+
+// .risk-question label {
+//   padding:8px;
+//   border:1px solid #CCC; 
+//   cursor:pointer;
+//   z-index:90;
+//   border-radius: 5px;
+// }
+
+// .risk-question label:hover {
+//   background:#DDD;
+// }
+
+
+/* Showing links in success boxes */
+.alert-box.success {
+  a {
+    color: white !important;
+  }
+}
+
+
+/* Risk Assessment Qustion Styles */
+.radio-question input[type="radio"] {
+  display:none;
+}
+.radio-question label {
+    display:inline-block;
+    background-color:#F3F2F2;
+    color: #666;
+    padding: 7px 20px;
+    margin: 5px 5px 5px 0;
+    font-weight: 400;
+    font-family: fontAwesome;
+    font-weight: 400;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.radio-question label.checked {
+    background: #63B0BB;
+    border-color: #DDDDDD;
+    color: #fff;
+    horizontal-align: right;
+    content: "\f046";
+}
+
+label.radio {
+ font-size: 1em;
+}
+
+
+/* Risk Question Panel Styles */
+.panel {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd;
+  border-radius: 3px;
+  padding: 22em;
+}
+.panel:hover {background-color: #ddd;}
+
+/* Mobile Styles For Risk Assessment */
+@media screen and (max-width: 767px) {
+    .panel {width:100%; border-radius: 0;
+    }
+    .radio-question label {margin: 2px 0; border-radius: 3px; padding:15px 20px;
+    }
+    .large-4 h4 {margin-bottom: 10px;
+    }
+}
+
+[class*="column"] + [class*="column"]:last-child {
+    float: left;
+  }
+
+/* Risk Questions Procedure Select Dropdowns */
+
+.ilabel .input .string {
+  font-size: 1.4em; 
+  color: #2F4559;
+  font-weight: 600;
+  margin-bottom: 0.3em;
+}
+.ilabel input .string {
+  font-weight: 300;
+}
+
+.assessment-dropdown {
+  -webkit-appearance: menulist-button;
+  height: 50px;
+  font-size: 1.4em;
+  line-height: 400%; 
+  color: #666;
+  font-weight: 400;
+}
+
+.button.dropdown {
+  color: #666;
+  font-weight: 400;
+  font-size: 1.2em !important;
+}
+
+.top-bar-section ul {
+  padding: 12px;
+  padding-top: 0;
+}
+
+.wrapper-content {
+  width:620px; 
+}
+
+h1, h2, h3, h4, h5, h6, .special-font {
+  font-family:Helvetica, Tahoma, Arial, sans-serif;
+}
+
+#nav > ul > li > a {
+  font-family: Helvetica, Tahoma, Arial, sans-serif;
+}
+
+p, li {
+  font-family: Helvetica, Tahoma, Arial, sans-serif;
+}
+
+#footer p .date { font-size: 12px}
+
+#topbar {
+  height: 34px;  
+}
+
+/* Risk page 1 highlight w/ JS */
+
+
+select[name=procedure_group] {
+ &.selected {
+   background-color: #63B0BB !important;
+   color: white !important;
+  }
+}
+
+/* Risk page 2 add checkmark w/ JS */
+
+
+/* Risk Gauge Caption */
+.jqx-gauge-caption {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 50pt
+}
+
+/* Risk result formatting */
+.risk_page_header {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 30pt;
+  color: #091F3F
+}
+
+.risk_bubble {
+  border: 1px solid #CCCCCC;
+  border-radius: 25px;
+  padding: 10px 3px 10px 3px;
+  margin: 10px 3px 10px 3px;
+  &.top_bubble {
+    height: 480px;
+  }
+}
+
+.risk_severity_header {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 24pt;
+  line-height: 125%;
+  color: #091F3F  
+}
+
+/* for ipad mini and ipad air */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)
+and (-webkit-min-device-pixel-ratio: 1) {
+  .risk_severity_header {
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+    font-size: 18pt;
+    line-height: 100%;
+    color: #091F3F  
+  }
+}
+
+/* mobile general drop-downs */
+@media only screen and (max-device-width: 768px) {
+  select {
+    border-color: #CCCCCC; 
+  }
+  .styled-select select {
+    border-color: #CCCCCC;  
+    color: black;   
+  }
+  .db-header select {
+    color: black !important;       
+  }
+}
+
+
+div.risk_severity_circle {
+  &.green {
+    background-image:url(image_path('risk/green_big_circle.png'));
+  }
+  &.orange {
+    background-image:url(image_path('risk/orange_big_circle.png'));
+  }
+  &.red {
+    background-image:url(image_path('risk/red_big_circle.png'));
+  }
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
+  background-repeat:no-repeat !important;
+  background-position:center !important;
+  background-size:contain !important; // important because of print styles from zurb
+  font-family: Helvetica, Tahoma, Arial, sans-serif;
+  font-size: 100pt;
+  color: white !important;
+}
+
+.risk-severity-alert-box {
+  border: none;
+  background-color: #F66A2A !important;
+  font-size: 14pt;
+  color: white !important;  
+  padding: .8em;
+  border-radius: 8px;
+  }
+
+.risk-severity-decision {
+  border: none;
+  font-size: 18pt;
+  margin: 1em 1em 0 1em;
+  padding: .8em;
+  }
+  
+#g1.jqx-widget {
+  background-color: none !important;
+  aria-disabled: true !important;
+  // margin-left: -200px;
+}
+
+#tblChart {
+  border: none !important;
+  background: none !important;
+  background-color: none !important;
+  background-image: none !important;
+  tbody {
+    border: none !important;
+    background: none !important;
+    background-color: none !important;
+    background-image: none !important;
+    tr {
+      border: none !important;
+      background: none !important;
+      background-color: none !important;
+      background-image: none !important;
+      td {
+        padding: 0px;
+        border: none !important;
+        background: none !important;
+        background-color: none !important;
+        background-image: none !important;
+      }
+    }
+    tr:nth-child(2n+1){
+      height: 0px;
+    }
+  }
+}
+
+
+.image_bg {
+  position: absolute;
+  // top: 60px;
+  // left: 50%;
+  // margin-left: -200px; 
+}
+
+#risk_gauge_box {
+  // margin-top: 60px;
+  max-width: 333px;
+  max-height: 333px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+#risk_gauge_box:before{
+  content: "";
+  display: block;
+  padding-top: 100%;  /* initial ratio of 1:1*/
+}
+
+#risk_gauge_bg {
+  background-image:url(image_path('risk/lowrisk_highrisk_background.png')) !important; // important because of print styles from zurb
+  background-repeat:no-repeat !important;;
+  background-position: center !important;;
+  background-size:contain !important; // important because of print styles from zurb
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 5%;
+  // background-size:cover;
+  // height: inherit;
+}
+.risk_gauge {
+  // position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  // top: 0;
+  // left: 50%;
+  // margin-left: -200px !important; 
+}
+
+.risk_detail_header {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 20pt;
+}
+/* for ipad mini and ipad air */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)
+and (-webkit-min-device-pixel-ratio: 1) {
+  .risk_detail_header {
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+    font-size: 14pt;
+  }
+}
+
+
+.risk_detail_you_number {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 60pt;  
+}
+
+.risk_detail_you_text {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 21pt;    
+}
+
+.risk_detail_you_percent {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 50pt;    
+}
+
+.risk_detail_average_patient_number {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 21pt;
+}
+
+.risk_detail_average_patient_text {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 21pt;
+}
+
+.risk_detail_average_patient_label {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 10pt;
+}
+
+/* Data Tables Overrides */
+table.dataTable td {
+  padding: 1em 0 .8em .9em;
+  font-size: 0.9rem;
+}
+table.dataTable tr.odd {
+  background-color: #eee;
+}
+
+input[type="file"],
+input[type="checkbox"],
+input[type="radio"],
+select {
+/*  margin: 0 6px 0 0; */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  font-family: inherit;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
+  display: block;
+  font-size: 0.875em;
+  margin: 0 0 1em 0;
+  padding: 0.5em;
+  height: 2.3125em;
+  width: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: -webkit-box-shadow 0.45s, border-color 0.45s ease-in-out;
+  -moz-transition: -moz-box-shadow 0.45s, border-color 0.45s ease-in-out;
+  transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="time"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+  -webkit-box-shadow: 0 0 5px #aedff1;
+  -moz-box-shadow: 0 0 5px #aedff1;
+  box-shadow: 0 0 5px #aedff1;
+  border-color: #aedff1;
+}
+
+table.dataTable thead th {
+  padding: 10px 18px 3px 10px;
+  border-bottom: 1px solid #999;
+  background-color: #1B75BB !important;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  *cursor: hand;
+}
+
+/* Media Queries For Navigation */
+ul.title-area .logo_external {
+      width: 100%;
+      height: auto;
+      max-width: 280px;
+      margin: 5px;
+      margin-left: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    ul.title-area .logo_external {
+      width: 100%;
+      height: 75px;
+      max-width: 240px;
+      max-height: 200px;
+      margin: 5px;
+      margin-left: 10px;
+    }
+}
+
+ul.title-area .logo_internal {
+      width: 100%;
+      height: auto;
+      max-width: 240px;
+      margin: 5px;
+      margin-left: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    ul.title-area .logo_internal {
+      width: 100%;
+      height: auto;
+      max-width: 120px;
+      margin: 5px;
+      margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+  #topbar ul li {
+  display: inline-block;
+  font-size: 6em;
+  margin: .6px;
+  }
+  .risk_bubble.top_bubble {
+    height: 540px;
+  }
+}
+
+.left_button {
+  padding-top: 0.5625em;
+  padding-right: 1.125em;
+  padding-bottom: 0.625em;
+  padding-left: 1.125em;
+  font-size: 0.8125em;
+  border-radius: 3px;
+}
+.right_button {
+  padding-top: 0.5625em;
+  padding-right: 1.125em;
+  padding-bottom: 0.625em;
+  padding-left: 1.125em;
+  font-size: 0.8125em;
+  border-radius: 3px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px){ 
+  .left_button {
+                font-size: 0.6em !important;
+  }
+  .right_button {
+                font-size: 0.6em !important;      
+  }   
+  .meas-date {
+              font-size: 0.8em !important;
+  }      
+}
+
+
+// Reduce the padding of the hamburger icon, reduce overlap with logo
+.top-bar .toggle-topbar.menu-icon { 
+  padding-left: 0px;
+}
+
+.left_button {
+  padding-top: 0.5625em;
+  padding-right: 1.125em;
+  padding-bottom: 0.625em;
+  padding-left: 1.125em;
+  font-size: 0.8125em;
+  border-radius: 3px;
+}
+.right_button {
+  padding-top: 0.5625em;
+  padding-right: 1.125em;
+  padding-bottom: 0.625em;
+  padding-left: 1.125em;
+  font-size: 0.8125em;
+  border-radius: 3px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px){ 
+  .left_button {
+                font-size: 0.6em !important;
+  }
+  .right_button {
+                font-size: 0.6em !important;      
+  }   
+  .meas-date {
+              font-size: 0.8em !important;
+  }      
+}
+
+
+
+/* Fontawesome Overrides */
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  margin: 5px;
+}
+.fa:hover {
+  color:#2F4559;
+  -webkit-transition: ease-in-out .5s; /* Safari */
+  transition: ease-in-out .5s;
+}
+
+/* increased font size in input fields */
+input.fat-form-field {
+  font-size: 1.2em
+}
+
+ul.title-area, li.logo_internal{
+  // display: block;
+  line-height: 75px;
+  height: 95px;
+}
+
+img.logo {
+  vertical-align: middle;
+}
+
+ul.dropdown {
+  padding: 12px;
+}
+
+.assess-green {
+  background-color: #5da423;
+  border-radius: 3px !important;
+  &:hover {
+    background-color: #457a1a; 
+  }
+}
+
+div.trackers {
+  div.trackers-patient-details {
+    margin-top: 20px;
+  }
+  div.tracker_bubble_small {
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    padding: 3px 3px 3px 3px;
+    margin: 2px 2px 2px 2px;  
+    h4 {
+      margin: 0 0 0 0;
+    }  
+  }
+  
+  div.tracker_bubble {
+    border: 1px solid #CCCCCC;
+    border-radius: 25px;
+    padding: 15px 3px 15px 3px;
+    margin: 15px 3px 15px 3px;
+
+    div.new-recordings {
+      margin: 0px 30px 0px 30px;
+      p {
+        color: black;
+        &.tracker-type {
+          font-size: 1.8em;
+        }
+        &.tracker-start-date {
+          font-size: 1.1em;
+        }
+        &.tracker-detail {
+          font-size: 1em;
+        }
+      }
+      ul li span {
+        font-size: .9em;
+        margin-top: 15px;
+        background-color: #5da423;
+        border-color: #457a1a;
+        &.selected-toggle {
+          background-color: #457a1a;
+        }
+        &:hover {
+          background-color: #457a1a;
+        }
+      }
+      div.multiple-recordings {
+        input.button {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+div.new-recordings {
+  form {
+    margin-top: 10px;
+  }
+  div.large-2 {
+    input {
+      margin-bottom: 5px;
+    }
+    label {
+      text-align: center;
+    }
+  }
+}
+
+div.devise {
+  div.login-bubble {
+    border: 1px solid #CCCCCC;
+    border-radius: 25px;
+    padding: 10px 3px 10px 3px;
+    margin: 45px 3px 45px 3px;
+
+    h2.sign-in-greeting {
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    form {
+      margin-left: 10px;
+      margin-right: 10px;
+      
+      input[type='submit'].button {
+        background-color: #1B75BB;
+        margin-bottom: 15px;
+      }
+      div.alert-box {
+        @extend .pull-right;
+        display: inline-block;
+        // margin-top: 10px;
+        a {
+          color: white !important;
+        }
+      }
+    }
+    div.remember-forgot-line {
+      div.user_remember_me{
+        display: inline-block;
+        padding-left: 15px;
+      }
+      a.pull-right {
+        padding-right: 15px;
+      }
+      a.sign-in {
+        padding-left: 15px;
+      }
+    }
+    h4.self-enroll {
+      text-align: center;
+      a {
+        font-size: 18px;
+        color: #3474A5;
+      }
+    }
+  }
+}
+/* datatables formatting*/
+.action_column {
+  min-width: 60px;
+}

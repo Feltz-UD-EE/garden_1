@@ -1,0 +1,18 @@
+@import "foundation/variables";
+@import "foundation/components/global";
+@import "foundation/components/alert-boxes";
+
+.alert-box {
+  @include alert-style($alert-color);
+  width: -moz-min-content;
+  width: -webkit-min-content;
+  min-width: 25%;
+  white-space: nowrap;
+  margin-left: 0em;
+  margin-right: 0em;
+  @include radius($global-radius);
+  a {
+    color: white !important;
+  }
+}
+

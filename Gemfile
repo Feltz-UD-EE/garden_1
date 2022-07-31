@@ -52,7 +52,16 @@ gem "rodauth-rails"
 gem 'mcp3008pi', '~> 0.1.1'
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
+gem 'coffee-rails'
+gem 'zurb-foundation'
+gem 'jquery-rails'
+gem 'jquery-ui-rails', '~> 5.0.3'
+gem 'jquery-sliders-rails'
+gem 'jquery-timepicker-rails'
+gem 'jquery-timepicker-addon-rails'
+gem 'jquery-datatables-rails', '~> 3.4.0'
+gem 'font-awesome-sass'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

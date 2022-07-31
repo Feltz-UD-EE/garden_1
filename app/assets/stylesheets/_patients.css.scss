@@ -1,0 +1,61 @@
+// Place all the styles related to the Patients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$include-html-global-classes: false;
+@import "foundation/components/global";
+// @import "foundation/components/global";
+$include-html-form-classes: false; 
+@import "foundation/components/forms";
+
+
+@mixin large_text_input($font-size:28){
+  $form-label-font-size: em-calc($font-size);
+  $input-font-size: em-calc($font-size);
+  @include form-element
+}
+
+
+@mixin large_text_label($alignment:false, $base-style:true,$font-size:28) {
+  $form-label-font-size: em-calc($font-size);
+  @include form-label($alignment,$base-style)
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea {
+  &.large_text {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    @include large_text_input;
+    @if not $input-include-glowing-effect {
+      @include single-transition(all, 0.15s, linear);
+    }
+  }
+}
+
+select.large_text {
+  @include large_text_input;
+}
+
+label.large_text { @include large_text_label;
+  &.right { @include large_text_label(right,false); }
+  &.inline { @include large_text_label(inline,false); }
+  /* Styles for required inputs */
+  small {
+    text-transform: capitalize;
+    color: lighten($form-label-font-color, 10%);
+  }
+}
