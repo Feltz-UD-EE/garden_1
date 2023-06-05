@@ -1,0 +1,32 @@
+<div id="<%= dom_id crop %>">
+<h2>Crop: <%= @crop.name %></h2>
+<p>Description: <%= @crop.description %></p>
+<p>Zone: <%= link_to @crop.zone.name, zone_path(@crop.zone) %></p>
+<p>Date Planted: <%= @crop.plant_date %>
+    <% if @crop.pull_date.present? && @crop.pull_date <= Time.now %>
+        Date Pulled: <%= @crop.pull_date %>
+    <% else %>
+        Currently planted
+    <% end %>
+</p>
+<hr/>
+<h3>Recent Events</h3>
+<table style="border-spacing:10px;">
+    <tr style="text-align:center;">
+        <th>Date</th>
+        <th>Level</th>
+        <th>Harvest</th>
+    <tr>
+    <% @crop.events.descending.each do |e| %>
+        <tr>
+            <td><%= e.date %></td>
+            <td><%= e.description %></td>
+            <td><%= e.harvest.present? ? e.harvest : "" %></td>
+        </tr>
+    <% end %>
+</table>
+<br/>
+<%= link_to "More...", events_path(crop_id: @crop.id) %>
+<hr/>
+<br/>
+</div>

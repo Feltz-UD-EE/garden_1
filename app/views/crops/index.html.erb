@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Crops</h1>
+
+<div id="crops">
+<table>
+  <% @crops.each do |crop| %>
+    <tr>
+        <td><%= crop.created_at.strftime("%A, %-d %b %Y %l:%M %p") %></td>
+        <td><%= crop.name %></td>
+        <td><%= crop.zone.name %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
+
+<%= link_to "New crop", new_crop_path %>

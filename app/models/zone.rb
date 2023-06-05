@@ -9,7 +9,6 @@
 #       t.string  :name
 #       t.integer :number
 #       t.references :tank
-#       t.string  :crop
 #       t.string  :description
 #       t.integer :valve_pin
 #       t.integer :sensor_pin             # 'MISO' in Adafruit python package
@@ -33,6 +32,7 @@ class Zone < ApplicationRecord
     # relations
     belongs_to :tank
     has_many :moisture_readings
+    has_many :crops
 
     # validations
     validates :name, presence: true
@@ -53,12 +53,12 @@ class Zone < ApplicationRecord
     end
 
     # scopes
-    scope :planted, -> { where("crop is not null and crop != ''") }
+#     scope :planted, -> { where("crop is not null and crop != ''") }
     scope :ascending, -> { order(number: :asc) }
 
     # class methods
     def planted?
-      crop.present?
+        self.crops.map { |c| c.planted? }.include?(true)
     end
 
     def self.moisture_sensors_activate
@@ -83,6 +83,10 @@ class Zone < ApplicationRecord
 
     def latest_reading
         self.moisture_readings.descending.first.present? ? self.moisture_readings.descending.first.value : MinMoisture
+    end
+
+    def crop_list
+        self.crops.map{ |c| c.planted? ? c.name : nil } * ', '
     end
 
     def needs_water
