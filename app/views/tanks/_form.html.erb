@@ -24,6 +24,11 @@
       <td>Pump Pin</td>
       <td><%= form.text_field :pump_pin %></td>
     </tr>
+    <tr>
+      <td>Child Tank</td>
+      <td><%= form.select :child_tank, (["-- Please select a tank --"] +
+            Tank.all.collect {|t| [ t.name, t.id ] unless t.id = tank.id}) %></td>
+    </tr>
   </table>
   <%= form.submit %>
 <% end %>
