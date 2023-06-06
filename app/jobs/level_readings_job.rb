@@ -15,16 +15,11 @@ class LevelReadingsJob < ActiveJob::Base
 
   def perform
     p "About to run LevelReadingsJob"
-    # turn on power to sensors
-    Zone.moisture_sensors_activate
 
     # get level reading from MCP3108
-    Thank.all.each do |tank|
+    Tank.all.each do |tank|
       tank.take_reading
     end
-
-    # turn off power to sensors
-    Zone.moisture_sensors_deactivate
 
     # Activate parent tank pumps as necessary
     Tank.all.each do |tank|
