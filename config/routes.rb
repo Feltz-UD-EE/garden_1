@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   resources :zones
   resources :tanks
   resources :moisture_readings
+  resources :crops
 
 end
