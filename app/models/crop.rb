@@ -8,7 +8,6 @@
 #       t.string  :name
 #       t.string  :description
 #       t.references :zone
-#       t.string  :description
 #       t.date    :plant_date
 #       t.date    :pull_date
 #       t.timestamps

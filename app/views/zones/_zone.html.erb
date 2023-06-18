@@ -2,11 +2,29 @@
 <h2>Zone: <%= @zone.name %></h2>
 <p>Number: <%= @zone.number %></p>
 <p>Tank: <%= link_to @zone.tank.name, tank_path(@zone.tank) %></p>
-<p>Crop: <%= @zone.crop %></p>
+<p>Crop: <%= @zone.crop_list %></p>
 <p>Description: <%= @zone.description %></p>
 <p>Valve Pin: <%= @zone.valve_pin %></p>
 <p>Sensor: <%= @zone.sensor_pin %>-<%= @zone.sensor_index %></p>
 <p>Moisture Target: <%= @zone.moisture_target %></p>
+<hr/>
+<h3>Crops</h3>
+<table style="border-spacing:10px;">
+    <tr style="text-align:center;">
+        <th>Name</th>
+        <th>Description</th>
+        <th>Plant Date</th>
+        <th>Pull Date</th>
+    <tr>
+    <% @zone.crops.each do |crop| %>
+        <tr>
+            <td><%= link_to crop.name %></td>
+            <td><%= crop.description %></td>
+            <td><%= crop.plant_date.strftime("%A %l:%M %p") %></td>
+            <td><%= crop.pull_date.strftime("%A %l:%M %p") %></td>
+        </tr>
+    <% end %>
+</table>
 <hr/>
 <h3>Recent Moisture Readings</h3>
 <table style="border-spacing:10px;">
