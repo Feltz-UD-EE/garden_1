@@ -21,7 +21,6 @@ class Tank < ApplicationRecord
     MCP3008ClockPin = 4             # CLK: chip pin # 13
     MCP3008ControlPin = 17          # CS/SHDN: chip pin # 10
     MCP3008DInPin = 11              # DIN: chip pin 11 ("MOSI" in python package)
-    SensorPowerPin = 22             # Don't keep sensors powered on all the time
     SensorLowLevelThreshold = 300   # Sensor is supposed to return 0V or 3.3V, but often comes back
                                     #   at ~2V, regardless of how I adjust the potentiometer.  Thickness
                                     #   of tank?  Interference by body capacitance?  Anyway, use the A/D
@@ -30,6 +29,7 @@ class Tank < ApplicationRecord
 
     # relations
     has_many :zones
+    has_many :level_readings
     has_one :child_tank, class_name: 'Tank', foreign_key: child_id, optional: true
     belongs_to :parent_tank, class_name: 'Tank', optional: true
 

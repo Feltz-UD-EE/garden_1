@@ -10,6 +10,7 @@
     <% end %>
 </p>
 </br>
+<hr/>
 <% if @tank.zones.any? %>
     <h3>Zones</h3>
     <table>
@@ -30,8 +31,28 @@
 <% end %>
 <% if @tank.child_tank.present? %>
     <h3>Child Tank</h3>
-    <p><%= @tank.child_tank.name %></p>
+    <p><%= link_to @tank.child_tank.name, tank_path(tank_id: @tank.child_tank.id) %></p>
+    <br/>
+    <hr/>
+<% end %><% if @tank.praent_tank.present? %>
+    <h3>Parent Tank</h3>
+    <p><%= link_to @tank.parent_tank.name, tank_path(tank_id: @tank.parent_tank.id) %></p>
     <br/>
     <hr/>
 <% end %>
+<h3>Recent Level Readings</h3>
+<table style="border-spacing:10px;">
+    <tr style="text-align:center;">
+        <th>Date/Time</th>
+        <th>Level</th>
+    <tr>
+    <% @tank.level_readings.descending.last_day.each do |lr| %>
+        <tr>
+            <td><%= lr.created_at.strftime("%A %l:%M %p") %></td>
+            <td><%= lr.low ? "Low" : "Not low" %></td>
+        </tr>
+    <% end %>
+</table>
+<br/>
+
 </div>
