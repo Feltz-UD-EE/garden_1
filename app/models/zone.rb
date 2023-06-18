@@ -58,7 +58,7 @@ class Zone < ApplicationRecord
 
     # class methods
     def planted?
-        self.crops.map { |c| c.planted? }.include?(true)
+        self.crops.any? ? self.crops.map { |c| c.planted? }.include?(true) : false
     end
 
     def self.moisture_sensors_activate
