@@ -26,7 +26,7 @@ class Tank < ApplicationRecord
 
     # instance methods
     def needs_pumping
-        self.zones.planted.map { |z| z.needs_water }.include?(true)
+        self.zones.map { |z| z.planted? && z.needs_water }.include?(true)
     end
 
     def pump_on

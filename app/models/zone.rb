@@ -57,10 +57,6 @@ class Zone < ApplicationRecord
     scope :ascending, -> { order(number: :asc) }
 
     # class methods
-    def planted?
-        self.crops.any? ? self.crops.map { |c| c.planted? }.include?(true) : false
-    end
-
     def self.moisture_sensors_activate
 #         RPi::GPIO.set_high Zone.sensor_power_pin
       `python app/misc/python/set_pin_high.py #{Zone::SensorPowerPin}`
@@ -74,6 +70,10 @@ class Zone < ApplicationRecord
     end
 
     # instance methods
+    def planted?
+        self.crops.any? ? self.crops.map { |c| c.planted? }.include?(true) : false
+    end
+
     def take_reading
       # Use Rpi on pin = self.sensor_pin and self.sensor_index
       value = (`python app/misc/python/read_moisture_sensor.py #{Zone::MCP3008ClockPin} #{Zone::MCP3008ControlPin} #{Zone::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
