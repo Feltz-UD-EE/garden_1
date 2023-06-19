@@ -30,8 +30,8 @@ class Tank < ApplicationRecord
     # relations
     has_many :zones
     has_many :level_readings
-    has_one :child_tank, class_name: 'Tank', foreign_key: :child_id, optional: true
-    belongs_to :parent_tank, class_name: 'Tank', optional: true
+    has_one :child_tank, class_name: "Tank", foreign_key: :child_id, optional: :true
+    belongs_to :parent_tank, class_name: "Tank", optional: :true
 
     # validations
     validates :name, presence: true
