@@ -5,6 +5,8 @@
 #   * sensors return 0-1023 after going through A/D converter
 #   * read-only from perspective of UI
 #
+#      t.references :tank
+#      t.boolean :low             # binary sensors
 
 class MoistureReading < ApplicationRecord
     # statics & enums

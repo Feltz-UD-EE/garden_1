@@ -10,20 +10,52 @@
     <% end %>
 </p>
 </br>
-<h3>Zones</h3>
-<table>
+<hr/>
+<% if @tank.zones.any? %>
+    <h3>Zones</h3>
+    <table>
+        <tr>
+            <th>
+        </tr>
+        <% @tank.zones.ascending.each do |zone| %>
+            <tr>
+                <td><%= zone.name %></td>
+                <td><%= zone.crop %></td>
+                <td><%= zone.moisture_target %></td>
+            </tr>
+        <% end %>
+    </table>
+    <%= link_to "Add a zone", new_zone_path(tank_id: tank.id) %>
+    <br/>
+    <hr/>
+<% end %>
+<% if @tank.child_tank.present? %>
+    <h3>Child Tank</h3>
+    <p><%= link_to @tank.child_tank.name, tank_path(tank_id: @tank.child_tank.id) %></p>
+    <br/>
+    <hr/>
+<% end %><% if @tank.praent_tank.present? %>
+    <h3>Parent Tank</h3>
+    <p><%= link_to @tank.parent_tank.name, tank_path(tank_id: @tank.parent_tank.id) %></p>
+    <br/>
+    <hr/>
+<% end %>
+<h3>Recent Level Readings</h3>
+<table style="border-spacing:10px;">
+    <tr style="text-align:center;">
+        <th>Date/Time</th>
+        <th>Level</th>
     <tr>
-        <th>
-    </tr>
-    <% @tank.zones.ascending.each do |zone| %>
+    <% @tank.level_readings.descending.last_day.each do |lr| %>
         <tr>
             <td><%= zone.name %></td>
             <td><%= zone.crop_list %></td>
             <td><%= zone.moisture_target %></td>
+            <td><%= lr.created_at.strftime("%A %l:%M %p") %></td>
+            <td><%= lr.low ? "Low" : "Not low" %></td>
         </tr>
     <% end %>
 </table>
-<%= link_to "Add a zone", new_zone_path(tank_id: tank.id) %>
 <br/>
-<hr/>
+
 </div>
