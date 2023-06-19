@@ -37,6 +37,7 @@ class EventsController < ApplicationController
         format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else
+        @crop = Crop.find(event_params["crop_id"])
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end

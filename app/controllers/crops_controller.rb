@@ -38,6 +38,7 @@ class CropsController < ApplicationController
         format.html { redirect_to crop_url(@crop), notice: "Crop was successfully created." }
         format.json { render :show, status: :created, location: @crop }
       else
+        @zone = Zone.find(crop_params["zone_id"])
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @crop.errors, status: :unprocessable_entity }
       end
