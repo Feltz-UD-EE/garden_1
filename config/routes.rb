@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   resources :tanks
   resources :moisture_readings
   resources :crops
+  resources :events
 
 end

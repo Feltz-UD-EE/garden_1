@@ -22,6 +22,7 @@ class Event < ApplicationRecord
 
     # scopes
     scope :ascending, -> { order(date: :asc) }
+    scope :desceinding -> { order(date: desc) }
 
     # class methods
 
