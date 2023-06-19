@@ -53,7 +53,7 @@ class Tank < ApplicationRecord
 
     def take_reading
       # Use Rpi on pin = self.sensor_pin and self.sensor_index
-      value = (`python app/misc/python/read_moisture_sensor.py #{Tank::MCP3008ClockPin} #{Tank::MCP3008ControlPin} #{Tank::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
+      value = (`python app/misc/python/read_level_sensor.py #{Tank::MCP3008ClockPin} #{Tank::MCP3008ControlPin} #{Tank::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
       p "Raw reading for tank #{self.name} (pin #{self.sensor_pin}, index #{self.sensor_index}) is #{value}"
       low_level = value < 300
       p "Which equates to setting of low_level = ${low_level}"

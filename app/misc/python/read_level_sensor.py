@@ -1,5 +1,5 @@
 #
-# Copyright 2022 John C. Feltz, github: Feltz-UD-EE/garden_1
+# Copyright 2022-2023 John C. Feltz, github: Feltz-UD-EE/garden_1
 #
 # Will be replaced with native Rails code once rpi_gpio gem is updated
 #
@@ -10,7 +10,6 @@
 # returns:
 #   value (0-1023)
 # usage:
-#   value = (`python app/misc/python/set_pin_high.py 5 7 3`).to_i
 
 import sys
 import Adafruit_MCP3008
@@ -29,7 +28,7 @@ din_pin = args.din_pin
 data_pin = args.data_pin
 channel = args.channel
 
-print ("read_moisture_sensor.py", file=sys.stderr)
+print ("read_level_sensor.py", file=sys.stderr)
 print ("clock_pin = " + str(clock_pin), file=sys.stderr)
 print ("control_pin = " + str(control_pin), file=sys.stderr)
 print ("din_pin = " + str(din_pin), file=sys.stderr)
