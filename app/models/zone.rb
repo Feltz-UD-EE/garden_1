@@ -53,8 +53,10 @@ class Zone < ApplicationRecord
     end
 
     # scopes
-#     scope :planted, -> { where("crop is not null and crop != ''") }
+#     scope :planted, -> { where("crop is not null and crop != ''") }     # doesn't work as a scope w/ crops table
+                                                                          # unless I write some pretty hefty SQL
     scope :ascending, -> { order(number: :asc) }
+    scope :descending, -> { order(number: :desc) }
 
     # class methods
     def self.moisture_sensors_activate

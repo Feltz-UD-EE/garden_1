@@ -26,7 +26,8 @@ class Crop < ApplicationRecord
     validates :name, presence: true
 
     # scopes
-    scope :ascending, -> { order(number: :asc) }
+    scope :ascending, -> { order(plant_date: :asc) }
+    scope :descending, -> { order(plant_date: :desc) }
 
     # class methods
 
