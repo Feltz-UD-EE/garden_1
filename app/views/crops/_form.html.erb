@@ -21,10 +21,6 @@
       <td><%= form.text_field :description %></td>
     </tr>
     <tr>
-      <td>Zone</td>
-      <td><%= form.select :zone_id, (["-- Please select a zone --"] + Zone.all.collect {|z| [ z.name, z.id ] }) %></td>
-    </tr>
-    <tr>
       <td>Date Planted</td>
       <td><%= form.date_field :plant_date %></td>
     </tr>

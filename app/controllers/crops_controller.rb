@@ -18,7 +18,7 @@ class CropsController < ApplicationController
   # GET /crops/new
   def new
     rodauth.require_authentication
-    @crop = Crop.new(zone_id: params["zone_id"])
+    @crop = Crop.new(zone_id: params["zone_id"], date_planted: Date.today)
   end
 
   # GET /crops/1/edit
