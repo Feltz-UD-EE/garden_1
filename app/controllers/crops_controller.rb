@@ -16,8 +16,10 @@ class CropsController < ApplicationController
   end
 
   # GET /crops/new
+  # Can only be called from a zone, hence redirect if no zone_id specified
   def new
     rodauth.require_authentication
+    if !params["zone_id"] redirect_to controller:static, action: :public_home
     @crop = Crop.new(zone_id: params["zone_id"], plant_date: Date.today)
   end
 
