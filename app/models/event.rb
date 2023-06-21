@@ -19,6 +19,8 @@ class Event < ApplicationRecord
     belongs_to :crop
 
     # validations
+    validates :description, presence: true
+    validates: zone_id, presence: true
 
     # scopes
     scope :ascending, -> { order(date: :asc) }

@@ -31,6 +31,8 @@ class CropsController < ApplicationController
   # POST /crops or /crops.json
   def create
     rodauth.require_authentication
+    p "saving new crop - params = "
+    p crop_params
     @crop = Crop.new(crop_params)
 
     respond_to do |format|
