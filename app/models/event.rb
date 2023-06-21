@@ -20,7 +20,7 @@ class Event < ApplicationRecord
 
     # validations
     validates :description, presence: true
-    validates: zone_id, presence: true
+    validates :zone_id, presence: true
 
     # scopes
     scope :ascending, -> { order(date: :asc) }
