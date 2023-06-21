@@ -48,7 +48,7 @@ class Tank < ApplicationRecord
 
     def needs_pumping
         (self.zones.any? && self.zones.map { |z| z.planted? && z.needs_water }.include?(true)) ||
-        (self.child_tank.any? && self.child_tank.low_level)
+        (self.child_id.present? && self.child_tank.low_level)
     end
 
     def take_reading
