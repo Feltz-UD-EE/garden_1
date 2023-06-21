@@ -1,4 +1,5 @@
 <%= form_with(model: crop) do |form| %>
+  <%= f.hidden_field :zone_id, value: @zone.id %>
   <% if crop.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(crop.errors.count, "error") %> prohibited this crop from being saved:</h2>
