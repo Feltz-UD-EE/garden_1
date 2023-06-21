@@ -24,6 +24,7 @@ class Crop < ApplicationRecord
 
     # validations
     validates :name, presence: true
+    validates: zone_id, presence: true
 
     # scopes
     scope :ascending, -> { order(plant_date: :asc) }
