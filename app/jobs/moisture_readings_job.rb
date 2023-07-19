@@ -18,8 +18,10 @@ class MoistureReadingsJob < ActiveJob::Base
     Zone.moisture_sensors_activate
 
     # get moisture reading from MCP3108
-    Zone.all.planted.each do |zone|
-      zone.take_reading
+    Zone.all.each do |zone|
+      if zone.planted?
+        zone.take_reading
+      end
     end
 
     # turn off power to moisture sensors

@@ -20,6 +20,8 @@ module Garden1
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.after_initialize do
+      p "starting after_initialize"
+
       # Queue up initial job
       now = Time.now
       nearest_hour = now.beginning_of_hour
