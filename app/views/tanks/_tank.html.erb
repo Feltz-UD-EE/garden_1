@@ -34,7 +34,7 @@
     <p><%= link_to @tank.child_tank.name, tank_path(tank_id: @tank.child_tank.id) %></p>
     <br/>
     <hr/>
-<% end %><% if @tank.praent_tank.present? %>
+<% end %><% if @tank.parent_tank.present? %>
     <h3>Parent Tank</h3>
     <p><%= link_to @tank.parent_tank.name, tank_path(tank_id: @tank.parent_tank.id) %></p>
     <br/>
