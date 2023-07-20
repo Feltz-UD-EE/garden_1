@@ -75,6 +75,6 @@ class ZonesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def zone_params
-      params.require(:zone).permit(:name, :number, :tank_id, :crop, :description, :valve_pin, :sensor_pin, :sensor_index, :moisture_target)
+      params.require(:zone).permit(:name, :number, :tank_id, :description, :valve_pin, :sensor_pin, :sensor_index, :moisture_target)
     end
 end
