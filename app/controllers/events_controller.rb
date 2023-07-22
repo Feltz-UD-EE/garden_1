@@ -18,6 +18,8 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     rodauth.require_authentication
+    p "trying to start create of new event. params = "
+    p params
     @crop = Crop.find(params["crop_id"])
     @event = Event.new(crop_id: params["crop_id"], date: Date.today)
   end
@@ -30,7 +32,7 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     rodauth.require_authentication
-    p "saving new event - params = "
+    p "saving new event. params = "
     p event_params
     @event = Event.new(event_params)
 

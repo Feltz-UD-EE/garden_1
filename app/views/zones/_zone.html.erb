@@ -18,10 +18,10 @@
     <tr>
     <% @zone.crops.each do |crop| %>
         <tr>
-            <td><%= link_to crop.name, crop_path(crop_id: crop.id) %></td>
+            <td><%= link_to crop.name, crop_path(crop.id) %></td>
             <td><%= crop.description %></td>
-            <td><%= crop.plant_date.present? ? crop.plant_date.strftime("%A %l:%M %p") : "" %></td>
-            <td><%= crop.pull_date.present? ? crop.pull_date.strftime("%A %l:%M %p") : "" %></td>
+            <td><%= crop.plant_date.present? ? crop.plant_date.strftime("%Y-%b-%d") : "" %></td>
+            <td><%= crop.pull_date.present? ? crop.pull_date.strftime("%Y-%b-%d") : "" %></td>
         </tr>
     <% end %>
 </table>

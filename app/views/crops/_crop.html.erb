@@ -19,7 +19,7 @@
     <tr>
     <% @crop.events.descending.each do |e| %>
         <tr>
-            <td><%= e.date %></td>
+            <td><%= e.date.strftime("%Y-%b-%d") %></td>
             <td><%= e.description %></td>
             <td><%= e.harvest.present? ? e.harvest : "" %></td>
         </tr>

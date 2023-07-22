@@ -40,7 +40,7 @@ class Crop < ApplicationRecord
     end
 
     def total_harvest
-        self.crops.sum(:harvest)
+        self.events.sum(:harvest)
     end
 
     # Callbacks
