@@ -1,0 +1,172 @@
+.top-bar, #nav{
+  height: 100px;
+  .divider {
+    background-color: #444;
+  }
+  ul, li, a {
+    background-color: #fff;
+    .dropdown {
+      background-color: #fff;
+    }
+  }
+  a:hover {
+    background-color: #eee;
+  }
+  li:hover {
+    background-color: #fff;
+    a {
+      text-decoration: none; 
+      background-color: #fff;
+
+    }   
+  }
+  // height: 80px;
+}
+#nav-wrapper {
+  height: 95px;
+}
+
+#topbar a:not(.button) {
+  color: #3474A5;
+  a:hover {
+    color: #fff;
+  }
+}
+.top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"] {
+  border-bottom: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  clear: none;
+}
+
+#footer {
+  a:hover {
+    text-decoration: underline; 
+  }
+}
+
+ul {
+  .dropdown {
+    border: 1px solid #D3D3D3;
+  }
+}
+
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a:not(.button) {
+  color: #3474A5;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.ui-menu-item {
+  a:hover {
+    color: #3474A5;
+  }
+}
+
+a.dropdown {
+  color:#3474A5;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.toggle a {
+  color:#3474A5;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.back > a {
+  color:#000;
+}
+
+.row a:not(.button) {
+  color:#3474A5;
+  font-size: 0.9rem;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.f-dropdown li a {
+  color:#2E4559;
+  &:hover {
+    color: #666;
+  }
+}
+
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+  #title-area_float  {float:left; height:50%; margin-bottom:-120px;}
+  #title-area_content  {clear:both; height:240px; position:relative;}
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+.last-news p.meta span.date {
+  background-image:url(image_path('time-icon.png')); 
+}
+
+.no-pad {
+  padding-right: 0;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+input[type='number'].no-arrows {  // this is meant to turn off the arrows for number inputs
+  // http://stackoverflow.com/a/27935448
+  -moz-appearance:textfield; // for firefox
+
+  &::-webkit-outer-spin-button, // for chrome
+  &::-webkit-inner-spin-button
+  {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
