@@ -25,10 +25,10 @@
             </tr>
         <% end %>
     </table>
-    <%= link_to "Add a zone", new_zone_path(tank_id: tank.id) %>
-    <br/>
-    <hr/>
 <% end %>
+<%= link_to "Add a zone", new_zone_path(tank_id: tank.id) %>
+<br/>
+<hr/>
 <% if @tank.child_tank.present? %>
     <h3>Child Tank</h3>
     <p><%= link_to @tank.child_tank.name, tank_path(tank_id: @tank.child_tank.id) %></p>
