@@ -19,7 +19,7 @@
         </tr>
         <% @tank.zones.ascending.each do |zone| %>
             <tr>
-                <td><%= link_to zone.name, zone_path(zone_id: zone.id) %></td>
+                <td><%= link_to zone.name, zone_path(zone.id) %></td>
                 <td><%= zone.crop_list %></td>
                 <td><%= zone.moisture_target %></td>
             </tr>
@@ -31,12 +31,12 @@
 <hr/>
 <% if @tank.child_tank.present? %>
     <h3>Child Tank</h3>
-    <p><%= link_to @tank.child_tank.name, tank_path(tank_id: @tank.child_tank.id) %></p>
+    <p><%= link_to @tank.child_tank.name, tank_path(@tank.child_tank.id) %></p>
     <br/>
     <hr/>
 <% end %><% if @tank.parent_tank.present? %>
     <h3>Parent Tank</h3>
-    <p><%= link_to @tank.parent_tank.name, tank_path(tank_id: @tank.parent_tank.id) %></p>
+    <p><%= link_to @tank.parent_tank.name, tank_path(@tank.parent_tank.id) %></p>
     <br/>
     <hr/>
 <% end %>
@@ -48,9 +48,6 @@
     <tr>
     <% @tank.level_readings.descending.last_day.each do |lr| %>
         <tr>
-            <td><%= zone.name %></td>
-            <td><%= zone.crop_list %></td>
-            <td><%= zone.moisture_target %></td>
             <td><%= lr.created_at.strftime("%A %l:%M %p") %></td>
             <td><%= lr.low ? "Low" : "Not low" %></td>
         </tr>
