@@ -19,7 +19,7 @@
         </tr>
         <% @tank.zones.ascending.each do |zone| %>
             <tr>
-                <td><%= zone.name %></td>
+                <td><%= link_to zone.name, zone_path(zone_id: zone.id) %></td>
                 <td><%= zone.crop_list %></td>
                 <td><%= zone.moisture_target %></td>
             </tr>
