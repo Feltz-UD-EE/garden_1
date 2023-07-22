@@ -1,5 +1,5 @@
 <%= form_with(model: event) do |form| %>
-  <%= form.hidden_field :crop_id, value: @crop.id %>
+  <%= form.hidden_field :crop_id, value: @event.crop_id %>
     
   <% if event.errors.any? %>
     <div style="color: red">
