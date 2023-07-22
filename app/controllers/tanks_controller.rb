@@ -33,7 +33,7 @@ class TanksController < ApplicationController
 
     respond_to do |format|
       if @tank.save
-        format.html { redirect_to tank_url(@tank), notice: "Tank was successfully created." }
+        format.html { redirect_to public_home_path, notice: "Tank was successfully created." }
         format.json { render :show, status: :created, location: @tank }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +47,7 @@ class TanksController < ApplicationController
     rodauth.require_authentication
     respond_to do |format|
       if @tank.update(tank_params)
-        format.html { redirect_to tank_url(@tank), notice: "Tank was successfully updated." }
+        format.html { redirect_to public_home_path, notice: "Tank was successfully updated." }
         format.json { render :show, status: :ok, location: @tank }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,7 +62,7 @@ class TanksController < ApplicationController
     @tank.destroy
 
     respond_to do |format|
-      format.html { redirect_to tanks_url, notice: "Tank was successfully destroyed." }
+      format.html { redirect_to public_home_path, notice: "Tank was successfully destroyed." }
       format.json { head :no_content }
     end
   end
