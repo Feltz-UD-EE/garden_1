@@ -25,10 +25,6 @@
       <td><%= form.select :tank_id, (["-- Please select a tank --"] + Tank.all.collect {|t| [ t.name, t.id ] }) %></td>
     </tr>
     <tr>
-      <td>Crop</td>
-      <td><%= form.text_field :crop %></td>
-    </tr>
-    <tr>
       <td>Description</td>
       <td><%= form.text_field :description %></td>
     </tr>

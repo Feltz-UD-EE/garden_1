@@ -18,7 +18,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     rodauth.require_authentication
-    @crop = Crop.find(params["crop_id")
+    @crop = Crop.find(params["crop_id"])
     @event = Event.new(crop_id: params["crop_id"], date: Date.today)
   end
 
