@@ -1,17 +1,51 @@
+<%
+   #
+   # Copyright 2015-2016 2022-2023 John C. Feltz, github: Feltz-UD-EE/garden_1
+   #
+%>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Garden1</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <%= favicon_link_tag (asset_path('favicon.ico')) %>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag    "application", media: "print" %>
+    <%= stylesheet_link_tag    "ocean.css" %>
+    <%= stylesheet_link_tag    "https://fonts.googleapis.com/css?family=Nunito+Sans:400,500,600,700,800,900" %>
+    <%= stylesheet_link_tag    "https://fonts.googleapis.com/icon?family=Material+Icons" %>
+    <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="home image-sphere-style responsive" id = 'background'>
+
+  <!-- START SHADOW WRAPPER -->
+  <div class="group">
+    <div class="wrapper group">
+
+      <div id="nav-wrapper" class = "hide-on-print">
+        <div id="nav">
+          <%= render :partial => 'layouts/navbar' %>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="row content-row%>">
+        <div class = "small-12 columns">
+          <%= render(:partial => 'layouts/error_messages') unless errors_elsewhere %>
+          <%= yield %>
+        </div>
+        <%= javascript_include_tag "application" %>
+      </div>
+
+    </div>
+
+    <div class="contain-to-grid" id = "copyright">
+      <%= render :partial => 'layouts/copyright' %>
+    </div>
+  </div>
   </body>
 </html>
