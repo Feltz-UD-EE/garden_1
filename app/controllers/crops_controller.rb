@@ -31,13 +31,11 @@ class CropsController < ApplicationController
   # POST /crops or /crops.json
   def create
     rodauth.require_authentication
-    p "saving new crop - params = "
-    p crop_params
     @crop = Crop.new(crop_params)
 
     respond_to do |format|
       if @crop.save
-        format.html { redirect_to crop_url(@crop), notice: "Crop was successfully created." }
+        format.html { redirect_to zone_url(@crop.zone_id), notice: "Crop was successfully created." }
         format.json { render :show, status: :created, location: @crop }
       else
         @zone = Zone.find(crop_params["zone_id"])
@@ -52,7 +50,7 @@ class CropsController < ApplicationController
     rodauth.require_authentication
     respond_to do |format|
       if @crop.update(crop_params)
-        format.html { redirect_to crop_url(@crop), notice: "Crop was successfully updated." }
+        format.html { redirect_to zone_url(@crop.zone_id), notice: "Crop was successfully updated." }
         format.json { render :show, status: :ok, location: @crop }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -67,7 +65,7 @@ class CropsController < ApplicationController
     @crop.destroy
 
     respond_to do |format|
-      format.html { redirect_to crops_url, notice: "Crop was successfully destroyed." }
+      format.html { redirect_to zone_url(@crop.zone_id), notice: "Crop was successfully destroyed." }
       format.json { head :no_content }
     end
   end
