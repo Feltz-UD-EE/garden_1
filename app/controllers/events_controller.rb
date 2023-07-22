@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     rodauth.require_authentication
-    p "saving new event. params = "
+    p "saving new event. event_params = "
     p event_params
     @event = Event.new(event_params)
 
