@@ -1,0 +1,263 @@
+.piechartdiv{
+	border-radius: 5px 5px 0px 0px;
+	color: rgb(245,245,248);
+	box-shadow: 3px 1px 5px #a2a2a2;
+	height:90%;
+}
+#barchart{
+    width: 100% !important;
+    height: 200px !important;
+}
+#piechart1, #piechart2{
+	width: 230% !important;
+    height: 130px !important;
+    margin-left: -90px;
+}
+.piechartdiv .columns p{
+	text-align: center;
+}
+.barhead{
+	background-color: rgb(72,144,221);
+	text-align: center;
+	height: 50px;
+	border-radius: 5px 5px 0px 0px;
+	margin-top: -20px;
+}
+.piehead{
+	background-color: rgb(72,144,221);
+	text-align: center;
+	height: 50px;
+	border-radius: 5px 5px 0px 0px
+}
+.barhead h4{
+	color: white;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.piehead h4{
+	color: white;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.bardiv, .piediv{
+	border-radius: 5px 5px 0px 0px;
+	color: rgb(245,245,248);
+	box-shadow: 3px 1px 5px #a2a2a2;
+}
+
+.piechartdiv{
+	display:inline-block;
+	float:left;
+	margin-top: -2px;
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+.barchat{
+	margin-top: 10px;
+}
+
+#piechart1{
+	left:50%;
+}
+/* CSS for alert list*/
+.todolist, .alertlist{
+	background-color:#f3f3f3; 
+	box-shadow: 3px 1px 5px #a2a2a2;
+	border-radius: 5px 5px 0px 0px;
+}
+.todocontent, .alertcontent{
+	padding-top: 20px;
+	overflow:scroll;
+	height:728px;
+}
+.todohead{
+	background-color: #3dafad;
+	text-align: center;
+	height: 50px;
+	border-radius: 5px 5px 0px 0px;
+	margin-top: -20px;
+}
+.alerthead{
+	background-color: #ffa500;
+	text-align: center;
+	height: 50px;
+	border-radius: 5px 5px 0px 0px;
+	margin-top: -20px;
+}
+.todohead h4, .alerthead h4{
+	color: white;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.fitstrow p, .secondrow p{
+	display: inline-block;
+}
+#MRN{
+	float:right;
+}
+.eachcard{
+    border-bottom: 1px solid #cccccc;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	padding-left:10px;
+	padding-right:10px;
+}
+#todobutton{
+	float:right;
+	background-color:rgb(72,144,221); /* Green */
+    border: none;
+    color: white !important;
+    padding: 5px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px #a2a2a2;
+//    margin-top:-5px;
+}
+.printalertlist, .printtodolist, .printbarchart, .printpiechart{
+	display: none !important;
+}
+
+.printbutton {
+	float:right;
+	margin-right:13px;
+	display:inline;
+}
+.chart-legend li span{
+	display: inline-block;
+    width: 20px;
+    height: 12px;
+    margin-right: 8px;
+    background-color: black;
+    color: white;
+    font-size: 8px;
+}
+.chart-legend2 li span{
+    display: inline-block;
+    width: 20px;
+    height: 12px;
+    margin-right: 8px;
+    background-color: black;
+    color: white;
+    font-size: 12px;
+}
+.chart-legend2 ul{
+	list-style-type: none; 
+}
+.printer-icon{
+	float:right;
+	width: 8%;
+	margin-top: -15px;
+	margin-right:5px;
+	z-index: 100;
+}
+.alerthead h4, .todohead h4{
+	margin-right: 25px;
+	margin-left: 25px;
+}
+
+
+
+.db-header{
+margin:0px;
+padding:0px;
+color:white;
+}
+.db-header h1, .db-header ul, .db-header ul li{
+display:inline;
+}
+.db-header ul li a{
+text-decoration:none;
+font-size:16px;
+font-weight:bold;
+}
+.db-header ul li a:hover{
+text-decoration:underline;
+background-color:rgb(27, 117, 187);
+color: white;
+}
+.db-header select {
+color:white;
+font-size: 1em !important;
+height: 28pt !important;
+line-height: 28pt !important;  
+}
+// .db-header .dropdown{
+// color:white;
+// font-size: 1em !important;
+// height: 28px;
+// line-height: 28px;
+// }
+
+.db-header form input{
+ 	float:right;
+ }
+
+
+.db-header input {
+outline: none;
+}
+.db-header input[type=search] {
+-webkit-appearance: textfield;
+-webkit-box-sizing: content-box;
+font-family: inherit;
+font-size: 100%;
+}
+
+.db-header input::-webkit-search-decoration,
+.db-header input::-webkit-search-cancel-button {
+display: none; 
+}
+
+.db-header input[type=search] {
+background: #ededed url(image_path('icons/set_icons/search.png')) no-repeat 9px center;
+border: solid 1px #ccc;
+padding: 5px 10px 5px 32px;
+width: 100px;
+-webkit-transition: all .5s;
+-moz-transition: all .5s;
+transition: all .5s;
+}
+.db-header input[type=search]:focus {
+width: 200px;
+background-color: #fff;
+border-color: rgb(27, 117, 187);
+-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+
+
+.db-header input:-moz-placeholder {
+color: #999;
+}
+.db-header input::-webkit-input-placeholder {
+color: #999;
+}
+.db-title{
+text-align: left;
+margin-top: 5px;
+margin-bottom: 20px;
+
+}
+
+@media screen and (max-width: 380px) {
+  .db-search {
+    font-size: 80%;
+      
+  }
+}

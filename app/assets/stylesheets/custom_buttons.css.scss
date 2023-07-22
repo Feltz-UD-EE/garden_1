@@ -1,0 +1,21 @@
+@import "foundation/variables";
+@import "foundation/components/global";
+@import "foundation/components/buttons";
+
+.button.tertiary {
+  /* This controls button color. Set to one of our variables or a custom hex value */
+  $bg: #87b6e2;
+
+  /* This controls button radius. Set to a variable, true/false, or custom px value */
+  $radius: false;
+
+  /* This controls whether disabled styles are used. Set to true or false */
+  $disabled: false;
+
+  @include button-style($bg, $radius, $disabled);
+}
+
+.button {
+	font-family: 'Open Sans';
+  // margin: 10px 0;
+}
