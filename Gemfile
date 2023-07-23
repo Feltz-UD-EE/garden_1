@@ -52,6 +52,7 @@ gem "rodauth-rails"
 gem 'mcp3008pi', '~> 0.1.1'
 
 # Use Sass to process CSS
+gem 'sass-rails'
 gem "sassc-rails"
 
 # CSS package
