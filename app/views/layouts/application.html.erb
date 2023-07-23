@@ -34,8 +34,7 @@
 
       <div class="row content-row%>">
         <div class = "small-12 columns">
-          <%= render(:partial => 'layouts/error_messages') unless errors_elsewhere %>
-          <%= yield %>
+           <%= yield %>
         </div>
         <%= javascript_include_tag "application" %>
       </div>
