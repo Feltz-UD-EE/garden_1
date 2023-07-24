@@ -18,11 +18,7 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body class="home image-sphere-style responsive" id = 'background'>
-
-  <!-- START SHADOW WRAPPER -->
-  <div class="group">
-    <div class="wrapper group">
+  <body>
 
       <div id="nav-wrapper" class = "hide-on-print">
         <div id="nav">
@@ -32,18 +28,8 @@
 
       <div class="clear"></div>
 
-      <div class="row content-row%>">
-        <div class = "small-12 columns">
-           <%= yield %>
-        </div>
-        <%= javascript_include_tag "application" %>
-      </div>
+      <%= yield %>
+      <%= javascript_include_tag "application" %>
 
-    </div>
-
-    <div class="contain-to-grid" id = "copyright">
-      <%= render :partial => 'layouts/copyright' %>
-    </div>
-  </div>
   </body>
 </html>
