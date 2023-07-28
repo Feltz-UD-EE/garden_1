@@ -26,6 +26,7 @@ class CropsController < ApplicationController
   # GET /crops/1/edit
   def edit
     rodauth.require_authentication
+    @zone = @crop.zone
   end
 
   # POST /crops or /crops.json
