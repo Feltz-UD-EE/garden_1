@@ -19,14 +19,14 @@ class CropsController < ApplicationController
   # Can only be called from a zone, hence redirect if no zone_id specified
   def new
     rodauth.require_authentication
-    @zone = Zone.find(params["zone_id"])
+    @zone_id = params["zone_id"]
     @crop = Crop.new(zone_id: params["zone_id"], plant_date: Date.today)
   end
 
   # GET /crops/1/edit
   def edit
     rodauth.require_authentication
-    @zone = @crop.zone
+    @zone_id = @crop.zone_id
   end
 
   # POST /crops or /crops.json
