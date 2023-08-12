@@ -12,6 +12,14 @@
         <ul class="ocean-nav">
             <li> <%= link_to "Tanks", tanks_path %> </li>
             <li> <%= link_to "Zones", zones_path %> </li>
+            <li class="has-dropdown">
+                <%= link_to "Crops", crops_path %>
+                <ul class = "dropdown">
+                    <li> <%= link_to "Currently Planted", crops_path %> </li>
+                    <li> <%= link_to "Pulled", crops_path %> </li>
+                    <li> <%= link_to "Past Years", crops_path %> </li>
+                </ul>
+            </li>
         </ul>
     </section>
 </nav>

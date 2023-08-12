@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :zones
   resources :tanks
   resources :moisture_readings
-  resources :crops
+  resources :crops do
+    get 'past'
+  end
   resources :events
 
 end
