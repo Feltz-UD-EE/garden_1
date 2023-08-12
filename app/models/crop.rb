@@ -31,6 +31,16 @@ class Crop < ApplicationRecord
     scope :descending, -> { order(plant_date: :desc) }
 
     # class methods
+    # used for summary crops-over-time views
+    def by_year
+        crop_hash = Hash.new
+        Crop.all.each do |crop|
+            end_year = (crop.current? ? Date.current.year : crop.pull_date.year)
+            (crop.plant_date.year..end_year) do year
+                crop_hash.push("year": year, "crop": crop)
+            end
+        end
+    end
 
     # instance methods
     def planted?

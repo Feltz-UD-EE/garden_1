@@ -1,5 +1,7 @@
 <div id="<%= dom_id zone %>">
 <h2>Zone: <%= @zone.name %></h2>
+<p><%= button_to "Edit", @zone, method: :edit %>
+  <%= button_to "Destroy", @zone, method: :delete %></p>
 <p>Number: <%= @zone.number %></p>
 <p>Tank: <%= link_to @zone.tank.name, tank_path(@zone.tank) %></p>
 <p>Crops: <%= @zone.crop_list %></p>
@@ -9,12 +11,13 @@
 <p>Moisture Target: <%= @zone.moisture_target %></p>
 <hr/>
 <h3>Crops</h3>
-<table style="border-spacing:10px;">
+<table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
     <tr style="text-align:center;">
         <th>Name</th>
         <th>Description</th>
         <th>Plant Date</th>
         <th>Pull Date</th>
+        <th></th>
     <tr>
     <% @zone.crops.each do |crop| %>
         <tr>
@@ -22,13 +25,14 @@
             <td><%= crop.description %></td>
             <td><%= crop.plant_date.present? ? crop.plant_date.strftime("%Y-%b-%d") : "" %></td>
             <td><%= crop.pull_date.present? ? crop.pull_date.strftime("%Y-%b-%d") : "" %></td>
+            <td><%= link_to "Add an Event", new_event_path(crop_id: crop.id) %></td>
         </tr>
     <% end %>
 </table>
 <%= link_to "Add a crop", new_crop_path(zone_id: zone.id) %>
 <hr/>
 <h3>Recent Moisture Readings</h3>
-<table style="border-spacing:10px;">
+<table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
     <tr style="text-align:center;">
         <th>Date/Time</th>
         <th>Level</th>

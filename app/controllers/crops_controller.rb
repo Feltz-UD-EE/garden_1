@@ -8,7 +8,12 @@ class CropsController < ApplicationController
 
   # GET /crops or /crops.json
   def index
-    @crops = Crop.all.ascending
+    @crops = Crop.all.ascending             # NB add get param for additional menu items
+  end
+
+  # Get /crops/past or /crops/past.json
+  def past
+#    @years =
   end
 
   # GET /crops/1 or /crops/1.json
@@ -19,6 +24,9 @@ class CropsController < ApplicationController
   # Can only be called from a zone, hence redirect if no zone_id specified
   def new
     rodauth.require_authentication
+    if !params["zone_id"].present?
+      redirect_to public_home_path
+    end
     @zone_id = params["zone_id"]
     @crop = Crop.new(zone_id: params["zone_id"], plant_date: Date.today)
   end

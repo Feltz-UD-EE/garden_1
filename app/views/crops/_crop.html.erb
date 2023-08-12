@@ -1,5 +1,6 @@
 <div id="<%= dom_id crop %>">
 <h2>Crop: <%= @crop.name %></h2>
+<p><%= button_to "Edit", @crop, method: :edit%></p>
 <p>Description: <%= @crop.description %></p>
 <p>Zone: <%= link_to @crop.zone.name, zone_path(@crop.zone) %></p>
 <p>Date Planted: <%= @crop.plant_date %>
@@ -11,7 +12,7 @@
 </p>
 <hr/>
 <h3>Recent Events</h3>
-<table style="border-spacing:10px;">
+<table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
     <tr style="text-align:center;">
         <th>Date</th>
         <th>Level</th>
@@ -26,8 +27,8 @@
     <% end %>
 </table>
 <br/>
-<%= link_to "More...", events_path(crop_id: @crop.id) %>
-<%= link_to "Add an event", new_event_path(crop_id: @crop.id) %>
+<p><%= link_to "Add an event", new_event_path(crop_id: @crop.id) %>
+  <%= link_to "More...", events_path(crop_id: @crop.id) %></p>
 <hr/>
 <br/>
 </div>

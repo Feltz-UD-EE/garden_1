@@ -1,5 +1,7 @@
 <div id="<%= dom_id tank %>">
 <h2>Tank: <%= @tank.name %></h2>
+<p><%= button_to "Edit", @tank, method: :edit %> |
+  <%= button_to "Destroy", @tank, method: :delete %></p>
 <p>Volume: <%= @tank.volume %> liters</p>
 <p>Pump Pin: <%= @tank.pump_pin %></p>
 <p>Pump Status:
@@ -13,9 +15,11 @@
 <hr/>
 <% if @tank.zones.any? %>
     <h3>Zones</h3>
-    <table>
+    <table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
         <tr>
-            <th>
+            <th>Name</th>
+            <th>Crops</th>
+            <th>Moisture Target</th>
         </tr>
         <% @tank.zones.ascending.each do |zone| %>
             <tr>
@@ -41,7 +45,7 @@
     <hr/>
 <% end %>
 <h3>Recent Level Readings</h3>
-<table style="border-spacing:10px;">
+<table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
     <tr style="text-align:center;">
         <th>Date/Time</th>
         <th>Level</th>
