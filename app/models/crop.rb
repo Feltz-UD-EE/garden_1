@@ -36,9 +36,11 @@ class Crop < ApplicationRecord
         crop_hash = Hash.new
         Crop.all.each do |crop|
             end_year = (crop.current? ? Date.current.year : crop.pull_date.year)
-            (crop.plant_date.year..end_year) do year
-                crop_hash.push("year": year, "crop": crop)
-            end
+#   do this stuff in rails c and figure it out
+#            (crop.plant_date.year..end_year) do year
+#                crop_hash.push("year": year, "crop": crop)
+#            end
+            crop_hash.push("year": end_year, "crop": crop)
         end
     end
 
