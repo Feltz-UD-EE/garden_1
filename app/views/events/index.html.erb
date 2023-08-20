@@ -12,7 +12,7 @@
   </tr>
   <% @events.each do |event| %>
     <tr>
-        <td><%= event.date.strftime("%Y-%b-%d") %></td>
+        <td><%= link_to event.date.strftime("%Y-%b-%d"), event_path(event) %></td>
         <td><%= link_to event.crop.name, crop_path(event.crop) %>
             <%= link_to event.crop.zone.number, zone_path(event.crop.zone) %></td>
         <td><%= event.description %></td>

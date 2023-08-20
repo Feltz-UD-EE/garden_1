@@ -12,7 +12,7 @@
 <hr/>
 <h3>Crops</h3>
 <table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
-    <tr style="text-align:center;">
+    <tr>
         <th>Name</th>
         <th>Description</th>
         <th>Plant Date</th>
@@ -29,17 +29,17 @@
         </tr>
     <% end %>
 </table>
-<%= link_to "Add a crop", new_crop_path(zone_id: zone.id) %>
+<%= link_to "Add a crop", new_crop_path(zone_id: @zone.id) %>
 <hr/>
 <h3>Recent Moisture Readings</h3>
-<table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
-    <tr style="text-align:center;">
+<table class="datatable responsive no-wrap" width="30%" style="border-spacing:10px;">
+    <tr>
         <th>Date/Time</th>
         <th>Level</th>
     <tr>
     <% @zone.moisture_readings.descending.last_day.each do |mr| %>
         <tr>
-            <td><%= mr.created_at.strftime("%A %l:%M %p") %></td>
+            <td><%= mr.created_at.strftime("%A, %Y-%b-%d - %l:%M %p") %></td>
             <td><%= mr.value %></td>
         </tr>
     <% end %>
