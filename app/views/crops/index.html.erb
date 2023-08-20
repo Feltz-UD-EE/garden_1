@@ -3,12 +3,19 @@
 <h1>Crops</h1>
 
 <div id="crops">
-<table>
+<table class="datatable responsive no-wrap">
+  <tr>
+    <th>Name</th>
+    <th>Zone</th>
+    <th>Planted</th>
+    <th>Pulled</th>
+  </tr>
   <% @crops.each do |crop| %>
     <tr>
-        <td><%= crop.created_at.strftime("%A, %-d %b %Y %l:%M %p") %></td>
-        <td><%= crop.name %></td>
-        <td><%= crop.zone.name %></td>
+        <td><%= link_to crop.name, crop_path(crop) %></td>
+        <td><%= link_to crop.zone.name, zone_path(crop.zone) %></td>
+        <td><%= crop.plant_date.present? ? crop.plant_date.strftime("%Y-%b-%d") : "" %></td>
+        <td><%= crop.pull_date.present? ? crop.pull_date.strftime("%Y-%b-%d") : "" %></td>
     </tr>
   <% end %>
 </table>

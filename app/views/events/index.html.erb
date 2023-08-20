@@ -3,12 +3,20 @@
 <h1>Events</h1>
 
 <div id="events">
-<table>
+<table class="datatable responsive no-wrap">
+  <tr>
+    <th>Date</th>
+    <th>Crop + Zone</th>
+    <th>Description</th>
+    <th>Harvest</th>
+  </tr>
   <% @events.each do |event| %>
     <tr>
-        <td><%= event.date %></td>
+        <td><%= event.date.strftime("%Y-%b-%d") %></td>
+        <td><%= link_to event.crop.name, crop_path(event.crop) %>
+            <%= link_to event.crop.zone.number, zone_path(event.crop.zone) %></td>
         <td><%= event.description %></td>
-        <td><%= event.harvest %></td>
+        <td><%= event.harvest.present? ? event.harvest : "" %></td>
     </tr>
   <% end %>
 </table>

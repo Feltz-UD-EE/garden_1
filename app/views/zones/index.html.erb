@@ -3,11 +3,21 @@
 <h1>Zones</h1>
 
 <div id="zones">
-<table>
+<table class="datatable responsive no-wrap">
+  <tr>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Tank</th>
+    <th>Moisture Target</th>
+    <th>Crops</th>
+  </tr>
   <% @zones.each do |zone| %>
     <tr>
-        <td><%= zone.created_at.strftime("%A, %-d %b %Y %l:%M %p") %></td>
-        <td><%= zone.name %></td>
+        <td><%= link_to zone.number, zone_path(zone) %></td>
+        <td><%= link_to zone.name, zone_path(zone) %></td>
+        <td><%= link_to zone.tank.name, tank_path(zone.tank) %></td>
+        <td><%= zone.moisture_target %></td>
+        <td><%= zone.crop_list %></td>
     </tr>
   <% end %>
 </table>

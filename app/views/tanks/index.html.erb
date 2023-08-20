@@ -3,7 +3,12 @@
 <h1>Tanks</h1>
 
 <div id="tanks">
-<table>
+<table class="datatable responsive no-wrap">
+  <tr>
+    <th>Name</th>
+    <th>Volume</th>
+    <th>Status</th>
+  </tr>
   <% @tanks.each do |tank| %>
     <tr>
         <td><%= link_to tank.name, tank_path(tank) %></td>
