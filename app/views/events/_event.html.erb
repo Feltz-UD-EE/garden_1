@@ -1,5 +1,7 @@
 <div id="<%= dom_id event %>">
 <h2>Event: <%= @event.date.strftime("%Y-%b-%d") %></h2>
+<p><%= button_to "Edit", @event, method: :edit%></p>
+<p>Crop + Zone: <%= @event.crop.name %> <%= event.crop.zone.number %></p>
 <p>Description: <%= @event.description %></p>
 <p>Harvest: <%= @event.harvest %></p>
 </div>
