@@ -19,7 +19,7 @@ class Event < ApplicationRecord
     belongs_to :crop
 
     # validations
-    validates :description, presence: true
+    validates :description, presence: true, unless: ->(event) { event.harvest.present? }
     validates :crop_id, presence: true
 
     # scopes
