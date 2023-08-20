@@ -1,5 +1,5 @@
 <%= form_with(model: crop) do |form| %>
-  <%= form.hidden_field :zone_id, value: @zone_id %>
+  <%= form.hidden_field :zone_id, value: @crop.zone_id %>
   
   <% if crop.errors.any? %>
     <div style="color: red">
