@@ -27,14 +27,14 @@ class CropsController < ApplicationController
     if !params["zone_id"].present?
       redirect_to public_home_path
     end
-    @zone_id = params["zone_id"]
+    @zone = Zone.find(params["zone_id"])
     @crop = Crop.new(zone_id: params["zone_id"], plant_date: Date.today)
   end
 
   # GET /crops/1/edit
   def edit
     rodauth.require_authentication
-    @zone_id = @crop.zone_id
+    @zone = @crop.zone
   end
 
   # POST /crops or /crops.json

@@ -15,14 +15,14 @@
 <table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
     <tr style="text-align:center;">
         <th>Date</th>
-        <th>Level</th>
+        <th>Description</th>
         <th>Harvest</th>
     <tr>
     <% @crop.events.descending.each do |e| %>
         <tr>
             <td><%= e.date.strftime("%Y-%b-%d") %></td>
-            <td><%= e.description %></td>
-            <td><%= e.harvest.present? ? e.harvest : "" %></td>
+            <td><%= e.description.present? ? link_to e.description, event_path(e.id) : "" %></td>
+            <td><%= e.harvest.present? ? link_to e.harvest, event_path(e.id) : "" %></td>
         </tr>
     <% end %>
 </table>
