@@ -1,11 +1,11 @@
-<div id="<%= dom_id crop %>">
+<div>
 <h2>Crop: <%= @crop.name %></h2>
-<p><%= button_to "Edit", @crop, method: :edit%></p>
+<p><%= button_to "Edit", @crop, method: :edit %></p>
 <p>Description: <%= @crop.description %></p>
 <p>Zone: <%= link_to @crop.zone.name, zone_path(@crop.zone) %></p>
-<p>Date Planted: <%= @crop.plant_date %>
+<p>Date Planted: <%= @crop.plant_date.strftime("%Y-%b-%d") %>
     <% if @crop.pull_date.present? && @crop.pull_date <= Time.now %>
-        Date Pulled: <%= @crop.pull_date %>
+        Date Pulled: <%= @crop.pull_date.strftime("%Y-%b-%d") %>
     <% else %>
         Currently planted
     <% end %>
