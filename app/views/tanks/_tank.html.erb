@@ -1,6 +1,6 @@
 <div id="<%= dom_id tank %>">
 <h2>Tank: <%= @tank.name %></h2>
-<p><%= button_to "Edit", @tank, method: :edit %> |
+<p><%= button_to "Edit", @tank, method: :edit %>
   <%= button_to "Destroy", @tank, method: :delete %></p>
 <p>Volume: <%= @tank.volume %> liters</p>
 <p>Pump Pin: <%= @tank.pump_pin %></p>
@@ -11,6 +11,7 @@
         Off
     <% end %>
 </p>
+<p>Total Harvest: <%= @tank.total_harvest %></p>
 </br>
 <hr/>
 <% if @tank.zones.any? %>
