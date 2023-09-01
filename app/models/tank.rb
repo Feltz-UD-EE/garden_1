@@ -77,7 +77,7 @@ class Tank < ApplicationRecord
         self.zones.each do |zone|
             total += zone.total_harvest
         end
-        return total
+        return total.round(2)          # eliminate false precision due to float math errors
     end
 
     # Callbacks
