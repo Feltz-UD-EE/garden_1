@@ -108,7 +108,10 @@ class Zone < ApplicationRecord
     end
 
     def total_harvest
-        self.crops.sum(:total_harvest)
+        total = 0
+        self.crops.each do |crop|
+            total += crop.total_harvest
+        end
     end
 
     # Callbacks
