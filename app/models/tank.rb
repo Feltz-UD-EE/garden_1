@@ -77,6 +77,7 @@ class Tank < ApplicationRecord
         self.zones.each do |zone|
             total += zone.total_harvest
         end
+        return total
     end
 
     # Callbacks
