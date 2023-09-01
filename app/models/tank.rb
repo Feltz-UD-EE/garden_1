@@ -72,6 +72,10 @@ class Tank < ApplicationRecord
       p "Turning off pump for #{self.name}"
     end
 
+    def total_harvest
+        self.zones.sum(:total_harvest)
+    end
+
     # Callbacks
     after_save do
     #         RPi::GPIO.setup self.pump_pin, :as => :output

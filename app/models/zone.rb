@@ -107,9 +107,9 @@ class Zone < ApplicationRecord
       p "Closing valve for zone #{self.number}"
     end
 
-#    def total_harvest
-#        self.crops.sum(:total_harvest)
-#    end
+    def total_harvest
+        self.crops.sum(:total_harvest)
+    end
 
     # Callbacks
     after_save do

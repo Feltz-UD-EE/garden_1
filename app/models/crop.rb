@@ -32,7 +32,7 @@ class Crop < ApplicationRecord
 
     # class methods
     # used for summary crops-over-time views
-    def by_year
+    def harvests_by_year
         crop_hash = Hash.new
         Crop.all.each do |crop|
             end_year = (crop.current? ? Date.current.year : crop.pull_date.year)
