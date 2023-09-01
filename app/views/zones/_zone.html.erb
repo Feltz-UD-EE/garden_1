@@ -17,6 +17,7 @@
         <th>Description</th>
         <th>Plant Date</th>
         <th>Pull Date</th>
+        <th>Total Harvest</th>
         <th></th>
     <tr>
     <% @zone.crops.each do |crop| %>
@@ -25,6 +26,7 @@
             <td><%= crop.description %></td>
             <td><%= crop.plant_date.present? ? crop.plant_date.strftime("%Y-%b-%d") : "" %></td>
             <td><%= crop.pull_date.present? ? crop.pull_date.strftime("%Y-%b-%d") : "" %></td>
+            <td><%= crop.total_harvest %></td>
             <td><%= link_to "Add an Event", new_event_path(crop_id: crop.id) %></td>
         </tr>
     <% end %>
