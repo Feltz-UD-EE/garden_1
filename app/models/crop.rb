@@ -52,7 +52,7 @@ class Crop < ApplicationRecord
     end
 
     def total_harvest
-        self.events.sum(:harvest)
+        self.events.sum(:harvest).round(2)          # eliminate false precision due to float math errors
     end
 
     # Callbacks

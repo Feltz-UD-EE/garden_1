@@ -112,7 +112,7 @@ class Zone < ApplicationRecord
         self.crops.each do |crop|
             total += crop.total_harvest
         end
-        return total
+        return total.round(2)          # eliminate false precision due to float math errors
     end
 
     # Callbacks
