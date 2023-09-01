@@ -10,6 +10,7 @@
     <th>Tank</th>
     <th>Moisture Target</th>
     <th>Crops</th>
+    <th>Total Harvest</th>
   </tr>
   <% @zones.each do |zone| %>
     <tr>
@@ -18,6 +19,7 @@
         <td><%= link_to zone.tank.name, tank_path(zone.tank) %></td>
         <td><%= zone.moisture_target %></td>
         <td><%= zone.crop_list %></td>
+        <td><%= zone.total_harvest %></td>
     </tr>
   <% end %>
 </table>

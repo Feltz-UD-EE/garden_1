@@ -8,12 +8,14 @@
     <th>Name</th>
     <th>Volume</th>
     <th>Status</th>
+    <th>Harvest</th>
   </tr>
   <% @tanks.each do |tank| %>
     <tr>
         <td><%= link_to tank.name, tank_path(tank) %></td>
         <td><%= tank.volume %></td>
         <td><%= tank.needs_pumping ? "Pump On" : "Pump Off" %></td>
+        <td><%= tank.total_harvest %></td>
     </tr>
   <% end %>
 </table>
