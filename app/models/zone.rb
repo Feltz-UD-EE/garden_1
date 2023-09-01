@@ -112,6 +112,7 @@ class Zone < ApplicationRecord
         self.crops.each do |crop|
             total += crop.total_harvest
         end
+        return total
     end
 
     # Callbacks
