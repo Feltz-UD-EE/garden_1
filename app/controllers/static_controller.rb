@@ -9,7 +9,7 @@ class StaticController < ApplicationController
         @zones = Zone.all.ascending
         @tanks = Tank.all
         @total_harvest = 0
-        @tank.each do |tank|
+        @tanks.each do |tank|
             @total_harvest += tank.total_harvest
         end
     end
