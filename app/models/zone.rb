@@ -33,6 +33,7 @@ class Zone < ApplicationRecord
     belongs_to :tank
     has_many :moisture_readings
     has_many :crops
+    has_many :events, through: :crops
 
     # validations
     validates :name, presence: true
@@ -108,11 +109,7 @@ class Zone < ApplicationRecord
     end
 
     def total_harvest
-        total = 0
-        self.crops.each do |crop|
-            total += crop.total_harvest
-        end
-        return total.round(2)          # eliminate false precision due to float math errors
+        self.events.sum(:harvest).round(2)          # eliminate false precision due to float math errors
     end
 
     # Callbacks

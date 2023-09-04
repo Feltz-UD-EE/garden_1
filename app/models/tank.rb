@@ -29,6 +29,7 @@ class Tank < ApplicationRecord
 
     # relations
     has_many :zones
+    has_many :events, through: :zones
     has_many :level_readings
     has_one :child_tank, class_name: "Tank", foreign_key: "child_id"
     belongs_to :parent_tank, class_name: "Tank", optional: true
@@ -73,11 +74,7 @@ class Tank < ApplicationRecord
     end
 
     def total_harvest
-        total = 0
-        self.zones.each do |zone|
-            total += zone.total_harvest
-        end
-        return total.round(2)          # eliminate false precision due to float math errors
+        self.events.sum(:harvest).round(2)          # eliminate false precision due to float math errors
     end
 
     # Callbacks
