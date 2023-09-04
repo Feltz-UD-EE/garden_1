@@ -43,7 +43,7 @@
     <tr>
     <% @zone.events.descending.first(20).each do |e| %>
         <tr>
-            <td><%= e.date.strftime("%A, %Y-%b-%d - %l:%M %p") %></td>
+            <td><%= e.date.strftime("%A, %Y-%b-%d") %></td>
             <td><%= e.description %></td>
             <td><%= e.harvest %></td>
         </tr>
