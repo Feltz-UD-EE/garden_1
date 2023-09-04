@@ -25,6 +25,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     rodauth.require_authentication
+    @crop = Crop.find(@event.crop_id)
   end
 
   # POST /events or /events.json
