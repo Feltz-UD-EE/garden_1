@@ -58,6 +58,11 @@ class Crop < ApplicationRecord
     def description_pretty
         "#{self.name} #{self.description.present? ? '(' + self.description + ')' : ''} in zone #{self.zone.name}"
     end
+
+    def description_pretty_short
+        "#{self.name}#{self.description.present? ? ' (' + self.description + ')' : ''}"
+    end
+
     # Callbacks
 end
 
