@@ -8,10 +8,11 @@ class StaticController < ApplicationController
     def public_home
         @zones = Zone.all.ascending
         @tanks = Tank.all
-        @total_harvest = 0
+        t = 0
         @tanks.each do |tank|
-            @total_harvest += tank.total_harvest
+            t += tank.total_harvest
         end
+        @total_harvest = t.round(2)          # eliminate false precision due to float math errors
     end
 
     def about
