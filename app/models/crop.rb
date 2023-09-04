@@ -55,6 +55,9 @@ class Crop < ApplicationRecord
         self.events.sum(:harvest).round(2)          # eliminate false precision due to float math errors
     end
 
+    def description_pretty
+        "${self.name} ${self.description.present? ? '(' + self.description + ')' : ''} in zone ${self.zone.name}"
+    end
     # Callbacks
 end
 
