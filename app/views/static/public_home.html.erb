@@ -6,47 +6,55 @@
   <h2>Total harvest: <%= @total_harvest %></h2>
   <hr/>
   <h2>Zone Status</h2>
-  <table>
-    <tr>
-      <th>Number</th>
-      <th>Name</th>
-      <th>Crop</th>
-      <th>Moisture Target</th>
-      <th>Latest Moisture Reading</th>
-      <th>Valve Status</th>
-      <th>Harvest</th>
-    </tr>
-    <% @zones.each do |zone| %>
+  <table  class="datatable public-zones responsive no-wrap" id="public-zones">
+    <thead>
       <tr>
-        <td><%= zone.number %></td>
-        <td><%= link_to zone.name, zone_path(zone) %></td>
-        <td><%= zone.crop_list %></td>
-        <td><%= zone.moisture_target %></td>
-        <td><%= zone.latest_reading %></td>
-        <td><%= zone.needs_water ? "Open" : "Closed" %></td>
-        <td><%= zone.total_harvest %></td>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Crop</th>
+        <th>Moisture Target</th>
+        <th>Latest Moisture Reading</th>
+        <th>Valve Status</th>
+        <th>Harvest</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @zones.each do |zone| %>
+        <tr>
+          <td><%= zone.number %></td>
+          <td><%= link_to zone.name, zone_path(zone) %></td>
+          <td><%= zone.crop_list %></td>
+          <td><%= zone.moisture_target %></td>
+          <td><%= zone.latest_reading %></td>
+          <td><%= zone.needs_water ? "Open" : "Closed" %></td>
+          <td><%= zone.total_harvest %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
   <br/>
   <hr/>
 
   <h2>Tank Status</h2>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Pump Status</th>
-    </tr>
-    <% @tanks.each do |tank| %>
+  <table class="datatable public-tanks responsive no-wrap" id="public-tanks">
+    <thead<
       <tr>
-        <td><%= link_to tank.name, tank_path(tank) %></td>
-        <% if tank.needs_pumping %>
-          <td style = "bgcolor:green, color:white">On</td>
-        <% else %>
-          <td>Off</td>
-        <% end %>
+        <th>Name</th>
+        <th>Pump Status</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @tanks.each do |tank| %>
+        <tr>
+          <td><%= link_to tank.name, tank_path(tank) %></td>
+          <% if tank.needs_pumping %>
+            <td style = "bgcolor:green, color:white">On</td>
+          <% else %>
+            <td>Off</td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
   <br/>
   <%= link_to "New Tank", new_tank_path %>
