@@ -12,7 +12,8 @@
 <p>Total Harvest: <%= @zone.total_harvest %></p>
 <hr/>
 <h3>Crops</h3>
-<table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
+<table class="datatable zone-crops responsive no-wrap" id="zone-crops">
+  <thead>
     <tr>
         <th>Name</th>
         <th>Description</th>
@@ -21,6 +22,8 @@
         <th>Total Harvest</th>
         <th></th>
     <tr>
+  </thead>
+  <tbody>
     <% @zone.crops.each do |crop| %>
         <tr>
             <td><%= link_to crop.name, crop_path(crop.id) %></td>
@@ -31,17 +34,21 @@
             <td><%= link_to "Add an Event", new_event_path(crop_id: crop.id) %></td>
         </tr>
     <% end %>
+  </tbody>
 </table>
 <%= link_to "Add a crop", new_crop_path(zone_id: @zone.id) %>
 <hr/>
 <h3>Recent Events</h3>
-<table class="datatable responsive no-wrap" width="30%" style="border-spacing:10px;">
+<table class="datatable zone-events responsive no-wrap" id="zone-events">
+  <thead>
     <tr>
         <th>Date/Time</th>
         <th>Crop</th>
         <th>Description</th>
         <th>Harvest</th>
     <tr>
+  </thead>
+  <tbody>
     <% @zone.events.descending.first(20).each do |e| %>
         <tr>
             <td><%= e.date.strftime("%A, %Y-%b-%d") %></td>
@@ -50,20 +57,25 @@
             <td><%= e.harvest %></td>
         </tr>
     <% end %>
+  </tbody>
 </table>
 <br/>
 <h3>Recent Moisture Readings</h3>
-<table class="datatable responsive no-wrap" width="30%" style="border-spacing:10px;">
+<table class="datatable zone-moistures responsive no-wrap" id="zone-moistures">
+  <thead>
     <tr>
         <th>Date/Time</th>
         <th>Level</th>
     <tr>
+  </thead>
+  <tbody>
     <% @zone.moisture_readings.descending.first(30).each do |mr| %>
         <tr>
             <td><%= mr.created_at.strftime("%A, %Y-%b-%d - %l:%M %p") %></td>
             <td><%= mr.value %></td>
         </tr>
     <% end %>
+  </tbody>
 </table>
 <br/>
 <%= link_to "More...", moisture_readings_path(zone_id: @zone.id) %>

@@ -3,22 +3,26 @@
 <h1>Crops</h1>
 
 <div id="crops">
-<table class="datatable responsive no-wrap">
-  <tr>
-    <th>Name</th>
-    <th>Zone</th>
-    <th>Total Harvest</th>
-    <th>Planted</th>
-    <th>Pulled</th>
-  </tr>
-  <% @crops.each do |crop| %>
+<table class="datatable crops responsive no-wrap" id="crops">
+  <thead>
     <tr>
-        <td><%= link_to crop.name, crop_path(crop) %></td>
-        <td><%= link_to crop.zone.name, zone_path(crop.zone) %></td>
-        <td><%= crop.total_harvest %></td>
-        <td><%= crop.plant_date.present? ? crop.plant_date.strftime("%Y-%b-%d") : "" %></td>
-        <td><%= crop.pull_date.present? ? crop.pull_date.strftime("%Y-%b-%d") : "" %></td>
+        <th>Name</th>
+        <th>Zone</th>
+        <th>Total Harvest</th>
+        <th>Planted</th>
+        <th>Pulled</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @crops.each do |crop| %>
+        <tr>
+            <td><%= link_to crop.name, crop_path(crop) %></td>
+            <td><%= link_to crop.zone.name, zone_path(crop.zone) %></td>
+            <td><%= crop.total_harvest %></td>
+            <td><%= crop.plant_date.present? ? crop.plant_date.strftime("%Y-%b-%d") : "" %></td>
+            <td><%= crop.pull_date.present? ? crop.pull_date.strftime("%Y-%b-%d") : "" %></td>
+        </tr>
+    <% end %>
+  </tbody>
 </table>
 </div>

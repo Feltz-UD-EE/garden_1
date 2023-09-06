@@ -16,21 +16,25 @@
 <hr/>
 <% if @tank.zones.any? %>
     <h3>Zones</h3>
-    <table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
-        <tr>
+    <table class="datatable tank-zones responsive no-wrap" id="tank-zones">
+        <thead>
+          <tr>
             <th>Name</th>
             <th>Crops</th>
             <th>Moisture Target</th>
             <th>Total Harvest</th>
-        </tr>
-        <% @tank.zones.ascending.each do |zone| %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tank.zones.ascending.each do |zone| %>
             <tr>
                 <td><%= link_to zone.name, zone_path(zone.id) %></td>
                 <td><%= zone.crop_list %></td>
                 <td><%= zone.moisture_target %></td>
                 <td><%= zone.total_harvest %></td>
             </tr>
-        <% end %>
+          <% end %>
+        </tbody>
     </table>
 <% end %>
 <%= link_to "Add a zone", new_zone_path(tank_id: tank.id) %>
@@ -48,17 +52,21 @@
     <hr/>
 <% end %>
 <h3>Recent Level Readings</h3>
-<table class="datatable responsive no-wrap" width="100%" style="border-spacing:10px;">
+<table class="datatable tank-levels responsive no-wrap" id="tank-levels">
+  <thead>
     <tr style="text-align:center;">
         <th>Date/Time</th>
         <th>Level</th>
     <tr>
+  </thead>
+  <tbody>
     <% @tank.level_readings.descending.last_day.each do |lr| %>
         <tr>
             <td><%= lr.created_at.strftime("%A %l:%M %p") %></td>
             <td><%= lr.low ? "Low" : "Not low" %></td>
         </tr>
     <% end %>
+  </tbody>
 </table>
 <br/>
 
