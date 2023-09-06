@@ -3,12 +3,20 @@
 <h1>Moisture Readings (last week)</h1>
 
 <div id="moisture_readings">
-<table>
-  <% @moisture_readings_one_week.each do |moisture_reading| %>
+<table class="datatable moisture-readings responsive no-wrap" id="moisture-readings">
+  <thead>
     <tr>
-        <td><%= moisture_reading.created_at.strftime("%A, %-d %b %Y %l:%M %p") %></td>
-        <td><%= moisture_reading.value %></td>
+        <td>Date/Time</td>
+        <td>Reading</td>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @moisture_readings_one_week.each do |moisture_reading| %>
+        <tr>
+            <td><%= moisture_reading.created_at.strftime("%A, %-d %b %Y %l:%M %p") %></td>
+            <td><%= moisture_reading.value %></td>
+        </tr>
+    <% end %>
+  </tbody>
 </table>
 </div>

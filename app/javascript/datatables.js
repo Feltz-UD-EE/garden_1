@@ -56,7 +56,7 @@ jQuery ->
     aLengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
     dom: '<"top"f>rt<"bottom"pil><"clear">'
 
-  $('table#tanks-levels').dataTable
+  $('table#tank-levels').dataTable
     "order": []
     "language": {
       "search": "Filter:"
@@ -118,3 +118,9 @@ jQuery ->
     aLengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
     dom: '<"top"f>rt<"bottom"pil><"clear">'
 
+  $('table#moisture-readings').dataTable
+    "language": {
+      "search": "Filter:"
+    }
+    aLengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+    dom: '<"top"f>rt<"bottom"pil><"clear">'

@@ -3,22 +3,26 @@
 <h1>Events</h1>
 
 <div id="events">
-<table class="datatable responsive no-wrap">
-  <tr>
-    <th>Date</th>
-    <th>Crop + Zone</th>
-    <th>Description</th>
-    <th>Harvest</th>
-  </tr>
-  <% @events.each do |event| %>
+<table class="datatable events responsive no-wrap" id="events">
+  <thead>
     <tr>
-        <td><%= link_to event.date.strftime("%Y-%b-%d"), event_path(event) %></td>
-        <td><%= link_to event.crop.name, crop_path(event.crop) %>
-            <%= link_to event.crop.zone.number, zone_path(event.crop.zone) %></td>
-        <td><%= event.description %></td>
-        <td><%= event.harvest.present? ? event.harvest : "" %></td>
+        <th>Date</th>
+        <th>Crop + Zone</th>
+        <th>Description</th>
+        <th>Harvest</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+        <tr>
+            <td><%= link_to event.date.strftime("%Y-%b-%d"), event_path(event) %></td>
+            <td><%= link_to event.crop.name, crop_path(event.crop) %>
+                <%= link_to event.crop.zone.number, zone_path(event.crop.zone) %></td>
+            <td><%= event.description %></td>
+            <td><%= event.harvest.present? ? event.harvest : "" %></td>
+        </tr>
+    <% end %>
+  </tbody>
 </table>
 </div>
 
