@@ -55,7 +55,8 @@ gem 'mcp3008pi', '~> 0.1.1'
 gem 'sass-rails'
 gem "sassc-rails"
 
-# CSS package
+# CSS & JS
+gem 'jsbundling-rails'
 gem 'zurb-foundation'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0.3'
