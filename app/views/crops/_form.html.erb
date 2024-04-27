@@ -19,6 +19,11 @@
       <td><%= form.text_field :name %></td>
     </tr>
     <tr>
+      <td>Season</td>
+      <td><%= form.select :season, Crop.seasons.keys.map{ |key|
+        [key.humanize, key] }, select: crop.season || :annual %></td>
+    </tr>
+    <tr>
       <td>Description</td>
       <td><%= form.text_field :description %></td>
     </tr>

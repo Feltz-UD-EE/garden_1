@@ -10,6 +10,7 @@
 #       t.references :zone
 #       t.date    :plant_date
 #       t.date    :pull_date
+#       t.season  :integer
 #       t.timestamps
 #
 
@@ -17,6 +18,7 @@
 
 class Crop < ApplicationRecord
     # statics & enums
+    enum season: { annual: 0, perennial: 1, overwinter: 2 }, _suffix: true
 
     # relations
     belongs_to :zone

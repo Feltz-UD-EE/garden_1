@@ -2,6 +2,7 @@
 <h2>Crop: <%= @crop.name %></h2>
 <p><%= button_to "Edit", edit_crop_path(@crop), method: :get %></p>
 <p>Description: <%= @crop.description %></p>
+<p>Season: <%= @crop.season %></p>
 <p>Zone: <%= link_to @crop.zone.name, zone_path(@crop.zone) %></p>
 <p>Date Planted: <%= @crop.plant_date.strftime("%Y-%b-%d") %>
     <% if @crop.pull_date.present? && @crop.pull_date <= Time.now %>

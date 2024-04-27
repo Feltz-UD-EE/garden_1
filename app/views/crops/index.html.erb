@@ -8,6 +8,7 @@
     <tr>
         <th>Name</th>
         <th>Zone</th>
+        <th>Season</th>
         <th>Total Harvest</th>
         <th>Planted</th>
         <th>Pulled</th>
@@ -17,6 +18,7 @@
     <% @crops.each do |crop| %>
         <tr>
             <td><%= link_to crop.name, crop_path(crop) %></td>
+            <td><%= crop.season %></td>
             <td><%= link_to crop.zone.name, zone_path(crop.zone) %></td>
             <td><%= crop.total_harvest %></td>
             <td><%= crop.plant_date.present? ? crop.plant_date.strftime("%Y-%b-%d") : "" %></td>
