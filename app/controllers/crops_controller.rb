@@ -8,7 +8,7 @@ class CropsController < ApplicationController
 
   # GET /crops or /crops.json
   def index
-    @crops = Crop.all.ascending             # NB add get param for additional menu items
+    @crops = Crop.this_year.ascending             # NB add get param for additional menu items
   end
 
   # Get /crops/past or /crops/past.json
