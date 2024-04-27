@@ -1,6 +1,6 @@
 <div id="<%= dom_id zone %>">
 <h2>Zone: <%= @zone.name %></h2>
-<p><%= button_to "Edit", @zone, method: :edit %>
+<p><%= button_to "Edit", edit_zone_path(@zone), method: :get %>
   <%= button_to "Destroy", @zone, method: :delete %></p>
 <p>Number: <%= @zone.number %></p>
 <p>Tank: <%= link_to @zone.tank.name, tank_path(@zone.tank) %></p>
