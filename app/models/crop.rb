@@ -31,7 +31,7 @@ class Crop < ApplicationRecord
     # scopes
     scope :ascending, -> { order(plant_date: :asc) }
     scope :descending, -> { order(plant_date: :desc) }
-    scope :this_year, -> (season, plant_date) {
+    scope :this_year, -> {
         where("(season = 0 AND plant_date > date('now', 'start of year')) OR
                 (season = 1) OR
                 (season = 2 AND plant_date > date('now', 'start of year', '-1 year'))")
