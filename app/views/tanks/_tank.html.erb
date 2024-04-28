@@ -11,7 +11,7 @@
         Off
     <% end %>
 </p>
-<p>Total Harvest: <%= @tank.total_harvest %></p>
+<p>Annual Harvest: <%= @tank.total_harvest_this_year %></p>
 </br>
 <hr/>
 <% if @tank.zones.any? %>
@@ -22,7 +22,7 @@
             <th>Name</th>
             <th>Crops</th>
             <th>Moisture Target</th>
-            <th>Total Harvest</th>
+            <th>Annual Harvest</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
                 <td><%= link_to zone.name, zone_path(zone.id) %></td>
                 <td><%= zone.crop_list %></td>
                 <td><%= zone.moisture_target %></td>
-                <td><%= zone.total_harvest %></td>
+                <td><%= zone.total_harvest_this_year %></td>
             </tr>
           <% end %>
         </tbody>
