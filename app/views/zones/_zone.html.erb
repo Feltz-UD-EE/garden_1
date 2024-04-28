@@ -24,7 +24,7 @@
     <tr>
   </thead>
   <tbody>
-    <% @zone.crops.each do |crop| %>
+    <% @zone.crops.this_year.each do |crop| %>
         <tr>
             <td><%= link_to crop.name, crop_path(crop.id) %></td>
             <td><%= crop.description %></td>
@@ -49,7 +49,7 @@
     <tr>
   </thead>
   <tbody>
-    <% @zone.events.descending.first(20).each do |e| %>
+    <% @zone.events.this_year.descending.first(20).each do |e| %>
         <tr>
             <td><%= e.date.strftime("%A, %Y-%b-%d") %></td>
             <td><%= e.crop.description_pretty_short %></td>
