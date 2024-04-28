@@ -25,6 +25,7 @@ class Event < ApplicationRecord
     # scopes
     scope :ascending, -> { order(date: :asc) }
     scope :descending, -> { order(date: :desc) }
+    scope :this_year, -> { where("date > date('now', 'start of year')") }
 
     # class methods
 

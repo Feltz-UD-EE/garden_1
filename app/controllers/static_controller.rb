@@ -10,7 +10,7 @@ class StaticController < ApplicationController
         @tanks = Tank.all
         t = 0
         @tanks.each do |tank|
-            t += tank.total_harvest
+            t += tank.total_harvest_this_year
         end
         @total_harvest = t.round(2)          # eliminate false precision due to float math errors
     end

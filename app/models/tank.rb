@@ -77,6 +77,10 @@ class Tank < ApplicationRecord
         self.events.sum(:harvest).round(2)          # eliminate false precision due to float math errors
     end
 
+    def total_harvest_this_year
+        self.events.this_year.sum(:harvest).round(2)          # eliminate false precision due to float math errors
+    end
+
     # Callbacks
     after_save do
     #         RPi::GPIO.setup self.pump_pin, :as => :output
