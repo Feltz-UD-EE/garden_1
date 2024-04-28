@@ -9,8 +9,15 @@ class LevelReadingsJob < ActiveJob::Base
   RUN_EVERY = 15.minutes
 
   before_perform do |job|
-    p "in before_perform, about to requeue MLevelReadingsJob"
-    self.class.set(:wait => RUN_EVERY).perform_later
+    p "in before_perform, about to requeue LevelReadingsJob"
+    now = Time.now
+    nearest_hour = now.beginning_of_hour
+    interval = LevelReadingsJob::RUN_EVERY
+    moddiff = (now - nearest_hour) % interval
+    delta = interval - moddiff
+    start = (now + delta).round(0)
+    p "Next LevelReadingsJob will start at #{start}"
+    self.class.set(wait_until: start).perform_later
   end
 
   def perform

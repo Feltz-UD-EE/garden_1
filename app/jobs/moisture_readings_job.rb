@@ -9,7 +9,14 @@ class MoistureReadingsJob < ActiveJob::Base
 
   before_perform do |job|
     p "in before_perform, about to requeue MoistureReadingsJob"
-    self.class.set(:wait => RUN_EVERY).perform_later
+    now = Time.now
+    nearest_hour = now.beginning_of_hour
+    interval = MoistureReadingsJob::RUN_EVERY
+    moddiff = (now - nearest_hour) % interval
+    delta = interval - moddiff
+    start = (now + delta).round(0)
+    p "Next MoistureReadingsJob will start at #{start}"
+    self.class.set(wait_until: start).perform_later
   end
 
   def perform
