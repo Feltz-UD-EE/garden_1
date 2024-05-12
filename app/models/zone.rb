@@ -43,7 +43,7 @@ class Zone < ApplicationRecord
 #    validates :sensor_pin, presence: true
 #    validates :sensor_index, presence: true
     validates :sensor_index, inclusion: 0..7, allow_blank: true
-    validates :sensor_index, uniqueness: {scope: :sensor_pin}
+    validates :sensor_index, uniqueness: {scope: :sensor_pin}, allow_blank: true
 #    validates :moisture_target, presence: true
     validate  :moisture_target_in_limits
 
