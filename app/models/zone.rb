@@ -123,7 +123,7 @@ class Zone < ApplicationRecord
     end
 
     def tank_name                                   # handles tankless zones
-        self.tank.present? ? self.tank.zone : "(no tank)"
+        self.tank.present? ? self.tank.name : "(no tank)"
     end
 
     # Callbacks
