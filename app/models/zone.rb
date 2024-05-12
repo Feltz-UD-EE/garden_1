@@ -30,7 +30,7 @@ class Zone < ApplicationRecord
     MinMoisture = 1023
 
     # relations
-    belongs_to :tank
+    belongs_to :tank, :optional: true
     has_many :moisture_readings
     has_many :crops
     has_many :events, through: :crops
@@ -39,16 +39,16 @@ class Zone < ApplicationRecord
     validates :name, presence: true
     validates :number, presence: true
     validates :number, uniqueness: true
-    validates :valve_pin, presence: true
-    validates :sensor_pin, presence: true
-    validates :sensor_index, presence: true
-    validates :sensor_index, inclusion: 0..7
+#    validates :valve_pin, presence: true
+#    validates :sensor_pin, presence: true
+#    validates :sensor_index, presence: true
+    validates :sensor_index, inclusion: 0..7, allow_blank: true
     validates :sensor_index, uniqueness: {scope: :sensor_pin}
-    validates :moisture_target, presence: true
+#    validates :moisture_target, presence: true
     validate  :moisture_target_in_limits
 
     def moisture_target_in_limits           # NB moisture scale inverted
-        if moisture_target > MinMoisture || moisture_target < MaxMoisture
+        if moisture_target.present? && (moisture_target > MinMoisture || moisture_target < MaxMoisture)
             errors.add(:moisture_target, "must be in range #{MaxMoisture}-#{MinMoisture}")
         end
     end
@@ -61,15 +61,19 @@ class Zone < ApplicationRecord
 
     # class methods
     def self.moisture_sensors_activate
+      if self.moisture_target.present?
 #         RPi::GPIO.set_high Zone.sensor_power_pin
-      `python app/misc/python/set_pin_high.py #{Zone::SensorPowerPin}`
-      p "Activating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
+        `python app/misc/python/set_pin_high.py #{Zone::SensorPowerPin}`
+        p "Activating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
+      end
     end
 
     def self.moisture_sensors_deactivate
+      if self.moisture_target.present?
 #         RPi::GPIO.set_low Zone.sensor_power_pin
-      `python app/misc/python/set_pin_low.py #{Zone::SensorPowerPin}`
-      p "Deactivating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
+        `python app/misc/python/set_pin_low.py #{Zone::SensorPowerPin}`
+        p "Deactivating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
+      end
     end
 
     # instance methods
@@ -78,10 +82,12 @@ class Zone < ApplicationRecord
     end
 
     def take_reading
-      # Use Rpi on pin = self.sensor_pin and self.sensor_index
-      value = (`python app/misc/python/read_moisture_sensor.py #{Zone::MCP3008ClockPin} #{Zone::MCP3008ControlPin} #{Zone::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
-      p "Reading for #{self.number} (pin #{self.sensor_pin}, index #{self.sensor_index}) is #{value}"
-      self.moisture_readings.create(value: value)
+      if self.sensor_pin.present? && self.sensor_index.presrent?
+        # Use Rpi on pin = self.sensor_pin and self.sensor_index
+        value = (`python app/misc/python/read_moisture_sensor.py #{Zone::MCP3008ClockPin} #{Zone::MCP3008ControlPin} #{Zone::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
+        p "Reading for #{self.number} (pin #{self.sensor_pin}, index #{self.sensor_index}) is #{value}"
+        self.moisture_readings.create(value: value)
+      end
     end
 
     def latest_reading
@@ -93,7 +99,7 @@ class Zone < ApplicationRecord
     end
 
     def needs_water
-        (self.latest_reading > self.moisture_target) && self.planted?
+        self.moisture_target.present? && (self.latest_reading > self.moisture_target) && self.planted?
     end
 
     def valve_open
