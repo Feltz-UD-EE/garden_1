@@ -47,7 +47,7 @@ class ZonesController < ApplicationController
     rodauth.require_authentication
     respond_to do |format|
       if @zone.update(zone_params)
-        format.html { redirect_to tank_url(@zone.tank_id), notice: "Zone was successfully updated." }
+        format.html { redirect_to zones_path, notice: "Zone was successfully updated." }
         format.json { render :show, status: :ok, location: @zone }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,7 +62,7 @@ class ZonesController < ApplicationController
     @zone.destroy
 
     respond_to do |format|
-      format.html { redirect_to tank_url(@zone.tank_id), notice: "Zone was successfully destroyed." }
+      format.html { redirect_to zones_path, notice: "Zone was successfully destroyed." }
       format.json { head :no_content }
     end
   end
