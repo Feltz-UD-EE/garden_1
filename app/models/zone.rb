@@ -122,6 +122,10 @@ class Zone < ApplicationRecord
         self.events.this_year.sum(:harvest).round(2)          # eliminate false precision due to float math errors
     end
 
+    def tank_name                                   # handles tankless zones
+        self.tank.present? ? self.tank.zone : "(no tank)"
+    end
+
     # Callbacks
     after_save do
 #         RPi::GPIO.setup self.valve_pin, :as => :output
