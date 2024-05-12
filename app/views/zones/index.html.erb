@@ -16,7 +16,7 @@
     <tr>
         <td><%= link_to zone.number, zone_path(zone) %></td>
         <td><%= link_to zone.name, zone_path(zone) %></td>
-        <td><%= link_to zone.tank.name, tank_path(zone.tank) %></td>
+        <td><%= zone.tank.present? ? link_to zone.tank.name, tank_path(zone.tank) : "" %></td>
         <td><%= zone.moisture_target %></td>
         <td><%= zone.crop_list %></td>
         <td><%= zone.total_harvest_this_year %></td>
