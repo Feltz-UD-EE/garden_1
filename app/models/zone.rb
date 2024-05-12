@@ -30,7 +30,7 @@ class Zone < ApplicationRecord
     MinMoisture = 1023
 
     # relations
-    belongs_to :tank, :optional: true
+    belongs_to :tank, optional: true
     has_many :moisture_readings
     has_many :crops
     has_many :events, through: :crops
