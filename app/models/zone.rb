@@ -61,19 +61,17 @@ class Zone < ApplicationRecord
 
     # class methods
     def self.moisture_sensors_activate
-      if self.moisture_target.present?
-#         RPi::GPIO.set_high Zone.sensor_power_pin
-        `python app/misc/python/set_pin_high.py #{Zone::SensorPowerPin}`
-        p "Activating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
-      end
+      p "Zone class method moisture_sensors_activate"
+#     RPi::GPIO.set_high Zone.sensor_power_pin
+      `python app/misc/python/set_pin_high.py #{Zone::SensorPowerPin}`
+      p "Powering on moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
     end
 
     def self.moisture_sensors_deactivate
-      if self.moisture_target.present?
-#         RPi::GPIO.set_low Zone.sensor_power_pin
-        `python app/misc/python/set_pin_low.py #{Zone::SensorPowerPin}`
-        p "Deactivating moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
-      end
+      p "Zone class method moisture_sensors_deactivate"
+#     RPi::GPIO.set_low Zone.sensor_power_pin
+      `python app/misc/python/set_pin_low.py #{Zone::SensorPowerPin}`
+      p "Powering off moisture sensors on GPIO pin #{Zone::SensorPowerPin}"
     end
 
     # instance methods
@@ -85,8 +83,10 @@ class Zone < ApplicationRecord
       if self.sensor_pin.present? && self.sensor_index.present?
         # Use Rpi on pin = self.sensor_pin and self.sensor_index
         value = (`python app/misc/python/read_moisture_sensor.py #{Zone::MCP3008ClockPin} #{Zone::MCP3008ControlPin} #{Zone::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
-        p "Reading for #{self.number} (pin #{self.sensor_pin}, index #{self.sensor_index}) is #{value}"
+        p "Reading for zone #{self.number} (pin #{self.sensor_pin}, index #{self.sensor_index}) is #{value}"
         self.moisture_readings.create(value: value)
+      else
+        p "Not taking moisture reading on zone #{self.number}"
       end
     end
 
