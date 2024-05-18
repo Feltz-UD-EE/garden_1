@@ -37,6 +37,7 @@ class Crop < ApplicationRecord
                 (season = 2 AND plant_date > date('now', 'start of year', '-1 year'))")
         }
     scope :current, -> { where("pull_date IS NULL") }
+    scope :alpha, -> { order(name: :asc) }
 
     # class methods
     # used for summary crops-over-time views

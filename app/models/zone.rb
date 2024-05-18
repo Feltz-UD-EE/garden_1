@@ -95,7 +95,7 @@ class Zone < ApplicationRecord
     end
 
     def crop_list
-        self.crops.any? ? self.crops.this_year.map{ |c| c.planted? ? c.name : nil } * ', ' : ""
+        self.crops.any? ? self.crops.this_year.alpha.map{ |c| c.planted? ? c.name : nil } * ', ' : ""
     end
 
     def needs_water
