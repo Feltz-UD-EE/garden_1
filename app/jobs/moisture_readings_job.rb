@@ -26,7 +26,7 @@ class MoistureReadingsJob < ActiveJob::Base
 
     # get moisture reading from MCP3108
     Zone.all.each do |zone|
-      if zone.planted?
+      if zone.planted? && zone.sensor_pin.present? && zone.sensor_index.present?
         zone.take_reading
       end
     end
