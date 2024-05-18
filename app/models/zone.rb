@@ -82,7 +82,7 @@ class Zone < ApplicationRecord
     end
 
     def take_reading
-      if self.sensor_pin.present? && self.sensor_index.presrent?
+      if self.sensor_pin.present? && self.sensor_index.present?
         # Use Rpi on pin = self.sensor_pin and self.sensor_index
         value = (`python app/misc/python/read_moisture_sensor.py #{Zone::MCP3008ClockPin} #{Zone::MCP3008ControlPin} #{Zone::MCP3008DInPin} #{self.sensor_pin} #{self.sensor_index}`).to_i
         p "Reading for #{self.number} (pin #{self.sensor_pin}, index #{self.sensor_index}) is #{value}"
