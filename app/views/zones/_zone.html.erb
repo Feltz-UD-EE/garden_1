@@ -24,7 +24,7 @@
     <tr>
   </thead>
   <tbody>
-    <% @zone.crops.this_year.each do |crop| %>
+    <% @zone.crops.current.alpha.each do |crop| %>
         <tr>
             <td><%= link_to crop.name, crop_path(crop.id) %></td>
             <td><%= crop.description %></td>
