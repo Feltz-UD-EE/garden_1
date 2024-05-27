@@ -13,6 +13,7 @@ class StaticController < ApplicationController
             t += tank.total_harvest_this_year
         end
         @total_harvest = t.round(2)          # eliminate false precision due to float math errors
+        @notes = Note.descending.this_year.limit(30)
     end
 
     def about

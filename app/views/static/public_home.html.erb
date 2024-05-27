@@ -58,7 +58,31 @@
   </table>
   <br/>
   <%= link_to "New Tank", new_tank_path %>
+  <br>
   <hr/>
+
+  <h2>Notes</h2>
+  <table class="datatable public-notes responsive no-wrap" id="public-notes">
+    <thead<
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @notes.each do |note| %>
+        <tr>
+          <td><%= note.date.strftime("%Y-%b-%d") %></td>
+          <td><%= note.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br/>
+  <%= link_to "New Note", new_note_path %>
+  <br>
+  <hr/>
+
 </div>
 
 <div>
