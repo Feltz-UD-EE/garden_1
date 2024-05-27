@@ -17,5 +17,6 @@ Rails.application.routes.draw do
     get 'past'
   end
   resources :events
+  resources :notes
 
 end
