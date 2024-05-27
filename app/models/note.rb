@@ -19,8 +19,8 @@ class Note < ApplicationRecord
     validates :description, presence: true
 
     # scopes
-    scope :ascending, -> { order(created_timestamp: :asc) }
-    scope :descending, -> { order(created_timestamp: :desc) }
+    scope :ascending, -> { order(date: :asc) }
+    scope :descending, -> { order(date: :desc) }
     scope :this_year, -> { where("date > date('now', 'start of year')") }
 
     # class methods

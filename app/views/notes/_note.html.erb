@@ -1,0 +1,5 @@
+<div id="<%= dom_id event %>">
+<h2>Note: <%= @note.date.strftime("%Y-%b-%d") %></h2>
+<p><%= button_to "Edit", edit_note_path(@note), method: :get %></p>
+<p>Description: <%= @note.description %></p>
+</div>
