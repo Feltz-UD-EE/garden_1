@@ -79,6 +79,25 @@ class CropsController < ApplicationController
     end
   end
 
+  def split
+    rodauth.require_authentication
+    new_crop = @crop.dup
+    datestr = Time.zone.now.strftime("%Y-%m-%d")
+    new_crop.name += " (split #{datestr})"
+    crop.name += " (orignal, split on #{datestr})"
+    @crop.events.each do |event|
+      new_crop.events << event.dup
+    end
+    @crop.save
+    new_crop.save
+
+    respond_to do |format|
+      format.html { redirect_to zone_url(@crop.zone_id), notice: "Crop was successfully split." }
+      format.json { head :no_content }
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_crop
