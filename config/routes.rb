@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :moisture_readings
   resources :crops do
     get 'past'
-    post 'split'
+    get 'split'
   end
   resources :events
   resources :notes
