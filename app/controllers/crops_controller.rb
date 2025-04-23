@@ -79,6 +79,7 @@ class CropsController < ApplicationController
     end
   end
 
+  # GET /crops/1/split
   def split
     rodauth.require_authentication
     @crop = Crop.find(params["crop_id"])
