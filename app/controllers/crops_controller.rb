@@ -86,7 +86,7 @@ class CropsController < ApplicationController
     new_crop = @crop.dup
     datestr = Time.zone.now.strftime("%Y-%m-%d")
     new_crop.name += " (split #{datestr})"
-    crop.name += " (orignal, split on #{datestr})"
+    @crop.name += " (original; split on #{datestr})"
     @crop.events.each do |event|
       new_crop.events << event.dup
     end
