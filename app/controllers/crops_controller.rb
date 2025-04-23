@@ -81,6 +81,7 @@ class CropsController < ApplicationController
 
   def split
     rodauth.require_authentication
+    @crop = Crop.find(params["crop_id"])
     new_crop = @crop.dup
     datestr = Time.zone.now.strftime("%Y-%m-%d")
     new_crop.name += " (split #{datestr})"
