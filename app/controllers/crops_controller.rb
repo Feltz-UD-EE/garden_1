@@ -82,19 +82,21 @@ class CropsController < ApplicationController
   # GET /crops/1/split
   def split
     rodauth.require_authentication
-    @crop = Crop.find(params["crop_id"])
-    new_crop = @crop.dup
+    crop = Crop.find(params["crop_id"])
+    new_crop = crop.dup
     datestr = Time.zone.now.strftime("%Y-%m-%d")
     new_crop.name += " (split #{datestr})"
-    @crop.name += " (original; split on #{datestr})"
-    @crop.events.each do |event|
-      new_crop.events << event.dup
-    end
-    @crop.save
+    crop.name += " (original; split on #{datestr})"
+    crop.save
     new_crop.save
+    crop.events.each do |event|
+      new_event = event.dup
+      new_event.crop_id = new_crop.id
+      new_event.save
+    end
 
     respond_to do |format|
-      format.html { redirect_to zone_url(@crop.zone_id), notice: "Crop was successfully split." }
+      format.html { redirect_to zone_url(crop.zone_id), notice: "Crop was successfully split." }
       format.json { head :no_content }
     end
 
