@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :tanks
   resources :moisture_readings
   resources :crops do
-    get 'past'
     get 'split'
   end
   resources :events

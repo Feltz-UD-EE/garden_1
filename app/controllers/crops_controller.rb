@@ -8,15 +8,16 @@ class CropsController < ApplicationController
 
   # GET /crops or /crops.json
   def index
-    @crops = Crop.this_year.alpha             # NB add get param for additional menu items
-  end
-
-  # Get /crops/past or /crops/past.json
-  def past
-    @crops = Crop.last_year.ascending
-    @harvests = []
-    @crops.each do |crop|
-      @harvests += crop.total_harvest_last_year
+    if params[:past].present? && params[:past] != 0
+      @crops = Crop.last_year.ascending
+      @harvests = []
+      @crops.each do |crop|
+        @harvests += crop.total_harvest_last_year
+      end
+      render :past
+    else                                        # 'normal' index
+      @crops = Crop.this_year.alpha             # NB add get param for additional menu items
+      render :index
     end
   end
 
