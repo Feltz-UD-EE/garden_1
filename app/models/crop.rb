@@ -36,6 +36,11 @@ class Crop < ApplicationRecord
                 (season = 1) OR
                 (season = 2 AND plant_date > date('now', 'start of year', '-1 year'))")
         }
+    scope :last_year, -> {
+        where("(season = 0 AND plant_date > date('now', 'start of year', '-1 year')) OR
+                (season = 1) OR
+                (season = 2 AND plant_date > date('now', 'start of year', '-2 years'))")
+    }
     scope :current, -> { where("pull_date IS NULL") }
     scope :alpha, -> { order(name: :asc) }
 
@@ -66,6 +71,10 @@ class Crop < ApplicationRecord
 
     def total_harvest_this_year
         self.events.this_year.sum(:harvest).round(2)          # eliminate false precision due to float math errors
+    end
+
+    def total_harvest_last_year
+        self.events.last_year.sum(:harvest).round(2)          # eliminate false precision due to float math errors
     end
 
     def description_pretty
