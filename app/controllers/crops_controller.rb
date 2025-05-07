@@ -13,7 +13,11 @@ class CropsController < ApplicationController
 
   # Get /crops/past or /crops/past.json
   def past
-#    @years =
+    @crops = Crop.last_year.ascending
+    @harvests = []
+    @crops.each do |crop|
+      @harvests += crop.total_harvest_last_year
+    end
   end
 
   # GET /crops/1 or /crops/1.json

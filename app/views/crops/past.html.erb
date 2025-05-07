@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Crops</h1>
+<h1>Crops Last Year</h1>
 
 <div id="crops">
 <table class="datatable crops responsive no-wrap" id="crops">
@@ -8,19 +8,17 @@
     <tr>
         <th>Name</th>
         <th>Season</th>
-        <th>Zone</th>
-        <th>Annual Harvest</th>
+        <th>Total Harvest</th>
         <th>Planted</th>
         <th>Pulled</th>
     </tr>
   </thead>
   <tbody>
-    <% @crops.each do |crop| %>
+    <% @crops.each_with_index do |crop, i| %>
         <tr>
             <td><%= link_to crop.name, crop_path(crop) %></td>
             <td><%= crop.season %></td>
-            <td><%= link_to crop.zone.name, zone_path(crop.zone) %></td>
-            <td><%= crop.total_harvest_this_year %></td>
+            <td><%= @harvests[i] %></td>
             <td><%= crop.plant_date.present? ? crop.plant_date.strftime("%Y-%b-%d") : "" %></td>
             <td><%= crop.pull_date.present? ? crop.pull_date.strftime("%Y-%b-%d") : "" %></td>
         </tr>
@@ -28,4 +26,3 @@
   </tbody>
 </table>
 </div>
-<%= link_to "Last Year", crops_past_path %>
