@@ -11,9 +11,11 @@ class CropsController < ApplicationController
     if params[:past].present? && params[:past] != 0
       @crops = Crop.last_year.ascending
       @harvests = []
+      print(@crops)
       @crops.each do |crop|
-        @harvests += crop.total_harvest_last_year
+        @harvests << crop.total_harvest_last_year
       end
+      print(@harvests)
       render :past
     else                                        # 'normal' index
       @crops = Crop.this_year.alpha             # NB add get param for additional menu items
