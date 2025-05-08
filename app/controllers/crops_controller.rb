@@ -9,7 +9,7 @@ class CropsController < ApplicationController
   # GET /crops or /crops.json
   def index
     if params[:past].present? && params[:past] != 0
-      @crops = Crop.last_year.ascending
+      @crops = Crop.last_year.alpha
       @harvests = []
       print(@crops)
       @crops.each do |crop|
