@@ -1,0 +1,17 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>Moisture History</h1>
+    <p>Long-term moisture summaries can live here once the daily rollups are added.</p>
+  </header>
+
+  <section class="garden-page__grid">
+    <% @zones.each do |zone| %>
+      <article class="garden-page__panel">
+        <h2><%= zone.name %></h2>
+        <p>Target: <%= zone.moisture_target || "Not set" %></p>
+        <p>Latest reading: <%= zone.latest_reading %></p>
+        <%= link_to "Current readings", moisture_readings_path(zone_id: zone.id) %>
+      </article>
+    <% end %>
+  </section>
+</main>

@@ -3,29 +3,38 @@
    # Copyright 2015-2016 2022-2023 John C. Feltz, github: Feltz-UD-EE/garden_1
    #
 %> 
-<nav class="top-bar contain-to-grid" id='navbar' data-topbar>
-    <ul class="title-area">
-        <li> <%= link_to "Logo", public_home_path %> </li>
-    </ul>
+<nav class="garden-nav" id="navbar" aria-label="Primary navigation">
+    <div class="garden-nav__inner">
+        <%= link_to public_home_path, class: "garden-nav__brand", aria: { label: "Garden home" } do %>
+            <span class="material-icons garden-nav__brand-icon" aria-hidden="true">local_florist</span>
+            <span class="garden-nav__brand-text">Garden</span>
+        <% end %>
 
-    <section class="top-bar-section text-center">
-        <ul class="ocean-nav">
-            <li> <%= link_to "Tanks", tanks_path %> </li>
-            <li> <%= link_to "Zones", zones_path %> </li>
-            <li class="has-dropdown active">
-                <%= link_to "Crops", crops_path %>
-                <ul class = "dropdown">
-                    <li> <%= link_to "Currently Planted", crops_path %> </li>
-                    <li> <%= link_to "Pulled", crops_path %> </li>
-                    <li> <%= link_to "Past Years", crops_path %> </li>
-                </ul>
-            </li>
-            <li class="has-dropdown active">
-                <%= link_to "Events", events_path %>
-                <ul class = "dropdown">
-                    <li> <%= link_to "Harvests", events_path %> </li>
-                </ul>
-            </li>
+        <button class="garden-nav__toggle" type="button" aria-controls="primary-navigation-menu" aria-expanded="false">
+            <span class="material-icons" aria-hidden="true">menu</span>
+            <span class="garden-nav__toggle-label">Menu</span>
+        </button>
+
+        <ul class="garden-nav__menu" id="primary-navigation-menu">
+            <% primary_navigation.each_with_index do |item, index| %>
+                <% active = navigation_item_active?(item) %>
+                <% dropdown_id = "primary-navigation-section-#{index}" %>
+                <li class="garden-nav__item <%= 'garden-nav__item--active' if active %>">
+                    <button class="garden-nav__button" type="button" aria-expanded="false" aria-controls="<%= dropdown_id %>">
+                        <span class="material-icons garden-nav__item-icon" aria-hidden="true"><%= item[:icon] %></span>
+                        <span><%= item[:label] %></span>
+                        <span class="material-icons garden-nav__chevron" aria-hidden="true">expand_more</span>
+                    </button>
+
+                    <ul class="garden-nav__dropdown" id="<%= dropdown_id %>" hidden>
+                        <% item[:children].each do |child| %>
+                            <li>
+                                <%= link_to child[:label], child[:path], class: "garden-nav__link #{'garden-nav__link--active' if current_page?(child[:path])}" %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </li>
+            <% end %>
         </ul>
-    </section>
+    </div>
 </nav>

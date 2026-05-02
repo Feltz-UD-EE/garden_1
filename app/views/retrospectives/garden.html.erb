@@ -1,0 +1,17 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>Garden by Year</h1>
+    <p>A starting point for comparing zone productivity and garden-wide outcomes.</p>
+  </header>
+
+  <section class="garden-page__grid">
+    <% @zones.each do |zone| %>
+      <article class="garden-page__panel">
+        <h2><%= zone.name %></h2>
+        <p>Current crops: <%= zone.crop_list.presence || "None" %></p>
+        <p>Total harvest this year: <%= zone.total_harvest_this_year %></p>
+        <%= link_to "Open zone", zone_path(zone) %>
+      </article>
+    <% end %>
+  </section>
+</main>

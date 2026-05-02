@@ -1,0 +1,27 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>Harvest Trends</h1>
+    <p>Recent and historical harvest events in one long-range view.</p>
+  </header>
+
+  <table class="garden-page__table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Crop</th>
+        <th>Description</th>
+        <th>Harvest</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.date %></td>
+          <td><%= link_to event.crop.description_pretty_short, crop_path(event.crop) %></td>
+          <td><%= event.description %></td>
+          <td><%= event.harvest %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>

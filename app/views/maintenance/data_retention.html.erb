@@ -1,0 +1,18 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>Data Retention</h1>
+    <p>Storage pressure from raw moisture readings on the Raspberry Pi.</p>
+  </header>
+
+  <section class="garden-page__grid">
+    <article class="garden-page__panel">
+      <h2>Total Raw Readings</h2>
+      <p><%= @moisture_readings_count %></p>
+    </article>
+
+    <article class="garden-page__panel">
+      <h2>Older Than One Year</h2>
+      <p><%= @old_moisture_readings_count %></p>
+    </article>
+  </section>
+</main>

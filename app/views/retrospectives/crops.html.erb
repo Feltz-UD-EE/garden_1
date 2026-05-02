@@ -1,0 +1,29 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>Crop Performance</h1>
+    <p>Crop totals and season comparisons can grow from this view.</p>
+  </header>
+
+  <table class="garden-page__table">
+    <thead>
+      <tr>
+        <th>Crop</th>
+        <th>Zone</th>
+        <th>Planted</th>
+        <th>Pulled</th>
+        <th>Total Harvest</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @crops.each do |crop| %>
+        <tr>
+          <td><%= link_to crop.description_pretty_short, crop_path(crop) %></td>
+          <td><%= crop.zone.name %></td>
+          <td><%= crop.plant_date %></td>
+          <td><%= crop.pull_date || "Current" %></td>
+          <td><%= crop.total_harvest %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>
