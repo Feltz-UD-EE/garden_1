@@ -5,9 +5,12 @@ html {
 body {
   background: var(--page-bg);
   color: var(--body-text);
+  display: flex;
+  flex-direction: column;
   font-family: "Nunito Sans", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.55;
+  min-height: 100vh;
 }
 
 body > h1,
@@ -286,4 +289,105 @@ table.garden-page__table tbody tr:nth-child(even) {
   background: var(--menu-accent);
   border-color: var(--menu-accent);
   color: #19382d !important;
+}
+
+.garden-footer {
+  align-items: center;
+  border-top: 1px solid var(--menu-border);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: auto auto 0;
+  max-width: 1184px;
+  padding: 1rem;
+  width: calc(100% - 2rem);
+}
+
+.garden-footer__links,
+.garden-footer__session {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.garden-footer__link:not(.button) {
+  background: #fff;
+  border: 1px solid var(--menu-border);
+  border-radius: 999px;
+  color: #276b4e;
+  display: inline-flex;
+  font-size: 0.88rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0.5rem 0.8rem;
+  text-decoration: none;
+}
+
+.garden-footer__link:not(.button):visited {
+  color: #276b4e;
+}
+
+.garden-footer__link:not(.button):hover,
+.garden-footer__link:not(.button):focus {
+  background: #eef6e9;
+  border-color: #8fcf68;
+  color: #19382d;
+  outline: none;
+  text-decoration: none;
+}
+
+.garden-footer__link--session:not(.button) {
+  border-color: #e3a72f;
+  color: #19382d;
+}
+
+.garden-footer__link--session:not(.button):hover,
+.garden-footer__link--session:not(.button):focus {
+  background: #fff5d7;
+  border-color: #d69618;
+}
+
+.garden-static-page {
+  background: #fff;
+  border: 1px solid var(--menu-border);
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 820px;
+  padding: 1.5rem;
+}
+
+.garden-static-page h1 {
+  border-bottom: 1px solid var(--menu-border);
+  margin-top: 0;
+  padding-bottom: 0.65rem;
+}
+
+.garden-static-page h2 {
+  color: #276b4e;
+  margin-top: 1.5rem;
+}
+
+.garden-static-page p {
+  color: #33473d;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  .garden-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .garden-footer__session {
+    justify-content: flex-start;
+  }
+
+  .garden-static-page {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1rem;
+  }
 }
