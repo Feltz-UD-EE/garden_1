@@ -1,5 +1,5 @@
-<div id="<%= dom_id event %>">
+<div id="<%= dom_id event %>" class="garden-detail">
 <h2>Note: <%= @note.date.strftime("%Y-%b-%d") %></h2>
-<p><%= button_to "Edit", edit_note_path(@note), method: :get %></p>
-<p>Description: <%= @note.description %></p>
+<p class="garden-detail__actions"><%= button_to "Edit", edit_note_path(@note), method: :get %></p>
+<p><span class="garden-label">Description:</span> <span class="garden-value"><%= @note.description %></span></p>
 </div>

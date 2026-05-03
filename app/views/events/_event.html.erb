@@ -1,7 +1,7 @@
-<div id="<%= dom_id event %>">
+<div id="<%= dom_id event %>" class="garden-detail">
 <h2>Event: <%= @event.date.strftime("%Y-%b-%d") %></h2>
-<p><%= button_to "Edit", edit_event_path(@event), method: :get %></p>
-<p>Crop + Zone: <%= @event.crop.name %> <%= @event.crop.zone.number %></p>
-<p>Description: <%= @event.description %></p>
-<p>Harvest: <%= @event.harvest %></p>
+<p class="garden-detail__actions"><%= button_to "Edit", edit_event_path(@event), method: :get %></p>
+<p><span class="garden-label">Crop + Zone:</span> <span class="garden-value"><%= @event.crop.name %> <%= @event.crop.zone.number %></span></p>
+<p><span class="garden-label">Description:</span> <span class="garden-value"><%= @event.description %></span></p>
+<p><span class="garden-label">Harvest:</span> <span class="garden-value"><%= @event.harvest %></span></p>
 </div>
