@@ -1,15 +1,15 @@
-<div id="<%= dom_id zone %>">
+<div id="<%= dom_id zone %>" class="garden-detail">
 <h2>Zone: <%= @zone.name %></h2>
-<p><%= button_to "Edit", edit_zone_path(@zone), method: :get %>
+<p class="garden-detail__actions"><%= button_to "Edit", edit_zone_path(@zone), method: :get %>
   <%= button_to "Destroy", @zone, method: :delete %></p>
-<p>Number: <%= @zone.number %></p>
-<p>Tank: <%= @zone.tank_name %></p>
-<p>Crops: <%= @zone.crop_list %></p>
-<p>Description: <%= @zone.description %></p>
-<p>Valve Pin: <%= @zone.valve_pin %></p>
-<p>Sensor: <%= @zone.sensor_pin %>-<%= @zone.sensor_index %></p>
-<p>Moisture Target: <%= @zone.moisture_target %></p>
-<p>This Year's Harvest: <%= @zone.total_harvest_this_year %></p>
+<p><span class="garden-label">Number:</span> <span class="garden-value"><%= @zone.number %></span></p>
+<p><span class="garden-label">Tank:</span> <span class="garden-value"><%= @zone.tank_name %></span></p>
+<p><span class="garden-label">Crops:</span> <span class="garden-value"><%= @zone.crop_list %></span></p>
+<p><span class="garden-label">Description:</span> <span class="garden-value"><%= @zone.description %></span></p>
+<p><span class="garden-label">Valve Pin:</span> <span class="garden-value"><%= @zone.valve_pin %></span></p>
+<p><span class="garden-label">Sensor:</span> <span class="garden-value"><%= @zone.sensor_pin %>-<%= @zone.sensor_index %></span></p>
+<p><span class="garden-label">Moisture Target:</span> <span class="garden-value"><%= @zone.moisture_target %></span></p>
+<p><span class="garden-label">This Year's Harvest:</span> <span class="garden-value"><%= @zone.total_harvest_this_year %></span></p>
 <hr/>
 <h3>Crops</h3>
 <table class="datatable zone-crops responsive no-wrap" id="zone-crops">
@@ -21,7 +21,7 @@
         <th>Pull Date</th>
         <th>Annual Harvest</th>
         <th></th>
-    <tr>
+    </tr>
   </thead>
   <tbody>
     <% @zone.crops.current.alpha.each do |crop| %>
@@ -46,7 +46,7 @@
         <th>Crop</th>
         <th>Description</th>
         <th>Harvest</th>
-    <tr>
+    </tr>
   </thead>
   <tbody>
     <% @zone.events.this_year.descending.first(20).each do |e| %>
@@ -66,7 +66,7 @@
     <tr>
         <th>Date/Time</th>
         <th>Level</th>
-    <tr>
+    </tr>
   </thead>
   <tbody>
     <% @zone.moisture_readings.descending.first(30).each do |mr| %>

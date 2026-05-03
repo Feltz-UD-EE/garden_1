@@ -1,17 +1,19 @@
-<div id="<%= dom_id tank %>">
+<div id="<%= dom_id tank %>" class="garden-detail">
 <h2>Tank: <%= @tank.name %></h2>
-<p><%= button_to "Edit", edit_tank_path(@tank), method: :get %>
+<p class="garden-detail__actions"><%= button_to "Edit", edit_tank_path(@tank), method: :get %>
   <%= button_to "Destroy", @tank, method: :delete %></p>
-<p>Volume: <%= @tank.volume %> liters</p>
-<p>Pump Pin: <%= @tank.pump_pin %></p>
-<p>Pump Status:
+<p><span class="garden-label">Volume:</span> <span class="garden-value"><%= @tank.volume %> liters</span></p>
+<p><span class="garden-label">Pump Pin:</span> <span class="garden-value"><%= @tank.pump_pin %></span></p>
+<p><span class="garden-label">Pump Status:</span>
+    <span class="garden-value">
     <% if @tank.needs_pumping %>
         <span style = "bgcolor:green, color:white">On</span>
     <% else %>
         Off
     <% end %>
+    </span>
 </p>
-<p>Annual Harvest: <%= @tank.total_harvest_this_year %></p>
+<p><span class="garden-label">Annual Harvest:</span> <span class="garden-value"><%= @tank.total_harvest_this_year %></span></p>
 </br>
 <hr/>
 <% if @tank.zones.any? %>
@@ -57,7 +59,7 @@
     <tr style="text-align:center;">
         <th>Date/Time</th>
         <th>Level</th>
-    <tr>
+    </tr>
   </thead>
   <tbody>
     <% @tank.level_readings.descending.last_day.each do |lr| %>

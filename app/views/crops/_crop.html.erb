@@ -1,25 +1,29 @@
-<div>
+<div class="garden-detail">
 <h2>Crop: <%= @crop.name %></h2>
-<p><%= button_to "Edit", edit_crop_path(@crop), method: :get %></p>
-<p>Description: <%= @crop.description %></p>
-<p>Season: <%= @crop.season %></p>
-<p>Zone: <%= link_to @crop.zone.name, zone_path(@crop.zone) %></p>
-<p>Date Planted: <%= @crop.plant_date.strftime("%Y-%b-%d") %>
+<p class="garden-detail__actions"><%= button_to "Edit", edit_crop_path(@crop), method: :get %></p>
+<p><span class="garden-label">Description:</span> <span class="garden-value"><%= @crop.description %></span></p>
+<p><span class="garden-label">Season:</span> <span class="garden-value"><%= @crop.season %></span></p>
+<p><span class="garden-label">Zone:</span> <span class="garden-value"><%= link_to @crop.zone.name, zone_path(@crop.zone) %></span></p>
+<p><span class="garden-label">Date Planted:</span> <span class="garden-value"><%= @crop.plant_date.strftime("%Y-%b-%d") %>
     <% if @crop.pull_date.present? && @crop.pull_date <= Time.now %>
-        Date Pulled: <%= @crop.pull_date.strftime("%Y-%b-%d") %>
+        <span class="garden-label">Date Pulled:</span> <%= @crop.pull_date.strftime("%Y-%b-%d") %>
     <% else %>
         Currently planted
     <% end %>
+</span>
 </p>
-<p>Annual Harvest: <%= @crop.total_harvest_this_year %></p>
+<p><span class="garden-label">Annual Harvest:</span> <span class="garden-value"><%= @crop.total_harvest_this_year %></span></p>
 <hr/>
 <h3>Recent Events</h3>
 <table class="datatable crop-events responsive no-wrap" id='crop-events'>
+  <thead>
     <tr style="text-align:center;">
         <th>Date</th>
         <th>Description</th>
         <th>Harvest</th>
-    <tr>
+    </tr>
+  </thead>
+  <tbody>
     <% @crop.events.descending.each do |e| %>
         <tr>
             <td><%= e.date.strftime("%Y-%b-%d") %></td>
@@ -27,6 +31,7 @@
             <td><%= e.harvest.present? ? (link_to e.harvest, event_path(e.id)) : "" %></td>
         </tr>
     <% end %>
+  </tbody>
 </table>
 <br/>
 <p><%= link_to "Add an event", new_event_path(crop_id: @crop.id) %> |
