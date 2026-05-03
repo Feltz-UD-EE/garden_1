@@ -1,0 +1,23 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>System Notes</h1>
+    <p>Recent notes that may help explain garden or equipment behavior.</p>
+  </header>
+
+  <table class="garden-page__table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @notes.each do |note| %>
+        <tr>
+          <td><%= note.date %></td>
+          <td><%= note.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>

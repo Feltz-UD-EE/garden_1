@@ -1,0 +1,32 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>Retrospectives</h1>
+    <p>Long-range views for understanding what worked across crops, zones, harvests, and readings.</p>
+  </header>
+
+  <section class="garden-page__grid">
+    <article class="garden-page__panel">
+      <h2>Crop Performance</h2>
+      <p>Compare crops across seasons and zones.</p>
+      <%= link_to "View crops", retrospective_crops_path %>
+    </article>
+
+    <article class="garden-page__panel">
+      <h2>Garden by Year</h2>
+      <p>Look at zone usage and garden-wide performance by season.</p>
+      <%= link_to "View garden", retrospective_garden_path %>
+    </article>
+
+    <article class="garden-page__panel">
+      <h2>Harvest Trends</h2>
+      <p>Review harvest events over time.</p>
+      <%= link_to "View harvests", retrospective_harvests_path %>
+    </article>
+
+    <article class="garden-page__panel">
+      <h2>Moisture History</h2>
+      <p>Use summarized readings for long-term moisture patterns.</p>
+      <%= link_to "View moisture", retrospective_moisture_path %>
+    </article>
+  </section>
+</main>

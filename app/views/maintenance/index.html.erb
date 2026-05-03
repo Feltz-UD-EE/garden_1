@@ -1,0 +1,32 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>Maintenance</h1>
+    <p>Operational views for sensors, data retention, backups, and system notes.</p>
+  </header>
+
+  <section class="garden-page__grid">
+    <article class="garden-page__panel">
+      <h2>Sensor Status</h2>
+      <p><%= @zones.count %> zones configured.</p>
+      <%= link_to "Check sensors", maintenance_sensors_path %>
+    </article>
+
+    <article class="garden-page__panel">
+      <h2>Data Retention</h2>
+      <p><%= @moisture_readings_count %> raw moisture readings stored.</p>
+      <%= link_to "Review storage", maintenance_data_retention_path %>
+    </article>
+
+    <article class="garden-page__panel">
+      <h2>Backup / Export</h2>
+      <p>Database and export tasks for the Raspberry Pi.</p>
+      <%= link_to "Open backups", maintenance_backups_path %>
+    </article>
+
+    <article class="garden-page__panel">
+      <h2>System Notes</h2>
+      <p>Recent garden and maintenance observations.</p>
+      <%= link_to "View notes", maintenance_notes_path %>
+    </article>
+  </section>
+</main>

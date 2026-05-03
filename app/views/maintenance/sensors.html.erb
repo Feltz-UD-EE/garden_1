@@ -1,0 +1,29 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>Sensor Status</h1>
+    <p>Configured sensor pins and latest moisture values by zone.</p>
+  </header>
+
+  <table class="garden-page__table">
+    <thead>
+      <tr>
+        <th>Zone</th>
+        <th>Sensor Pin</th>
+        <th>Sensor Index</th>
+        <th>Target</th>
+        <th>Latest</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @zones.each do |zone| %>
+        <tr>
+          <td><%= link_to zone.name, zone_path(zone) %></td>
+          <td><%= zone.sensor_pin || "Not set" %></td>
+          <td><%= zone.sensor_index || "Not set" %></td>
+          <td><%= zone.moisture_target || "Not set" %></td>
+          <td><%= zone.latest_reading %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>
