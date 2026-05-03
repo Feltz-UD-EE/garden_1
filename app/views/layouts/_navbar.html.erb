@@ -6,7 +6,7 @@
 <nav class="garden-nav" id="navbar" aria-label="Primary navigation">
     <div class="garden-nav__inner">
         <%= link_to public_home_path, class: "garden-nav__brand", aria: { label: "Garden home" } do %>
-            <span class="material-icons garden-nav__brand-icon" aria-hidden="true">local_florist</span>
+            <%= image_tag "garden_mark.svg", class: "garden-nav__brand-logo", alt: "" %>
             <span class="garden-nav__brand-text">Garden</span>
         <% end %>
 
