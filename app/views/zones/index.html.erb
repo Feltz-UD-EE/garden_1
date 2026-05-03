@@ -3,25 +3,29 @@
 <h1>Zones</h1>
 
 <div id="zones">
-<table class="datatable responsive no-wrap">
-  <tr>
-    <th>Number</th>
-    <th>Name</th>
-    <th>Tank</th>
-    <th>Moisture Target</th>
-    <th>Crops</th>
-    <th>Annual Harvest</th>
-  </tr>
-  <% @zones.each do |zone| %>
+<table class="datatable responsive no-wrap" id="zones-table">
+  <thead>
     <tr>
-        <td><%= link_to zone.number, zone_path(zone) %></td>
-        <td><%= link_to zone.name, zone_path(zone) %></td>
-        <td><%= zone.tank_name %></td>
-        <td><%= zone.moisture_target %></td>
-        <td><%= zone.crop_list %></td>
-        <td><%= zone.total_harvest_this_year %></td>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Tank</th>
+      <th>Moisture Target</th>
+      <th>Crops</th>
+      <th>Annual Harvest</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @zones.each do |zone| %>
+      <tr>
+          <td><%= link_to zone.number, zone_path(zone) %></td>
+          <td><%= link_to zone.name, zone_path(zone) %></td>
+          <td><%= zone.tank_name %></td>
+          <td><%= zone.moisture_target %></td>
+          <td><%= zone.crop_list %></td>
+          <td><%= zone.total_harvest_this_year %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 </div>
 
