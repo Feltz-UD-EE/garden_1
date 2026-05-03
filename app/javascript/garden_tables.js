@@ -106,14 +106,19 @@ function initializeTable(table) {
   footer.innerHTML = '<span></span><nav class="garden-table-pagination" aria-label="Table pages"></nav>';
   wrapper.parentNode.insertBefore(footer, wrapper.nextSibling);
 
+  const requestedPageSize = table.dataset.pageSize === "all" ? 999999 : Number(table.dataset.pageSize);
+  const pageSize = Number.isFinite(requestedPageSize) && requestedPageSize > 0 ? requestedPageSize : 10;
+
   const state = {
     rows: tableRows(table),
     page: 1,
-    pageSize: 10,
+    pageSize: pageSize,
     query: "",
     summary: footer.querySelector("span"),
     pagination: footer.querySelector(".garden-table-pagination")
   };
+
+  controls.querySelector("select").value = pageSize === 999999 ? "999999" : String(pageSize);
 
   Array.from(table.tHead.rows[0].cells).forEach((cell, index) => {
     const button = document.createElement("button");

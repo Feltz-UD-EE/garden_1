@@ -1,15 +1,15 @@
-<% 
-   #
-   # Copyright 2015-2016 2022-2023 John C. Feltz, github: Feltz-UD-EE/garden_1
-   #
-%> 
-<!-- START FOOTER -->
+<footer class="garden-footer hide-on-print">
+  <nav class="garden-footer__links" aria-label="Site links">
+    <%= link_to "About", about_path, class: "garden-footer__link" %>
+    <%= link_to "Credits", credits_path, class: "garden-footer__link" %>
+    <%= link_to "Legal", legal_path, class: "garden-footer__link" %>
+  </nav>
 
-  <div class="inner footer-main">
-    <div class="large-12 columns">
-  	  <div class="large-12 columns">
-        <h3>About </h3>
-        <p></p>
-      </div>
-    </div>
+  <div class="garden-footer__session">
+    <% if rodauth.logged_in? %>
+      <%= link_to "Sign out", rodauth.logout_path, method: :post, class: "garden-footer__link garden-footer__link--session" %>
+    <% else %>
+      <%= link_to "Sign in", rodauth.login_path, class: "garden-footer__link garden-footer__link--session" %>
+    <% end %>
   </div>
+</footer>
