@@ -129,6 +129,24 @@ Every 15 minutes, the software will turn on all the moisture sensors briefly in 
 
 Refresh the home page to see the most recent moisture reading, and drill down into a zone to see past moisture readings.
 
+### Moisture Reading Summaries
+
+Raw moisture readings are kept for the current calendar year.  Completed calendar years can be summarized into daily per-zone records, with crop links preserved for the crops that were planted in each zone on each day.  This keeps long-term garden history while reducing SQLite table size on the Raspberry Pi.
+
+To process a small batch manually:
+
+```
+rails moisture_readings:summarize_previous_years MAX_DAYS=7 SLEEP_SECONDS=0.5
+```
+
+For annual scheduling, run that task from cron after the new year.  The task is safe to run repeatedly; it processes only raw readings before January 1 of the current year and skips days that have already been pruned.  A daily January batch with `MAX_DAYS=30` will process a completed 365-day year over roughly two weeks without one long SQLite transaction.
+
+Example cron entry for 2:30 AM every day in January:
+
+```
+30 2 * 1 * cd /path/to/garden_1 && bundle exec rails moisture_readings:summarize_previous_years MAX_DAYS=30 SLEEP_SECONDS=0.5
+```
+
 ## Security
 
 The security model for garden_1 assumes a small number of authorized users, who are able to change configurations through the Web UI, and public access without an account, which only allows the ability to view a few pages.

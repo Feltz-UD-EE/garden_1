@@ -1,7 +1,7 @@
 <main class="garden-page">
   <header class="garden-page__header">
     <h1>Data Retention</h1>
-    <p>Storage pressure from raw moisture readings on the Raspberry Pi.</p>
+    <p>Storage pressure from raw moisture readings on the Raspberry Pi. Completed calendar years can be summarized.</p>
   </header>
 
   <section class="garden-page__grid">
@@ -11,8 +11,30 @@
     </article>
 
     <article class="garden-page__panel">
-      <h2>Older Than One Year</h2>
-      <p><%= @old_moisture_readings_count %></p>
+      <h2>Before This Year</h2>
+      <p><%= @previous_year_moisture_readings_count %></p>
     </article>
+
+    <article class="garden-page__panel">
+      <h2>Daily Summaries</h2>
+      <p><%= @moisture_summary_count %></p>
+    </article>
+
+    <article class="garden-page__panel">
+      <h2>Summary Crop Links</h2>
+      <p><%= @moisture_summary_crop_count %></p>
+    </article>
+  </section>
+
+  <section class="garden-page__panel">
+    <h2>Summarize Completed Years</h2>
+    <p>Process a few days before January 1 of the current year so the Raspberry Pi stays responsive.</p>
+    <%= button_to "Summarize 3 Days",
+                  maintenance_summarize_moisture_readings_path(max_days: 3),
+                  method: :post,
+                  data: {
+                    confirm: "Summarize and delete raw moisture readings before January 1 of this year for up to 3 days?",
+                    turbo_confirm: "Summarize and delete raw moisture readings before January 1 of this year for up to 3 days?"
+                  } %>
   </section>
 </main>
