@@ -23,6 +23,8 @@ class Crop < ApplicationRecord
     # relations
     belongs_to :zone
     has_many :events
+    has_many :moisture_reading_daily_summary_crops
+    has_many :moisture_reading_daily_summaries, through: :moisture_reading_daily_summary_crops
 
     # validations
     validates :name, presence: true
@@ -87,4 +89,3 @@ class Crop < ApplicationRecord
 
     # Callbacks
 end
-

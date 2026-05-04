@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'maintenance', to: 'maintenance#index'
   get 'maintenance/sensors', to: 'maintenance#sensors', as: :maintenance_sensors
   get 'maintenance/data_retention', to: 'maintenance#data_retention', as: :maintenance_data_retention
+  post 'maintenance/summarize_moisture_readings',
+       to: 'maintenance#summarize_moisture_readings',
+       as: :maintenance_summarize_moisture_readings
   get 'maintenance/backups', to: 'maintenance#backups', as: :maintenance_backups
   get 'maintenance/notes', to: 'maintenance#notes', as: :maintenance_notes
 

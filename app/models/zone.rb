@@ -32,6 +32,7 @@ class Zone < ApplicationRecord
     # relations
     belongs_to :tank, optional: true
     has_many :moisture_readings
+    has_many :moisture_reading_daily_summaries
     has_many :crops
     has_many :events, through: :crops
 
@@ -98,6 +99,14 @@ class Zone < ApplicationRecord
         self.crops.any? ? self.crops.current.alpha.map{ |c| c.name} * ', ' : ""
     end
 
+    def crops_on(day)
+        self.crops.where(
+            "plant_date <= ? AND (pull_date IS NULL OR pull_date >= ?)",
+            day,
+            day
+        )
+    end
+
     def needs_water
         self.moisture_target.present? && (self.latest_reading > self.moisture_target) && self.planted?
     end
@@ -132,4 +141,3 @@ class Zone < ApplicationRecord
 #         RPi::GPIO.setup self.sensor_pin, :as => :input
     end
 end
-
