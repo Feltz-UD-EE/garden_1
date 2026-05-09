@@ -1,0 +1,53 @@
+<main class="garden-page">
+  <header class="garden-page__header">
+    <h1>Tank Transfer</h1>
+    <p>Start a parent tank pump to transfer water into its child tank. The next 15-minute pump cycle will turn pumps on or off as needed.</p>
+  </header>
+
+  <% if notice.present? %>
+    <p class="garden-notice"><%= notice %></p>
+  <% end %>
+
+  <% if alert.present? %>
+    <p class="garden-notice"><%= alert %></p>
+  <% end %>
+
+  <% if @tanks.any? %>
+    <table class="garden-page__table">
+      <thead>
+        <tr>
+          <th>Tank Number</th>
+          <th>Tank Name</th>
+          <th>Child Tank Number</th>
+          <th>Child Tank Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tanks.each do |tank| %>
+          <tr>
+            <td><%= tank.id %></td>
+            <td><%= link_to tank.name, tank_path(tank) %></td>
+            <td><%= tank.child_tank.id %></td>
+            <td><%= link_to tank.child_tank.name, tank_path(tank.child_tank) %></td>
+            <td>
+              <%= button_to "transfer",
+                            maintenance_transfer_tank_path(tank_id: tank.id),
+                            method: :post,
+                            data: {
+                              confirm: "Start pump for #{tank.name} to transfer water to #{tank.child_tank.name}?",
+                              turbo_confirm: "Start pump for #{tank.name} to transfer water to #{tank.child_tank.name}?"
+                            } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <section class="garden-page__panel">
+      <h2>No Tank Transfers Configured</h2>
+      <p>Add a child tank to a tank before using this maintenance action.</p>
+      <%= link_to "Manage tanks", tanks_path %>
+    </section>
+  <% end %>
+</main>

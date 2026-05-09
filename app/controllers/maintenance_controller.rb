@@ -15,6 +15,22 @@ class MaintenanceController < ApplicationController
     @zones = Zone.ascending
   end
 
+  def tank_transfer
+    @tanks = Tank.with_child_tank.order(:name)
+  end
+
+  def transfer_tank
+    tank = Tank.with_child_tank.find(params[:tank_id])
+
+    if tank.transfer_to_child
+      redirect_to maintenance_tank_transfer_path,
+                  notice: "Transfer started from #{tank.name} to #{tank.child_tank.name}. The next pump cycle will turn pumps on or off as needed."
+    else
+      redirect_to maintenance_tank_transfer_path,
+                  alert: "Transfer could not be started because #{tank.name} does not have a child tank."
+    end
+  end
+
   def data_retention
     @moisture_readings_count = MoistureReading.count
     @previous_year_moisture_readings_count =

@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   get 'maintenance', to: 'maintenance#index'
   get 'maintenance/sensors', to: 'maintenance#sensors', as: :maintenance_sensors
+  get 'maintenance/tank_transfer', to: 'maintenance#tank_transfer', as: :maintenance_tank_transfer
+  post 'maintenance/tank_transfer/:tank_id',
+       to: 'maintenance#transfer_tank',
+       as: :maintenance_transfer_tank
   get 'maintenance/data_retention', to: 'maintenance#data_retention', as: :maintenance_data_retention
   post 'maintenance/summarize_moisture_readings',
        to: 'maintenance#summarize_moisture_readings',

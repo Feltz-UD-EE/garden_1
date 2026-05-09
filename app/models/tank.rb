@@ -31,14 +31,15 @@ class Tank < ApplicationRecord
     has_many :zones
     has_many :events, through: :zones
     has_many :level_readings
-    has_one :child_tank, class_name: "Tank", foreign_key: "child_id"
-    belongs_to :parent_tank, class_name: "Tank", optional: true
+    belongs_to :child_tank, class_name: "Tank", foreign_key: "child_id", optional: true
+    has_one :parent_tank, class_name: "Tank", foreign_key: "child_id"
 
     # validations
     validates :name, presence: true
     validates :pump_pin, presence: true
 
     # scopes
+    scope :with_child_tank, -> { joins(:child_tank).includes(:child_tank) }
 
     # class methods
 
@@ -50,6 +51,13 @@ class Tank < ApplicationRecord
     def needs_pumping
         (self.zones.any? && self.zones.map { |z| z.planted? && z.needs_water }.include?(true)) ||
         (self.child_id.present? && self.child_tank.low_level)
+    end
+
+    def transfer_to_child
+      return false unless self.child_tank.present?
+
+      self.pump_on
+      true
     end
 
     def take_reading
