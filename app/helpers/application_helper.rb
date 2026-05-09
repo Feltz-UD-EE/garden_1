@@ -34,6 +34,7 @@ module ApplicationHelper
         children: [
           { label: "Overview", path: maintenance_path },
           { label: "Sensor Status", path: maintenance_sensors_path },
+          { label: "Tank Transfer", path: maintenance_tank_transfer_path },
           { label: "Data Retention", path: maintenance_data_retention_path },
           { label: "Backup / Export", path: maintenance_backups_path },
           { label: "System Notes", path: maintenance_notes_path }
