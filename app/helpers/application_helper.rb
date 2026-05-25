@@ -45,7 +45,15 @@ module ApplicationHelper
 
   def navigation_item_active?(item)
     item.fetch(:controllers, []).include?(controller_name) ||
-      current_page?(item[:path]) ||
-      item.fetch(:children, []).any? { |child| current_page?(child[:path]) }
+      navigation_current_page?(item[:path]) ||
+      item.fetch(:children, []).any? { |child| navigation_current_page?(child[:path]) }
+  end
+
+  def navigation_current_page?(path)
+    return false unless request.get? || request.head?
+
+    current_page?(path)
+  rescue StandardError
+    false
   end
 end

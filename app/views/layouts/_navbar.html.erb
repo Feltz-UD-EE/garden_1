@@ -29,7 +29,7 @@
                     <ul class="garden-nav__dropdown" id="<%= dropdown_id %>" hidden>
                         <% item[:children].each do |child| %>
                             <li>
-                                <%= link_to child[:label], child[:path], class: "garden-nav__link #{'garden-nav__link--active' if current_page?(child[:path])}" %>
+                                <%= link_to child[:label], child[:path], class: "garden-nav__link #{'garden-nav__link--active' if navigation_current_page?(child[:path])}" %>
                             </li>
                         <% end %>
                     </ul>
