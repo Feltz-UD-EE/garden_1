@@ -1,4 +1,4 @@
-<%= form_with url: rodauth.close_account_path, method: :post, data: { turbo: false } do |form| %>
+<%= form_with url: rodauth.close_account_path, method: :post, local: true, authenticity_token: true, data: { turbo: false } do |form| %>
   <% if rodauth.close_account_requires_password? %>
     <div class="form-group mb-3">
       <%= form.label "password", rodauth.password_label, class: "form-label" %>
